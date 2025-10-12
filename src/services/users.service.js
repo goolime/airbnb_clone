@@ -11,7 +11,7 @@ export const usersService = {
     remove,
     save,
     getById,
-    getEmptyToy,
+    getEmptyUser,
     getDefaultFilter,
     getFilterFromSearchParams
 }
