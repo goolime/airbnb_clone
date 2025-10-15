@@ -86,3 +86,10 @@ export function getExistingProperties(obj) {
     }
     return truthyObj
 }
+
+export function calculateRating(reviews) {
+    if (!reviews || !reviews.length) return 'New'
+    const rating = reviews.reduce((acc, curr) => acc + curr.rate, 0) / reviews.length
+    return rating.toFixed(1)
+}
+
