@@ -1,6 +1,6 @@
 
 import { AiOutlineMenu } from 'react-icons/ai'
-import { BiSearch } from 'react-icons/bi'
+import { BiHeart, BiMessage, BiSearch, BiUser } from 'react-icons/bi'
 
 import logoImage from '../assets/images/logo.jpeg'
 import userImage from '../assets/images/user.png'
@@ -69,8 +69,8 @@ export function AppHeader() {
                     </div>
                 </div>
                 <div className='flex flex-row items-center justify-center sm:hidden'>
-                    <BiSearch size={18}/>
-                    <span className='font-semibold ml-2'>Start your search</span>
+                    <BiSearch size={18} />
+                    <span className='font-semibold text-gray-800 ml-2'>Start your search</span>
                 </div>
             </div>
             <div className='flex flex-row items-center justify-end gap-3 sm:col-[2/3] sm:row-[1/2] lg:col-[3/4]'>
@@ -80,10 +80,51 @@ export function AppHeader() {
                 <div className='hidden sm:block'>
                     <img src={userImage} className='rounded-full' height={40} width={40} alt='user-image' />
                 </div>
-                <div onClick={() => { }} className='hidden sm:block p-4 sm:py-1 sm:py-2 bg-gray-300 flex flex row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'>
+                <div onClick={() => { }} className='
+                hidden 
+                sm:block 
+                p-4 
+                sm:py-1 
+                sm:py-2 
+                bg-gray-300 
+                flex flex-row 
+                items-center 
+                gap-3 
+                rounded-full 
+                cursor-pointer 
+                hover:shadow-md 
+                transition'>
                     <AiOutlineMenu />
                 </div>
             </div>
+        </div>
+        <div className='sm:hidden fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-gray-100 border-y-[2px]'>
+            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                <BiSearch size={30} className='cursor-pointer' />
+                <span className='font-thin text-sm'>Explore</span>
+            </a>
+            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                <BiHeart size={30} className='cursor-pointer' />
+                <span className='font-thin text-sm'>Wishlists</span>
+            </a>
+            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                <img
+                    src={logoImage}
+                    className='cursor-pointer'
+                    alt="logo-image"
+                    height="30"
+                    width="30"
+                />
+                <span className='font-thin text-sm'>Trips</span>
+            </a>
+            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                <BiMessage size={30} className='cursor-pointer' />
+                <span className='font-thin text-sm'>Messages</span>
+            </a>
+            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                <BiUser size={30} className='cursor-pointer' />
+                <span className='font-thin text-sm'>Profile</span>
+            </a>
         </div>
     </>
 }
