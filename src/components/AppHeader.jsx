@@ -5,6 +5,8 @@ import { BiHeart, BiMessage, BiSearch, BiUser } from 'react-icons/bi'
 import logoImage from '../assets/images/logo.jpeg'
 import userImage from '../assets/images/user.png'
 
+import { AppFilter } from './AppFilter.jsx'
+
 
 export function AppHeader() {
 
@@ -34,45 +36,7 @@ export function AppHeader() {
                     width="50"
                 />
             </div>
-            {/* Search Bar */}
-            <div className='
-            w-full 
-            max-h-5px 
-            border-[1px] 
-            my-3 
-            lg:col-[2/3] 
-            border-gray-200 
-            py-2 
-            sm:col-span-2 
-            rounded-full 
-            shadow-md 
-            hover:shadow-md 
-            transition 
-            cursor-pointer'>
-                <div className="hidden sm:grid grid-cols-3 items-center justify-between">
-                    <div className='flex flex-col text-sm font-semibold px-6'>
-                        Where
-                        <input type="text" className='focus:outline-none placeholder:font-thin placeholder:text-gray-400' placeholder='Search destinations' />
-                    </div>
-                    <div className='flex flex-col text-sm font-semibold px-6 border-x-[1px] border-gray-100'>
-                        When
-                        <label className='font-thin text-gray-400'>Add dates</label>
-                    </div>
-                    <div className='flex flex-row pl-6 pr-2 items-center justify-between gap-3'>
-                        <div className='flex flex-col text-sm font-semibold'>
-                            Who
-                            <label className='font-thin text-gray-400'>Add guests</label>
-                        </div>
-                        <div className='p-2 bg-rose-500 rounded-full text-white'>
-                            <BiSearch size={18} />
-                        </div>
-                    </div>
-                </div>
-                <div className='flex flex-row items-center justify-center sm:hidden'>
-                    <BiSearch size={18} />
-                    <span className='font-semibold text-gray-800 ml-2'>Start your search</span>
-                </div>
-            </div>
+            <AppFilter />
             <div className='flex flex-row items-center justify-end gap-3 sm:col-[2/3] sm:row-[1/2] lg:col-[3/4]'>
                 <div onClick={() => { }} className='hidden lg:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'>
                     Become a host
@@ -80,12 +44,11 @@ export function AppHeader() {
                 <div className='hidden sm:block'>
                     <img src={userImage} className='rounded-full' height={40} width={40} alt='user-image' />
                 </div>
-                <div onClick={() => { }} className='
+                <button className='
                 hidden 
                 sm:block 
                 p-4 
-                sm:py-1 
-                sm:py-2 
+                sm:py-3
                 bg-gray-300 
                 flex flex-row 
                 items-center 
@@ -93,9 +56,56 @@ export function AppHeader() {
                 rounded-full 
                 cursor-pointer 
                 hover:shadow-md 
-                transition'>
+                transition
+                group
+                relative
+                '>
                     <AiOutlineMenu />
-                </div>
+                    <div className='
+                    absolute 
+                    top-full 
+                    right-0 
+                    bg-white 
+                    w-60 
+                    rounded-lg 
+                    p-3 
+                    mt-3 
+                    shadow-sm 
+                    border-x-[1px] 
+                    border-gray-200
+                    scale-y-0
+                    group-focus:scale-y-100
+                    origin-top
+                    duration-200
+                    '>
+                        <a href='#' className='flex flex-row p-2 text-gray-600'>
+                            <BiSearch size={20} className='cursor-pointer' />
+                            <span className='font-semibold text-sm px-2'>Explore</span>
+                        </a>
+                        <a href='#' className='flex flex-row p-2 text-gray-600'>
+                            <BiHeart size={20} className='cursor-pointer' />
+                            <span className='font-semibold text-sm px-2'>Wishlists</span>
+                        </a>
+                        <a href='#' className='flex flex-row p-2 text-gray-600'>
+                            <img
+                                src={logoImage}
+                                className='cursor-pointer'
+                                alt="logo-image"
+                                height="20"
+                                width="20"
+                            />
+                            <span className='font-semibold self-center text-sm px-2'>Trips</span>
+                        </a>
+                        <a href='#' className='flex flex-row p-2 text-gray-600'>
+                            <BiMessage size={20} className='cursor-pointer' />
+                            <span className='font-semibold text-sm px-2'>Messages</span>
+                        </a>
+                        <a href='#' className='flex flex-row p-2 text-gray-600'>
+                            <BiUser size={20} className='cursor-pointer' />
+                            <span className='font-semibold text-sm px-2'>Profile</span>
+                        </a>
+                    </div>
+                </button>
             </div>
         </div>
         <div className='sm:hidden fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-gray-100 border-y-[2px]'>

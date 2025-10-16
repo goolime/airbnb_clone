@@ -1,4 +1,5 @@
 import { AppHeader } from "./components/AppHeader.jsx"
+import { DynamicDropDown } from "./components/DynamicDropDown.jsx"
 
 function App() {
 
@@ -6,7 +7,7 @@ function App() {
     <>
       <section className="">
         <AppHeader />
-
+        <DynamicDropDown />
       </section>
     </>
   )
