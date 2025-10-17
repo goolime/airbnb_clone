@@ -28,13 +28,13 @@ export function TownPreview({name,properties,idx}){
     return <>
         <div className="w-100vw h-fit py-1">
             <div className="flex justify-between">
-                <h1 className="text-lg font-semibold">{`${getRandomHeader(idx)} ${name} >`}</h1>
+                <h1 className="text-lg font-semibold max-sm:px-5">{`${getRandomHeader(idx)} ${name} >`}</h1>
                 <div className="flex-row hidden sm:flex text-3xl">
-                    <OnHoverFlipIcon onHoverIcon={<TbSquareRoundedArrowLeftFilled />} regIcon={<TbSquareRoundedArrowLeft />} onClick={handleScrollLeft} disabled={scrollX === 0} className={`text-gray-400 opacity-60 duration-300 ${scrollX === 0 ? '' : 'hover:text-gray-900 hover:opacity-100 hover:scale-110'}`} />
-                    <OnHoverFlipIcon onHoverIcon={<TbSquareRoundedArrowRightFilled />} regIcon={<TbSquareRoundedArrowRight/>} onClick={handleScrollRight} disabled={scrollX === 1} className={`text-gray-400 opacity-60 duration-300 ${scrollX === 1 ? '' : 'hover:text-gray-900 hover:opacity-100 hover:scale-110'}`} />
+                    <OnHoverFlipIcon onHoverIcon={<TbSquareRoundedArrowLeftFilled />} regIcon={<TbSquareRoundedArrowLeft />} onClick={handleScrollLeft} disabled={scrollX === 0.0} className={`text-gray-400 opacity-60 duration-300 ${scrollX === 0 ? '' : 'hover:text-gray-900 hover:opacity-100 hover:scale-110'}`} />
+                    <OnHoverFlipIcon onHoverIcon={<TbSquareRoundedArrowRightFilled />} regIcon={<TbSquareRoundedArrowRight/>} onClick={handleScrollRight} disabled={scrollX === 1.0} className={`text-gray-400 opacity-60 duration-300 ${scrollX === 1 ? '' : 'hover:text-gray-900 hover:opacity-100 hover:scale-110'}`} />
                 </div>
             </div>
-            <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll scrollbar-hide gap-5 max-sm:pr-5`}>
+            <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll scrollbar-hide gap-5 max-sm:x-5`}>
                 {properties.map(property=><>
                     <PropertyPreview property={property} key={property._id}/>
                 </>)}
