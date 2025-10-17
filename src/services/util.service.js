@@ -29,7 +29,7 @@ function makeLorem(size = 100) {
     return txt
 }
 
-function getRandomIntInclusive(min, max) {
+export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
@@ -86,3 +86,10 @@ export function getExistingProperties(obj) {
     }
     return truthyObj
 }
+
+export function calculateRating(reviews) {
+    if (!reviews || !reviews.length) return 'New'
+    const rating = reviews.reduce((acc, curr) => acc + curr.rate, 0) / reviews.length
+    return rating.toFixed(1)
+}
+
