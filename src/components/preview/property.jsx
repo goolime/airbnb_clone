@@ -5,15 +5,15 @@ export function PropertyPreview({ property , checkIn=null, checkOut=null }) {
     const raitingString = `★${calculateRating(property.reviews)}${property.reviews ? `(${property.reviews.length})`: ''}`;
     const priceString = getPricingString(checkIn,checkOut,property.price);
     return <>
-        <div className="px-5 sm:px-[2dvw] lg:px-[1dvw] ">
-            <Carousel slides={property.imgUrls} className="size-[40dvw] sm:size-[21dvw] md:size-[16dvw] lg:size-[14.5dvw] xl:size-[12.2dvw]"  auto="hover" />
-            <div className="flex justify-between items-center mt-2 mb-1 text-gray-900 sm:text-[1.2dvw]">
+        <div className="snap-start">
+            <Carousel slides={property.imgUrls} className="size-[40dvw] sm:size-[22dvw] md:size-[17.5dvw] lg:size-[14.7dvw] xl:size-[181.25px]"  auto="hover" />
+            <div className="flex justify-between items-center mt-2 mb-1 text-gray-900 sm:text-[1.7dvw] md:text-[1.4dvw] xl:text-[17.28px]">
                 <div className="font-semibold ">{property.type}|{property.loc.city}</div>
                 <div>{raitingString}</div>
             </div>
-            <div className="text-gray-600 sm:text-[1.1dvw]">{property.summary}</div>
-            <div className="text-gray-600 sm:text-[1.1dvw]">{property.bedrooms} Bedrooms - {property.beds} Beds</div>
-            <div className="text-gray-600 sm:text-[1.1dvw]">{priceString}</div>
+            <div className="text-gray-600 sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1.1dvw] xl:text-[14.3px]">{property.summary}</div>
+            <div className="text-gray-600 sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1.1dvw] xl:text-[14.3px]">{property.bedrooms} Bedrooms - {property.beds} Beds</div>
+            <div className="text-gray-600 sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1.1dvw] xl:text-[14.3px]">{priceString}</div>
         </div>
     </>
 }
