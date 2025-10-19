@@ -1,4 +1,4 @@
-const orders = [
+export const orders = [
 	{
 		_id: 'o1225',
 		host: { _id: 'u102', fullname: "bob", imgUrl: "..."},

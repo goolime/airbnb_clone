@@ -1,4 +1,4 @@
-import { utilService } from './util.service.js'
+import { reduceList, utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const PROPERTIES_KEY = 'propertiesDB'
@@ -14,6 +14,7 @@ export const propertiesService = {
     getEmptyProperty,
     getDefaultFilter,
     getFilterFromSearchParams,
+    getPropertiesByCity
 }
 // For Debug (easy access from console):
 window.cs = propertiesService
@@ -119,5 +120,20 @@ async function getFilterFromSearchParams(searchParams) {
 
 async function getById(id) {
     return await storageService.get(PROPERTIES_KEY, id)
+}
+
+
+function getPropertiesByCity(city) {
+    return storageService.query(PROPERTIES_KEY,50)
+        .then(properties => {
+            return properties.filter(property => 
+                property.loc.lat >= city.minLat &&
+                property.loc.lat <= city.maxLat &&
+                property.loc.lng >= city.minLng &&
+                property.loc.lng <= city.maxLng
+            )
+        }).then(filteredProperties => {
+            return reduceList(filteredProperties,8)
+    })
 }
 
