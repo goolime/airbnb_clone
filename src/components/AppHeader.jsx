@@ -20,14 +20,14 @@ export function AppHeader() {
         sm:grid-cols-2 
         sm:grid-rows-2 
         w-full 
-        bg-white 
+        bg-(--headerBg)
         items-center 
         z-10 
         border-x-[1px] 
         border-gray-100 
         shadow-sm px-5
         '>
-            <div className='hidden sm:block py-4'>
+            <div className='hidden sm:flex flex-row py-4'>
                 <img
                     src={logoImage}
                     className='hidden sm:block cursor-pointer'
@@ -35,8 +35,11 @@ export function AppHeader() {
                     height="50"
                     width="50"
                 />
+                <h1 className='hidden lg:block self-center font-Montserrat font-semibold text-3xl text-rose-400'>airdnd</h1>
             </div>
-            <AppFilter />
+            <div flex='1' className='py-4 sm:col-[1/3] sm:row-[2/3] lg:col-[2/3] lg:row-[1/2]'>
+                <AppFilter />
+            </div>
             <div className='flex flex-row items-center justify-end gap-3 sm:col-[2/3] sm:row-[1/2] lg:col-[3/4]'>
                 <div onClick={() => { }} className='hidden lg:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer'>
                     Become a host
@@ -68,10 +71,11 @@ export function AppHeader() {
                     bg-white 
                     w-60 
                     rounded-lg 
+                    bg-red
                     p-3 
                     mt-3 
                     shadow-sm 
-                    border-x-[1px] 
+                    border-x-[2px] 
                     border-gray-200
                     scale-y-0
                     group-focus:scale-y-100
