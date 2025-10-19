@@ -2,6 +2,14 @@
 @import url('./setup/vars.css');
 @import url('./setup/typography.css');
 @import "tailwindcss";
+@import 'tailwind-scrollbar-hide/v4';
+
+@theme{
+    --breakpoint-sm:750px;
+    --breakpoint-md:950px;
+    --breakpoint-lg:1130px;
+    --breakpoint-xl:1440px;
+}
 
 /* Basics */
 @import url('./basics/base.css');

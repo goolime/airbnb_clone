@@ -1,8 +1,11 @@
-const property = {
+export const property = {
 	_id: 's101',
 	name: 'Ribeira Charming Duplex',
 	type: 'House',
-	imgUrls: ['https://e26e9b.jpg', 'otherImg.jpg'],
+	imgUrls: ['https://www.thestageshoreditch.com/sites/default/files/styles/16_by_9/public/image-library/Find%20a%20home%20Header%201800%20x%201080.jpg?itok=mJS6WvRx',
+			  'https://s3.amazonaws.com/lws_lift/homestead/images/gallery/1152/1752087505869_Living_final.jpg',
+			  'https://www.hellolanding.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flanding-hero-v2.b1e86bba.jpg&w=3840&q=75'
+			],
 	price: 80.0,
 	summary: 'Fantastic duplex apartment...',
 	capacity: 8,

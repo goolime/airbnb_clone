@@ -13,7 +13,8 @@ export function AppHeader() {
     return <>
 
         <div className='
-        fixed 
+        sticky 
+        top-0
         grid 
         lg:grid-cols-[auto_minmax(700px,850px)_auto] 
         lg:grid-rows-none 
@@ -112,7 +113,7 @@ export function AppHeader() {
                 </button>
             </div>
         </div>
-        <div className='sm:hidden fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-gray-100 border-y-[2px]'>
+        <div className='sm:hidden z-10 fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-gray-100 border-y-[2px]'>
             <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
                 <BiSearch size={30} className='cursor-pointer' />
                 <span className='font-thin text-sm'>Explore</span>
