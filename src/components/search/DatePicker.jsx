@@ -27,8 +27,8 @@ export function DatePicker() {
               button_next: "m-2 p-2 rounded-full hover:bg-gray-200 absolute right-0 top-1/2 -translate-y-1/2 aria-disabled:hidden ",
               day: "sm:size-[6dvw] sm:min-w-[45.06px] sm:min-h-[45.05px] md:size-[57.88px] lg:size-[3.8dvw]  lg:min-w-[42.95px] lg:min-h-[42.95px] xl:size-[54.55px] text-center",
               range_start: "rounded-l-full text-white rangeStart",
-              range_end: "rounded-r-full text-white rangeEnd has-[button]:shadow-[-1em_0px_0.6em_rgba(0,0,0,0.1)]",
-              selected: "has-[button]:bg-gray-200",
+              range_end: "rounded-r-full text-white rangeEnd",
+              selected: "has-[button]:bg-gray-200 selected",
               disabled: "opacity-20",
             }}
             components={
