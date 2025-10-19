@@ -11,6 +11,20 @@
     --breakpoint-xl:1440px;
 }
 
+.rangeEnd button,
+.rangeStart button {
+    @apply bg-gray-900 w-full h-full rounded-full;
+}
+
+.rangeStart.end-of-month,
+.selected.end-of-month{
+    @apply has-[button]:shadow-[1em_0px_0.6em_rgba(0,0,0,0.1)];
+}
+.rangeEnd.start-of-month,
+.selected.start-of-month {
+    @apply has-[button]:shadow-[-1em_0px_0.6em_rgba(0,0,0,0.1)];
+}
+
 /* Basics */
 @import url('./basics/base.css');
 @import url('./basics/helpers.css');
