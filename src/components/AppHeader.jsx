@@ -2,7 +2,7 @@
 import { AiOutlineMenu } from 'react-icons/ai'
 import { BiHeart, BiMessage, BiSearch, BiUser } from 'react-icons/bi'
 
-import logoImage from '../assets/images/logo.jpeg'
+import logoImage from '../assets/images/airdnd-logo.png'
 import userImage from '../assets/images/user.png'
 
 import { AppFilter } from './AppFilter.jsx'
@@ -33,8 +33,8 @@ export function AppHeader() {
                     src={logoImage}
                     className='hidden sm:block cursor-pointer'
                     alt="logo-image"
-                    height="50"
-                    width="50"
+                    height="100"
+                    width="100"
                 />
                 <h1 className='hidden lg:block self-center font-Montserrat font-semibold text-3xl text-rose-400'>airdnd</h1>
             </div>
@@ -113,33 +113,35 @@ export function AppHeader() {
                 </button>
             </div>
         </div>
-        <div className='sm:hidden z-10 fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-gray-100 border-y-[2px]'>
-            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
-                <BiSearch size={30} className='cursor-pointer' />
-                <span className='font-thin text-sm'>Explore</span>
-            </a>
-            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
-                <BiHeart size={30} className='cursor-pointer' />
-                <span className='font-thin text-sm'>Wishlists</span>
-            </a>
-            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
-                <img
-                    src={logoImage}
-                    className='cursor-pointer'
-                    alt="logo-image"
-                    height="30"
-                    width="30"
-                />
-                <span className='font-thin text-sm'>Trips</span>
-            </a>
-            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
-                <BiMessage size={30} className='cursor-pointer' />
-                <span className='font-thin text-sm'>Messages</span>
-            </a>
-            <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
-                <BiUser size={30} className='cursor-pointer' />
-                <span className='font-thin text-sm'>Profile</span>
-            </a>
-        </div>
+        { false &&
+            <div className='sm:hidden z-10 fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-gray-100 border-y-[2px]'>
+                <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                    <BiSearch size={30} className='cursor-pointer' />
+                    <span className='font-thin text-sm'>Explore</span>
+                </a>
+                <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                    <BiHeart size={30} className='cursor-pointer' />
+                    <span className='font-thin text-sm'>Wishlists</span>
+                </a>
+                <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                    <img
+                        src={logoImage}
+                        className='cursor-pointer'
+                        alt="logo-image"
+                        height="30"
+                        width="30"
+                    />
+                    <span className='font-thin text-sm'>Trips</span>
+                </a>
+                <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                    <BiMessage size={30} className='cursor-pointer' />
+                    <span className='font-thin text-sm'>Messages</span>
+                </a>
+                <a href='#' className='grid place-items-center p-2 text-gray-500 active:text-rose-500 focus:text-rose-500'>
+                    <BiUser size={30} className='cursor-pointer' />
+                    <span className='font-thin text-sm'>Profile</span>
+                </a>
+            </div>
+        }
     </>
 }

@@ -1,11 +1,12 @@
 import { AppHeader } from "./components/AppHeader.jsx"
-import { Routes, Route , HashRouter, BrowserRouter } from 'react-router'
+import { Routes, Route, HashRouter, BrowserRouter } from 'react-router'
 import { ExplorePage } from "./pages/explorePage.jsx"
+import { AppFooter } from "./components/AppFooter.jsx"
 import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
 import { DynamicDropDown } from "./components/DynamicDropDown.jsx"
 
-const Router =  BrowserRouter
+const Router = BrowserRouter
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
               </Routes>
             </div>
           </div>
+          <AppFooter />
         </section>
       </Router>
     </>

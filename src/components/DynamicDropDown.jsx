@@ -1,6 +1,6 @@
 
 
-export function DynamicDropDown({ isOpen, onClose, children, width}) {
+export function DynamicDropDown({ isOpen, onClose, children, width, direction, position }) {
 
 
 
@@ -8,13 +8,14 @@ export function DynamicDropDown({ isOpen, onClose, children, width}) {
 
     return <>
 
-        <div onClick={onClose} className="fixed inset-0 z-40"/>
+        <div onClick={onClose} className="fixed inset-0 z-40" />
 
         <div
+            onClick={(e) => e.stopPropagation()}
             className={`
-                    absolute
+                    ${position}
                     top-full
-                    right-0
+                    ${direction}
                     bg-white
                     ${width}
                     rounded-3xl
