@@ -58,7 +58,7 @@ export function AppFilter() {
                 }
                 {isDateModalOpen &&
                     <DynamicDropDown isOpen={isModalOpen} onClose={onCloseModal} width={'w-full'} direction={'right-0'} position={'absolute'}>
-                        
+                        <DatePicker />
                     </DynamicDropDown>
                 }
                 {isLocationModalOpen &&
