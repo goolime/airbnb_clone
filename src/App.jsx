@@ -1,6 +1,7 @@
 import { AppHeader } from "./components/AppHeader.jsx"
 import { Routes, Route, HashRouter, BrowserRouter } from 'react-router'
 import { ExplorePage } from "./pages/explorePage.jsx"
+import { SearchPage } from "./pages/SearchPage.jsx"
 import { AppFooter } from "./components/AppFooter.jsx"
 import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
@@ -25,6 +26,7 @@ function App() {
             <div className="col-start-1 col-span-3 sm:col-span-1 sm:col-start-2">
               <Routes>
                 <Route path="/" element={<ExplorePage />} />
+                <Route path="/search" element={<SearchPage />} />
               </Routes>
             </div>
           </div>

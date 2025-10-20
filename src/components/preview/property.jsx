@@ -1,19 +1,19 @@
 import { Carousel } from "../util/Carousel";
 import { calculateRating } from "../../services/util.service";
 
-export function PropertyPreview({ property , checkIn=null, checkOut=null }) {
+export function PropertyPreview({ property , checkIn=null, checkOut=null ,styles}) {
     const raitingString = `★${calculateRating(property.reviews)}${property.reviews ? `(${property.reviews.length})`: ''}`;
     const priceString = getPricingString(checkIn,checkOut,property.price);
     return <>
         <div className="snap-start">
-            <Carousel slides={property.imgUrls} className="size-[40dvw] sm:size-[22dvw] md:size-[17.5dvw] lg:size-[14.7dvw] xl:size-[181.25px]"  auto="hover" />
-            <div className="flex justify-between items-center mt-2 mb-1 text-gray-900 sm:text-[1.7dvw] md:text-[1.2dvw] xl:text-[13.5px]">
+            <Carousel slides={property.imgUrls} className={styles.carousel}  auto="hover" />
+            <div className={`flex justify-between items-center mt-2 mb-1 text-gray-900 ${styles.header}`}>
                 <div className="font-semibold ">{property.type}|{property.loc.city}</div>
                 <div>{raitingString}</div>
             </div>
-            <div className="text-gray-600 sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]">{property.summary}</div>
-            <div className="text-gray-600 sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]">{property.bedrooms} Bedrooms - {property.beds} Beds</div>
-            <div className="text-gray-600 sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]">{priceString}</div>
+            <div className={`text-gray-600 ${styles.text}`}>{property.summary}</div>
+            <div className={`text-gray-600 ${styles.text}`}>{property.bedrooms} Bedrooms - {property.beds} Beds</div>
+            <div className={`text-gray-600 ${styles.text}`}>{priceString}</div>
         </div>
     </>
 }
