@@ -75,9 +75,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    -
-                </button>
+                                ">-</button>
                 <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
                     <label>{adultsCount}</label>
                 </div>
@@ -97,9 +95,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    +
-                </button>
+                                ">+</button>
             </div>
         </div>
         <div className="flex flex-row justify-between py-6 pr-1 border-b-1 border-gray-200 ">
@@ -124,9 +120,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    -
-                </button>
+                                ">-</button>
                 <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
                     <label>{childrenCount}</label>
                 </div>
@@ -146,9 +140,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    +
-                </button>
+                                ">+</button>
             </div>
         </div>
         <div className="flex flex-row justify-between py-6 pr-1 border-b-1 border-gray-200 ">
@@ -173,9 +165,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    -
-                </button>
+                                ">-</button>
                 <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
                     <label>{infantsCount}</label>
                 </div>
@@ -195,9 +185,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    +
-                </button>
+                                ">+</button>
             </div>
         </div>
         <div className="flex flex-row justify-between py-6 pr-1 ">
@@ -222,9 +210,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    -
-                </button>
+                                ">-</button>
                 <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
                     <label>{petsCount}</label>
                 </div>
@@ -244,9 +230,7 @@ export function Capacity() {
                                 disabled:cursor-not-allowed
                                 disabled:text-gray-200
                                 disabled:border-gray-200
-                                ">
-                    +
-                </button>
+                                ">+</button>
             </div>
         </div>
     </>

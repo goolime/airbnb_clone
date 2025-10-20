@@ -24,6 +24,11 @@ const citys=[{ countryCode: 'US', city: 'New York', minLat: 40.4774, maxLat: 40.
              { countryCode: 'CH', city: 'Zurich', minLat: 47.3200, maxLat: 47.4500, minLng: 8.4500, maxLng: 8.6500 }
 ]
 
+export function getCitiesName(){
+
+    return citys.map(city=>city.city)
+}
+
 export async function getTownsPreviews(){
     const selectedCitys=reduceList(citys,7)
     const ans=[]
