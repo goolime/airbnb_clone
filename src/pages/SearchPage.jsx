@@ -20,6 +20,7 @@ export function SearchPage(){
     },[searchParams])
 
     useEffect(()=>{
+        if (!filterData) return
         getProperties(filterData, 1).then(({newProperties, newMaxPage})=>{
             setPage(1)
             setProperties(newProperties)

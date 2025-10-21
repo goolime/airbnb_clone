@@ -48,8 +48,23 @@ export async function getProperties(filterData, page=1){
 // to be replaced with call to backend API
 async function _getProperties(filterData, page=1){
     const allProperties= await propertiesService.query(filterData)
-    const maxPage=Math.ceil(allProperties.length/PAGE_SIZE)
+    const filteredProperties=_filterByFilter(allProperties, filterData)
+    const maxPage=Math.ceil(filteredProperties.length/PAGE_SIZE)
     const startIdx=(page-1)*PAGE_SIZE
-    const newProperties=allProperties.slice(startIdx,startIdx+PAGE_SIZE)
+    const newProperties=filteredProperties.slice(startIdx,startIdx+PAGE_SIZE)
     return {newProperties, newMaxPage: maxPage}
+}
+
+function _filterByFilter(properties, filterData){
+    //console.log(properties)
+    //console.log('filtering properties with:', filterData)
+    const ans = properties.filter(property=>{
+
+        return property.loc.lat >= filterData.loc.minLat &&
+               property.loc.lat <= filterData.loc.maxLat &&
+               property.loc.lng >= filterData.loc.minLng &&
+               property.loc.lng <= filterData.loc.maxLng
+    })
+    //console.log('filtered properties:', ans)
+    return ans
 }
