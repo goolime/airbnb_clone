@@ -27,8 +27,8 @@ export function ListPreview({ properties, checkIn = null, checkOut = null }) {
 
     const styles = {
         
-        carousel: "size-[95dvw] sm:size-[44dvw] md:size-[19dvw] lg:size-[20dvw] xl:size-[181.25px]",
-        header: "sm:text-[1.7dvw] md:text-[1.2dvw] xl:text-[13.5px]",
+        carousel: "size-[87.5dvw] sm:size-[44dvw] md:size-[18dvw] lg:size-[19dvw] xl:size-[181.25px]",
+        header: "sm:text-[1.7dvw] md:text-[1.2dvw] lg:text-[1.1dvw] xl:text-[13.5px]",
         text: "sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]"
     }
 

@@ -99,7 +99,7 @@ export function AppFilter() {
                             type="text"
                             className="focus:outline-none placeholder:font-light placeholder:text-gray-500"
                             placeholder="Search destinations"
-                            value={GetLocationString(filterData.loc) === "I'm flexible"? null: GetLocationString(filterData.loc)}
+                            value={GetLocationString(filterData.loc) === "I'm flexible"? undefined: GetLocationString(filterData.loc)}
                         />
                     </div>
 

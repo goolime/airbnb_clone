@@ -15,6 +15,7 @@ export function SearchPage() {
     const [maxPage, setMaxPage] = useState(1)
     const [loading, setLoading] = useState(true)
     const [mapVisible, setMapVisible] = useState(false)
+    const [totalProperties, setTotalProperties] = useState(0)
 
     useEffect(() => {
         const filter = propertiesService.getFilterFromSearchParams(searchParams)
@@ -23,10 +24,11 @@ export function SearchPage() {
 
     useEffect(() => {
         if (!filterData) return
-        getProperties(filterData, 1).then(({ newProperties, newMaxPage }) => {
+        getProperties(filterData, 1).then(({ newProperties, newMaxPage, totalProperties }) => {
             setPage(1)
             setProperties(newProperties)
             setMaxPage(newMaxPage)
+            setTotalProperties(totalProperties)
             setLoading(false)
         })
     }, [filterData])
@@ -58,7 +60,7 @@ export function SearchPage() {
             <div className="md:hidden">
                 {!mapVisible ? (
                     <div className="px-6 py-5">
-                        <span className="font-semibold my-5 block">{properties.length} homes</span>
+                        <span className="font-semibold my-5 block">{totalProperties} homes</span>
                         <ListPreview
                             properties={properties}
                             checkIn={filterData.dates.from}

@@ -52,7 +52,7 @@ async function _getProperties(filterData, page=1){
     const maxPage=Math.ceil(filteredProperties.length/PAGE_SIZE)
     const startIdx=(page-1)*PAGE_SIZE
     const newProperties=filteredProperties.slice(startIdx,startIdx+PAGE_SIZE)
-    return {newProperties, newMaxPage: maxPage}
+    return {newProperties, newMaxPage: maxPage, totalProperties: filteredProperties.length}
 }
 
 function _filterByFilter(properties, filterData){

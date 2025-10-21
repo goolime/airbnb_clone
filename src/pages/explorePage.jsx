@@ -16,6 +16,6 @@ export function ExplorePage() {
 
     if (isLoading) return <div>Loading...</div>;
     return <>
-        {towns.map((town,i)=><TownPreview idx={i} name={town.city.city} properties={town.properties} key={i}/>)}
+        {towns.map((town,i)=><TownPreview idx={i} city={town.city} properties={town.properties} key={i}/>)}
     </>
 }
