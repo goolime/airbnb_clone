@@ -56,6 +56,7 @@ export function AppFilter() {
         setIsModalOpen(false)
     }
 
+
     return <>
         <div className="w-full max-w-4xl mx-auto mt-3 mb-5">
             <div className="
@@ -99,6 +100,7 @@ export function AppFilter() {
                             type="text"
                             className="focus:outline-none placeholder:font-light placeholder:text-gray-500"
                             placeholder="Search destinations"
+                            value={GetLocationString(filterData.loc) === "I'm flexible"? null: GetLocationString(filterData.loc)}
                         />
                     </div>
 
@@ -122,7 +124,7 @@ export function AppFilter() {
                         ">
                             <div className="flex flex-col text-sm text-start w-full px-6 border-x border-gray-200 font-semibold">
                                 <label className="cursor-pointer">When</label>
-                                <span className="font-light text-gray-500">Add dates</span>
+                                <span className="font-light text-gray-500">{getDatesString(filterData.dates)}</span>
                             </div>
                         </div>
                     </div>
@@ -146,11 +148,15 @@ export function AppFilter() {
                         ">
                             <div className="flex flex-col text-sm text-start font-semibold">
                                 <label className="cursor-pointer">Who</label>
-                                <span className="font-light text-gray-500">{totalCapacity ? totalCapacity : 'Add guests'}</span>
+                                <span className="font-light text-gray-500">{getGuestsString(filterData.guests, GuestStringLength.LONG)}</span>
                             </div>
-                            <span className="p-2 bg-rose-500 rounded-full text-white" onClick={() => navigateToSearch()}>
+                            <button className="p-2 bg-rose-500 rounded-full text-white group flex flex-row items-center hover:z-20" onClick={(ev) => {
+                                ev.stopPropagation()
+                                navigateToSearch()}
+                            }   >
                                 <BiSearch size={24} />
-                            </span>
+                                <span className="hidden group-hover:block">Search</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -161,11 +167,57 @@ export function AppFilter() {
                         <BiSearch size={18} />
                         <span className="font-semibold text-gray-800 ml-2">Start your search</span>
                     </div>
-                    <MobileFilterModal submitSearch={navigateToSearch} handleFilterPropertyChange={handleFilterPropertyChange} isFilterModalOpen={isFilterModalOpen} onFilterModalClose={onCloseFilterModal} isOpen={isModalOpen} onClose={onCloseModal}/>
+                    <MobileFilterModal submitSearch={navigateToSearch}
+                                       handleFilterPropertyChange={handleFilterPropertyChange} 
+                                       isFilterModalOpen={isFilterModalOpen} 
+                                       onFilterModalClose={onCloseFilterModal} 
+                                       isOpen={isModalOpen} 
+                                       onClose={onCloseModal}
+                                       locationString={GetLocationString( filterData.loc )}
+                                       datesString={getDatesString(filterData.dates)}
+                                       guestsString={getGuestsString(filterData.guests, GuestStringLength.LONG)}
+                                    />
                 </div>
             </div>
         </div>
     </>
 }
 
+function GetLocationString( {countryCode, city, maxLat, minLat, maxLng, minLng}){
+    if (city!=='') return city;
+    if (maxLat != 90 && minLat != -90 && maxLng != 180 && minLng != -180) return 'Homes in map area';
+    return "I'm flexible";
+}
 
+function getDatesString( {from, to} ){
+    console.log('from,to:', from, to)
+    if (from===null || to===null) return 'Add dates';
+    if (from.getYear() === to.getYear()){
+        if (from.getMonth() === to.getMonth()) {
+            return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${to.toLocaleDateString('en-US', { day: 'numeric'})}`;
+        }
+        else {
+            return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${to.toLocaleDateString('en-US', { month: 'short', day: 'numeric'})}`;
+        } 
+    }
+    else {
+        return `${from.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })} - ${to.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}`;
+    }
+}
+
+const GuestStringLength = Object.freeze({
+    SHORT: 'short',
+    LONG: 'long',
+})
+
+function getGuestsString( {adults, kids, infants, pets}, length ){
+    console.log('getGuestsString:', adults, kids, infants, pets)
+    if (adults + kids + infants + pets === 0) return 'Add guests';
+    const guests = adults + kids;
+    switch (length) {
+        case GuestStringLength.SHORT:
+            return `${guests===16 ? `${guests}+` : guests} guest`;
+        case GuestStringLength.LONG:
+            return `${guests===16 ? `${guests}+` : guests} guests${infants > 0 ? `, ${infants} infant${infants>1?'s':''}` : ''}${pets > 0 ? `, ${pets} pet${pets>1?'s':''}` : ''}`;
+    }
+}

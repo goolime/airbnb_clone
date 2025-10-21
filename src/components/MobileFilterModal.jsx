@@ -10,7 +10,7 @@ const sections = Object.freeze({
     WHO: 3,
 })
 
-export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handleFilterPropertyChange, submitSearch }) {
+export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handleFilterPropertyChange, submitSearch , locationString="I'm flexible", datesString="Add dates", guestsString="Add guests"}) {
     const [activeSection, setActiveSection] = useState(sections.WHERE);
     if (!isFilterModalOpen) return null;
 
@@ -31,7 +31,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                         className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
                     >
                         <span className="font-semibold text-gray-500">Where</span>
-                        <span className="font-semibold">I'm flexible</span>
+                        <span className="font-semibold">{locationString}</span>
                     </button>
                 }
                 {/* Where Section */}
@@ -52,7 +52,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                         className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
                     >
                         <span className="font-semibold text-gray-500">When</span>
-                        <span className="font-semibold">Add dates</span>
+                        <span className="font-semibold">{datesString}</span>
                     </button>
                 }
                 {activeSection === sections.WHEN &&
@@ -71,7 +71,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                         className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
                     >
                         <span className="font-semibold text-gray-500">Who</span>
-                        <span className="font-semibold">Add guests</span>
+                        <span className="font-semibold">{guestsString}</span>
                     </button>
                 }
                 {activeSection === sections.WHO &&

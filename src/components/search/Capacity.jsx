@@ -8,6 +8,8 @@ export function Capacity({onFilterChange}) {
     const [petsCount, setPetsCount] = useState(0);
     const [totalGuests, setTotalGuests] = useState(0);
 
+    const minAdults = (childrenCount>0|| infantsCount>0) ? 1 : 0;
+
     useEffect(() => {
             onFilterChange({
                 adults: adultsCount,
@@ -22,14 +24,18 @@ export function Capacity({onFilterChange}) {
         setTotalGuests(totalGuests + 1)
     }
 
+
     function onDecrementAdults() {
-        if (adultsCount > 0) {
+
+        if (adultsCount > minAdults ) {
             setAdultsCount(adultsCount - 1)
             setTotalGuests(totalGuests - 1)
         }
     }
 
     function onIncrementChildren() {
+        if (adultsCount === 0)
+            onIncrementAdults()
         setChildrenCount(childrenCount + 1)
         setTotalGuests(totalGuests + 1)
     }
@@ -42,6 +48,8 @@ export function Capacity({onFilterChange}) {
     }
 
     function onIncrementInfants() {
+        if (adultsCount === 0)
+            onIncrementAdults()
         setInfantsCount(infantsCount + 1)
     }
 
@@ -68,7 +76,7 @@ export function Capacity({onFilterChange}) {
                 <label>Ages 13 or above</label>
             </div>
             <div className="flex flex-row items-center justify-between">
-                <button disabled={adultsCount <= 0} onClick={onDecrementAdults} className="
+                <button disabled={adultsCount <= minAdults} onClick={onDecrementAdults} className="
                                 flex 
                                 justify-center 
                                 items-center 
