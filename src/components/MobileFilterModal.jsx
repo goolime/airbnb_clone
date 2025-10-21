@@ -4,6 +4,7 @@ import { Capacity } from "./search/Capacity"
 import { MobileDatePicker } from "./search/MobileDatePicker"
 
 
+
 const sections = Object.freeze({
     WHERE: 1,
     WHEN: 2,
@@ -46,6 +47,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                 )}
 
                 {/* When Section */}
+
                 {activeSection !== sections.WHEN &&
                     <button
                         onClick={() => setActiveSection(sections.WHEN)}
@@ -55,6 +57,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                         <span className="font-semibold">{datesString}</span>
                     </button>
                 }
+
                 {activeSection === sections.WHEN &&
                 <div className="flex flex-col">
                     <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
@@ -63,7 +66,6 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                     </div>
                 </div>
                 }
-
                 {/* Who Section */}
                 {activeSection !== sections.WHO &&
                     <button
@@ -78,6 +80,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                     <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
                         <h1 className="text-2xl font-semibold mb-4">Who?</h1>
                         <Capacity onFilterChange={(value)=> handleFilterPropertyChange('guests',value)}/>
+
                     </div>
                 }
             </div>

@@ -143,7 +143,7 @@ function getFilterFromSearchParams(searchParams) {
                 const key = `${field}.${subField}`
                 filterBy[field] = filterBy[field] || {}
                 if (field === 'dates') {
-                    filterBy[field][subField] = searchParams.get(key) ? new Date(searchParams.get(key)) : defaultFilter[field][subField]
+                   filterBy[field][subField] = ( searchParams.get(key) && searchParams.get(key) !== "null" ) ? new Date(searchParams.get(key)) : defaultFilter[field][subField]
                 }
                 else if( field === 'guests' ) {
                     filterBy[field][subField] = +searchParams.get(key) || defaultFilter[field][subField]
