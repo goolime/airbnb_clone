@@ -1,20 +1,32 @@
 import { ListPreview } from "../components/preview/list"
 import { property } from "../../templates/property.js"
 import { AppMap } from "../components/AppMap.jsx"
-import { getTownsPreviews } from "../actions/explore.actions.js"
-import { useEffect, useState } from "react"
+import { useSearchParams } from "react-router"
+import { useEffect,useState } from "react"
+import { propertiesService } from "../services/properties.service.js"
+import { getProperties } from "../actions/explore.actions.js"
 
-export function SearchPage() {
-    const properties = [property, property, property, property, property, property, property, property, property, property, property, property, property, property, property, property, property, property]
-    const [searchResults, setSearchResults] = useState([]);
+export function SearchPage(){
+    const [searchParams,setSearchParams] = useSearchParams()
+    const [filterData, setFilterData] = useState(null)
+    const [properties, setProperties] = useState([])
+    const [page, setPage] = useState(1)
+    const [maxPage, setMaxPage] = useState(1)
+    const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
+    useEffect(()=>{
+        const filter = propertiesService.getFilterFromSearchParams(searchParams)
+        setFilterData(filter)
+    },[searchParams])
 
-        getTownsPreviews().then(results => {
-            setSearchResults(results);
-        });
-
-    }, []);
+    useEffect(()=>{
+        getProperties(filterData, 1).then(({newProperties, newMaxPage})=>{
+            setPage(1)
+            setProperties(newProperties)
+            setMaxPage(newMaxPage)
+            setLoading(false)
+        })
+    },[filterData])
 
 
     return (
@@ -28,5 +40,4 @@ export function SearchPage() {
             </div>
         </div>
     )
-
 }

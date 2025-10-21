@@ -1,12 +1,21 @@
-import { useState } from "react";
+import { useEffect,useState } from "react";
 
-export function Capacity() {
+export function Capacity({onFilterChange}) {
 
     const [adultsCount, setAdultsCount] = useState(0);
     const [childrenCount, setChildrenCount] = useState(0);
     const [infantsCount, setInfantsCount] = useState(0);
     const [petsCount, setPetsCount] = useState(0);
     const [totalGuests, setTotalGuests] = useState(0);
+
+    useEffect(() => {
+            onFilterChange({
+                adults: adultsCount,
+                kids: childrenCount,
+                infants: infantsCount,
+                pets: petsCount
+            });
+    },[adultsCount, childrenCount, infantsCount, petsCount ])
 
     function onIncrementAdults() {
         setAdultsCount(adultsCount + 1)

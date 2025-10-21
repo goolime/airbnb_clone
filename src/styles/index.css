@@ -11,6 +11,7 @@
     --breakpoint-xl:1440px;
 }
 
+/* Date Picker Customization */
 .rangeEnd button,
 .rangeStart button {
     @apply bg-gray-900 w-full h-full rounded-full;
