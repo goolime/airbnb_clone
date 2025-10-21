@@ -5,12 +5,9 @@ import { Map, Popup, Marker } from 'react-map-gl/mapbox'
 import { getCenter } from 'geolib'
 import { useState } from 'react'
 
-export function AppMap({ searchResults, location }) {
+export function AppMap({ searchResults, location, checkIn = null, checkOut = null }) {
 
     const [selectedLocation, setSelectedLocation] = useState({})
-
-    console.log('searchResults in AppMap:', searchResults);
-    console.log('location in AppMap:', location);
 
     const coordinates = [
         { latitude: location.maxLat, longitude: location.minLng },
@@ -18,7 +15,6 @@ export function AppMap({ searchResults, location }) {
     ]
 
     const center = getCenter(coordinates)
-    console.log('center in AppMap:', center);
 
     const [viewPort, setViewPort] = useState({
         longitude: center.longitude,
@@ -39,36 +35,41 @@ export function AppMap({ searchResults, location }) {
                 }}
                 mapStyle="mapbox://styles/tapuchips/cmgyvwabb007c01quf1ng3u4d"
             >
-                {/* {
-                    <Marker
-                        longitude={center.longitude}
-                        latitude={center.latitude}
-                        offsetLeft={-20}
-                        offsetTop={-10}
-                    >
-
-                        <div onClick={() => { setSelectedLocation() }} className='cursor-pointer shadow-sm animate-bounce flex flex-row justify-center items-center bg-(--headerBg) w-[66px] h-[28] border-1 border-gray-300 rounded-lg'>
-                            <label className='text-md cursor-pointer'>3223$</label>
-                            <p className=" text-sm cursor-pointer" aria-label="push-pin">📌</p>
-                        </div>
-
-                    </Marker>
-                } */}
                 {searchResults &&
                     searchResults.map(result => (
-                        <div key={result.long}>
-                            <Marker
-                                longitude={result.lng}
-                                latitude={result.lat}
-                                offsetLeft={-20}
-                                offsetTop={-10}
-                            >
-                                <div
-                                    onClick={() => { setSelectedLocation(result) }}
-                                    className='
+
+                        <Tag key={result._id} property={result} checkIn={checkIn} checkOut={checkOut} />
+                    ))
+                }
+            </Map>
+        </>
+    )
+}
+
+function Tag({ property, checkIn = null, checkOut = null }) {
+
+    function getPricingString(checkIn, checkOut, price) {
+
+        if (!checkIn || !checkOut) return { price }
+        const checkInDate = new Date(checkIn)
+        const checkOutDate = new Date(checkOut)
+        const time = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24))
+        return price * time
+    }
+
+    return <>
+        <div key={property._id}>
+            <Marker
+                longitude={property.loc.lng}
+                latitude={property.loc.lat}
+                offsetLeft={-20}
+                offsetTop={-10}
+            >
+                <div
+                    onClick={() => { setSelectedLocation(property) }}
+                    className='
                                     cursor-pointer 
-                                    shadow-sm 
-                                    animate-bounce 
+                                    shadow-sm
                                     flex flex-row 
                                     justify-center 
                                     items-center 
@@ -78,15 +79,10 @@ export function AppMap({ searchResults, location }) {
                                     border-1 
                                     border-gray-300 
                                     rounded-lg'
-                                >
-                                    <label className='text-md cursor-pointer'>{result.price}</label>
-                                    <p className=" text-sm cursor-pointer" aria-label="push-pin">📌</p>
-                                </div>
-                            </Marker>
-                        </div>
-                    ))
-                }
-            </Map>
-        </>
-    )
+                >
+                    <label className='text-md font-semibold cursor-pointer'>{getPricingString(checkIn, checkOut, property.price)}€</label>
+                </div>
+            </Marker>
+        </div>
+    </>
 }

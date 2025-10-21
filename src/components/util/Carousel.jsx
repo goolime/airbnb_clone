@@ -41,7 +41,7 @@ export function Carousel({slides, className , auto=false}) {
     }
 
     return (
-        <div className={`overflow-hidden relative rounded-lg ${className}`} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} > 
+        <div className={`overflow-hidden relative rounded-2xl ${className}`} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} > 
             <div className="h-full w-full relative">
                 {slides.map((s, index) => {
                     return <img className={`absolute h-full w-full object-cover bottom-0 duration-500 ${currentIndex === index ? 'opacity-100' : 'opacity-0'}`} key={index} src={s} />;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getTownsPreviews } from "../actions/explore.actions.js";
-import { TownPreview } from "../components/preview/town.jsx";
+import { TownPreview } from "../components/preview/TownPreview.jsx";
 
 export function ExplorePage() {
 
