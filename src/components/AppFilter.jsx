@@ -148,7 +148,7 @@ export function AppFilter() {
                                 <label className="cursor-pointer">Who</label>
                                 <span className="font-light text-gray-500">{totalCapacity ? totalCapacity : 'Add guests'}</span>
                             </div>
-                            <span className="p-2 bg-rose-500 rounded-full text-white">
+                            <span className="p-2 bg-rose-500 rounded-full text-white" onClick={() => navigateToSearch()}>
                                 <BiSearch size={24} />
                             </span>
                         </div>
