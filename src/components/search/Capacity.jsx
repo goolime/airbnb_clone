@@ -64,6 +64,7 @@ export function Capacity({onFilterChange}) {
     return <>
         <div className="flex flex-row justify-between py-6 pr-1 border-b-1 border-gray-200 z-1000">
             <div className="flex flex-col text-start">
+                <h1 className="sm:hidden text-2xl font-semibold mb-4">Who?</h1>
                 <label className="font-semibold text-lg">Adults</label>
                 <label>Ages 13 or above</label>
             </div>

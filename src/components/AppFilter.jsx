@@ -15,7 +15,6 @@ export function AppFilter() {
     const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
 
     const [totalCapacity, setTotalCapacity] = useState(null)
-
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isDateModalOpen, setIsDateModalOpen] = useState(false)

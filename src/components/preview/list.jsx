@@ -32,8 +32,8 @@ export function ListPreview({properties, checkIn=null, checkOut=null}){
     }
 
     return <>
-        <div className="w-100vw h-fit px-2">
-            <div ref={containerRef} onScroll={handleScroll} className={`flex flex-col align-center w-100% snap-y overflow-y-scroll scrollbar-hide gap-5 max-sm:x-5`}>
+        <div className="py-4">
+            <div ref={containerRef} onScroll={handleScroll} className={`grid  md:grid-cols-2 xl:grid-cols-3 align-center w-100% snap-y overflow-y-scroll scrollbar-hide gap-5`}>
                 {properties.map(property=><>
                     <PropertyPreview property={property} key={property._id} styles={styles} checkIn={checkIn} checkOut={checkOut}/>
                 </>)}
