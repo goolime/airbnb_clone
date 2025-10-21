@@ -1,8 +1,8 @@
-import { getCitiesName } from "../../actions/explore.actions.js"
+import { getCities } from "../../actions/explore.actions.js"
 
-export function Location() {
+export function Location({ onFilterChange }) {
 
-    const cities = getCitiesName()
+    const cities = getCities()
 
     return <>
         <div className="h-100 overflow-y-auto">
@@ -17,10 +17,10 @@ export function Location() {
             <ul>
                 {cities &&
                     cities.map((city, idx) => (
-                        <li key={idx} className="flex flex-row p-2 mx-4 hover:bg-gray-200 rounded-lg cursor-pointer mb-1">
+                        <li key={idx} className="flex flex-row p-2 mx-4 hover:bg-gray-200 rounded-lg cursor-pointer mb-1" onClick={() => onFilterChange(city)}>
                             <img height={55} width={55} className="mr-3" src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png" alt="icon" />
                             <div className="flex flex-col">
-                                <label className="font-semibold">{city}</label>
+                                <label className="font-semibold">{city.city}</label>
                                 <span className="text-gray-500">City advantage description</span>
                             </div>
                         </li>
