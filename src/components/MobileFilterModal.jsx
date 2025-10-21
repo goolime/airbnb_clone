@@ -3,6 +3,7 @@ import { BiSearch } from "react-icons/bi"
 import { GoChevronDown } from "react-icons/go"
 import { getCitiesName } from "../actions/explore.actions"
 import { Capacity } from "./search/Capacity"
+import { DatePicker } from "./search/DatePicker"
 
 export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose }) {
     const [activeSection, setActiveSection] = useState('where');
@@ -108,14 +109,23 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose }) {
                 )}
 
                 {/* When Section */}
-                <button
-                    onClick={() => setActiveSection('when')}
-                    className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
-                >
-                    <span className="font-semibold text-gray-500">When</span>
-                    <span className="font-semibold">Add dates</span>
-                </button>
-
+                {activeSection !== 'when' &&
+                    <button
+                        onClick={() => setActiveSection('when')}
+                        className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
+                    >
+                        <span className="font-semibold text-gray-500">When</span>
+                        <span className="font-semibold">Add dates</span>
+                    </button>
+                }
+                {activeSection === 'when' &&
+                <div className="flex flex-col">
+                    <h1 className="text-2xl font-semibold mb-4">When?</h1>
+                    <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
+                        <DatePicker />
+                    </div>
+                </div>
+                }
                 {/* Who Section */}
                 {activeSection !== 'who' &&
                     <button
@@ -127,8 +137,11 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose }) {
                     </button>
                 }
                 {activeSection === 'who' &&
-                    <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
-                        <Capacity />
+                    <div className="flex flex-col">
+                        
+                        <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
+                            <Capacity />
+                        </div>
                     </div>
                 }
             </div>
