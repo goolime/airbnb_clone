@@ -12,7 +12,6 @@ import { MobileFilterModal } from "./MobileFilterModal"
 export function AppFilter() {
 
     const [totalCapacity, setTotalCapacity] = useState(null)
-
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isDateModalOpen, setIsDateModalOpen] = useState(false)

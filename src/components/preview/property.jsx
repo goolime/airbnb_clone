@@ -6,9 +6,9 @@ export function PropertyPreview({ property , checkIn=null, checkOut=null ,styles
     const priceString = getPricingString(checkIn,checkOut,property.price);
     return <>
         <div className="snap-start">
-            <Carousel slides={property.imgUrls} className={styles.carousel}  auto="hover" />
+            <Carousel slides={property.imgUrls} className={styles.carousel} auto="hover" />
             <div className={`flex justify-between items-center mt-2 mb-1 text-gray-900 ${styles.header}`}>
-                <div className="font-semibold ">{property.type}|{property.loc.city}</div>
+                <div className="font-semibold">{property.type}|{property.loc.city}</div>
                 <div>{raitingString}</div>
             </div>
             <div className={`text-gray-600 ${styles.text}`}>{property.summary}</div>

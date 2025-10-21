@@ -19,12 +19,12 @@ export function makeId(length = 6) {
 }
 
 function makeLorem(size = 100) {
-    const words = ['The sky', 'above', 'the port', 'was', 'the color' ,'of nature', 'tuned', 'to', 'a live channel', 'All', 'this happened', 'more or less', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', 'a pleasure', 'to', 'burn']
+    const words = ['The sky', 'above', 'the port', 'was', 'the color', 'of nature', 'tuned', 'to', 'a live channel', 'All', 'this happened', 'more or less', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', 'a pleasure', 'to', 'burn']
     var txt = ''
     while (size > 0) {
         size--
         txt += words[Math.floor(Math.random() * words.length)]
-        if (size >= 1 ) txt += ' '
+        if (size >= 1) txt += ' '
     }
     return txt
 }
@@ -45,7 +45,7 @@ function loadFromStorage(key) {
 }
 
 export function animateCSS(el, animation, options = {}) {
-    
+
     const { isRemoveClass = true } = options
 
     const prefix = 'animate__'
@@ -93,12 +93,21 @@ export function calculateRating(reviews) {
     return rating.toFixed(1)
 }
 
-export function reduceList(list, num){
+export function reduceList(list, num) {
     const lis = [...list]
     for (let i = lis.length - 1; i >= num; i--) {
         const number = Math.floor(Math.random() * lis.length);
-        lis.splice(number, 1);    
+        lis.splice(number, 1);
     }
     return lis
+}
+
+export function avg(arr) {
+
+    console.log('arr in avg:', arr);
+    if (!arr || !arr.length) return 0
+
+    const sum = arr.reduce((acc, curr) => acc + curr, 0)
+    return sum / arr.length
 }
 
