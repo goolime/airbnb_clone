@@ -2,21 +2,27 @@ import { useState } from "react"
 import { DayPicker, /*getDefaultClassNames*/ } from "react-day-picker"
 
 
-export function DatePicker() {
+export function DatePicker({ onFilterChange }) {
+    const [selected, setSelected] = useState(undefined);
 
-    const [date, setDate] = useState(new Date(Date.now()));
     // FOR DEBUGGING PURPOSES ONLY
     /*
     const defaultClassNames = getDefaultClassNames();
     console.log('defaultClassNames', defaultClassNames);
     */
+
+    function handleSelectedChange(selectedRange) {
+        onFilterChange(selectedRange);
+        setSelected(selectedRange);
+    }
+
     const now= new Date(Date.now());
     return <>
         <div className="flex justify-center">
             <DayPicker
             mode="range"
-            selected={date}
-            onSelect={setDate}
+            selected={selected}
+            onSelect={handleSelectedChange}
             numberOfMonths={2}
             navLayout="around"
             fixedWeeks={true}
