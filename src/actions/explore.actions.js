@@ -1,6 +1,7 @@
 import { propertiesService } from "../services/properties.service.js";
 import { reduceList } from "../services/util.service.js"
 
+const PAGE_SIZE=18
 
 const citys=[{ countryCode: 'US', city: 'New York', minLat: 40.4774, maxLat: 40.9176, minLng: -74.2591, maxLng: -73.7004 },
              { countryCode: 'FR', city: 'Paris', minLat: 48.8156, maxLat: 48.9022, minLng: 2.2241, maxLng: 2.4699 },
@@ -24,9 +25,9 @@ const citys=[{ countryCode: 'US', city: 'New York', minLat: 40.4774, maxLat: 40.
              { countryCode: 'CH', city: 'Zurich', minLat: 47.3200, maxLat: 47.4500, minLng: 8.4500, maxLng: 8.6500 }
 ]
 
-export function getCitiesName(){
+export function getCities(){
 
-    return citys.map(city=>city.city)
+    return citys
 }
 
 export async function getTownsPreviews(){
@@ -37,4 +38,18 @@ export async function getTownsPreviews(){
         ans.push({city: selectedCitys[i], properties: cityProperties})
     }
     return ans
+}
+
+export async function getProperties(filterData, page=1){
+    return await _getProperties(filterData, page)
+}
+
+
+// to be replaced with call to backend API
+async function _getProperties(filterData, page=1){
+    const allProperties= await propertiesService.query(filterData)
+    const maxPage=Math.ceil(allProperties.length/PAGE_SIZE)
+    const startIdx=(page-1)*PAGE_SIZE
+    const newProperties=allProperties.slice(startIdx,startIdx+PAGE_SIZE)
+    return {newProperties, newMaxPage: maxPage}
 }

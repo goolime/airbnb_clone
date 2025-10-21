@@ -1,19 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { DayPicker } from "react-day-picker"
 
-export function MobileDatePicker() {
-    const [date, setDate] = useState(new Date(Date.now()));
+export function MobileDatePicker({onFilterChange}) {
+    const [selected, setSelected] = useState(undefined);
     const [numberOfMonths, setNumberOfMonths] = useState(3);
     const now= new Date(Date.now());
     const endMonth=new Date(now.getFullYear()+2,now.getMonth()-1);
     const startMonth=new Date(now.getFullYear(), now.getMonth());
 
+    function handleSelectedChange(selectedRange) {
+        onFilterChange(selectedRange);
+        setSelected(selectedRange);
+    }
+
+
+    //console.log(selected)
+
     return <>
         <div className="flex flex-col  w-full h-[65vh] justify-center">
             <DayPicker
             mode="range"
-            selected={date}
-            onSelect={setDate}
+            selected={selected}
+            onSelect={handleSelectedChange}
             numberOfMonths={numberOfMonths}
             hideNavigation={true}
             navLayout="around"

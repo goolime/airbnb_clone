@@ -5,11 +5,14 @@ import { Capacity } from "./search/Capacity"
 import { DatePicker } from "./search/DatePicker"
 import { Location } from "./search/Location"
 import { MobileFilterModal } from "./MobileFilterModal"
+import { propertiesService } from "../services/properties.service.js"
+import { useNavigate  } from 'react-router-dom'
 
 
 
 
 export function AppFilter() {
+    const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
 
     const [totalCapacity, setTotalCapacity] = useState(null)
 
@@ -18,6 +21,23 @@ export function AppFilter() {
     const [isDateModalOpen, setIsDateModalOpen] = useState(false)
     const [isGuestModalOpen, setIsGuestModalOpen] = useState(false)
     const [isLocationModalOpen, setIsLocationModalOpen] = useState(false)
+
+    const navigate = useNavigate()
+
+    
+
+    function handleFilterPropertyChange(field, value) {
+        console.log('filter change:', field, value, filterData)
+        setFilterData((prevData) => ({
+            ...prevData,
+            [field]: value,
+        }))
+    }
+
+    function navigateToSearch() {
+        //const searchParams = createSearchParams();
+        navigate({pathname: '/search', search: `?${propertiesService.getSearchParamsFromFilter(filterData).toString()}`});
+    }
 
     function handleFilterModal() {
         setIsFilterModalOpen(true)
@@ -53,17 +73,17 @@ export function AppFilter() {
 
                 {isGuestModalOpen &&
                     <DynamicDropDown isOpen={isModalOpen} onClose={onCloseModal} width={'w-md'} direction={'right-0'} position={'absolute'}>
-                        <Capacity />
+                        <Capacity onFilterChange={(value)=> handleFilterPropertyChange('guests',value)}/>
                     </DynamicDropDown>
                 }
                 {isDateModalOpen &&
                     <DynamicDropDown isOpen={isModalOpen} onClose={onCloseModal} width={'w-full'} direction={'right-0'} position={'absolute'}>
-                        <DatePicker />
+                        <DatePicker onFilterChange={(value)=> handleFilterPropertyChange('dates',value)} />
                     </DynamicDropDown>
                 }
                 {isLocationModalOpen &&
                     <DynamicDropDown isOpen={isModalOpen} onClose={onCloseModal} width={'w-md'} direction={'left-0'} position={'absolute'}>
-                        <Location />
+                        <Location onFilterChange={(value)=> handleFilterPropertyChange('loc',value)} />
                     </DynamicDropDown>
                 }
                 <div className="hidden sm:grid grid-cols-3 items-center justify-between">
@@ -141,9 +161,11 @@ export function AppFilter() {
                         <BiSearch size={18} />
                         <span className="font-semibold text-gray-800 ml-2">Start your search</span>
                     </div>
-                    <MobileFilterModal isFilterModalOpen={isFilterModalOpen} onFilterModalClose={onCloseFilterModal} isOpen={isModalOpen} onClose={onCloseModal}/>
+                    <MobileFilterModal submitSearch={navigateToSearch} handleFilterPropertyChange={handleFilterPropertyChange} isFilterModalOpen={isFilterModalOpen} onFilterModalClose={onCloseFilterModal} isOpen={isModalOpen} onClose={onCloseModal}/>
                 </div>
             </div>
         </div>
     </>
 }
+
+
