@@ -46,16 +46,17 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
     )
 }
 
+function getPricingString(checkIn, checkOut, price) {
+
+    if (checkIn === null || checkOut === null) return  price 
+    const checkInDate = new Date(checkIn)
+    const checkOutDate = new Date(checkOut)
+    const time = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24))
+    return Math.ceil(price * time)
+}
+
 function Tag({ property, checkIn = null, checkOut = null }) {
 
-    function getPricingString(checkIn, checkOut, price) {
-
-        if (!checkIn || !checkOut) return { price }
-        const checkInDate = new Date(checkIn)
-        const checkOutDate = new Date(checkOut)
-        const time = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24))
-        return price * time
-    }
 
     return <>
         <div key={property._id}>

@@ -26,7 +26,7 @@ export function AppFilter() {
     
 
     function handleFilterPropertyChange(field, value) {
-        console.log('filter change:', field, value, filterData)
+
         setFilterData((prevData) => ({
             ...prevData,
             [field]: value,
@@ -51,13 +51,13 @@ export function AppFilter() {
     }
 
     function onCloseModal() {
-        console.log('closing modal')
+
         setIsModalOpen(false)
     }
 
 
     return <>
-        <div className="w-full max-w-4xl mx-auto mt-3 mb-5">
+        <div className="w-full max-w-4xl mx-auto lg:mt-3 lg:mb-5">
             <div className="
                 relative
                 w-full 
@@ -189,7 +189,7 @@ function GetLocationString( {countryCode, city, maxLat, minLat, maxLng, minLng})
 }
 
 function getDatesString( {from, to} ){
-    console.log('from,to:', from, to)
+
     if (from===null || to===null) return 'Add dates';
     if (from.getYear() === to.getYear()){
         if (from.getMonth() === to.getMonth()) {
@@ -210,7 +210,6 @@ const GuestStringLength = Object.freeze({
 })
 
 function getGuestsString( {adults, kids, infants, pets}, length ){
-    console.log('getGuestsString:', adults, kids, infants, pets)
     if (adults + kids + infants + pets === 0) return 'Add guests';
     const guests = adults + kids;
     switch (length) {
