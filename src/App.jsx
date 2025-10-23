@@ -6,6 +6,7 @@ import { AppFooter } from "./components/AppFooter.jsx"
 import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
 import { DynamicDropDown } from "./components/DynamicDropDown.jsx"
+import { Test } from "./pages/Test.jsx"
 
 const Router = BrowserRouter
 
@@ -27,6 +28,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<ExplorePage />} />
                 <Route path="/search" element={<SearchPage />} />
+                <Route path="/test" element={<Test />} />
               </Routes>
             </div>
           </div>
