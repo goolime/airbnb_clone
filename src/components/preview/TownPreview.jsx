@@ -1,5 +1,6 @@
 import { OnHoverFlipIcon } from "../util/onHoverFlipIcon";
 import { TbSquareRoundedArrowRightFilled, TbSquareRoundedArrowLeftFilled , TbSquareRoundedArrowRight, TbSquareRoundedArrowLeft } from "react-icons/tb";
+import { IoChevronBackCircle, IoChevronBackCircleOutline, IoChevronForwardCircle, IoChevronForwardCircleOutline  } from "react-icons/io5";
 import { useRef, useState } from "react";
 import { PropertyPreview } from "./PropertyPreview";
 import { MdChevronRight } from "react-icons/md";
@@ -45,9 +46,9 @@ export function TownPreview({city,properties,idx}){
                     <h1 className="text-lg font-semibold  ">{`${getRandomHeader(idx)} ${city.city}`}</h1>
                     <MdChevronRight className="text-lg" />
                 </div>
-                <div className="flex-row hidden sm:flex text-3xl">
-                    <OnHoverFlipIcon onHoverIcon={<TbSquareRoundedArrowLeftFilled />} regIcon={<TbSquareRoundedArrowLeft />} onClick={handleScrollLeft} disabled={scrollX === 0.0} className={`text-gray-400 opacity-60 duration-300 ${scrollX === 0 ? '' : 'hover:text-gray-900 hover:opacity-100 hover:scale-110'}`} />
-                    <OnHoverFlipIcon onHoverIcon={<TbSquareRoundedArrowRightFilled />} regIcon={<TbSquareRoundedArrowRight/>} onClick={handleScrollRight} disabled={scrollX === 1.0} className={`text-gray-400 opacity-60 duration-300 ${scrollX === 1 ? '' : 'hover:text-gray-900 hover:opacity-100 hover:scale-110'}`} />
+                <div className="flex-row hidden sm:flex text-3xl mr-2">
+                    <OnHoverFlipIcon onHoverIcon={<IoChevronBackCircle />} regIcon={<IoChevronBackCircleOutline />} onClick={handleScrollLeft} disabled={scrollX === 0.0} className={`text-gray-400 duration-300 ${scrollX === 0 ? 'opacity-20 cursor-not-allowed ' : 'opacity-60 hover:text-gray-500 hover:opacity-100 hover:scale-110'}`} />
+                    <OnHoverFlipIcon onHoverIcon={<IoChevronForwardCircle />} regIcon={<IoChevronForwardCircleOutline />} onClick={handleScrollRight} disabled={scrollX === 1.0} className={`text-gray-400 duration-300 ${scrollX === 1 ? 'opacity-20 cursor-not-allowed ' : 'opacity-60 hover:text-gray-500 hover:opacity-100 hover:scale-110'}`} />
                 </div>
             </div>
             <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll scrollbar-hide gap-5 max-sm:x-5`}>
