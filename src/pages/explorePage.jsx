@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getTownsPreviews } from "../actions/explore.actions.js";
 import { TownPreview } from "../components/preview/TownPreview.jsx";
+import { TownPlaceholder } from "../components/preview/TownPlaceholder.jsx";
 
 export function ExplorePage() {
 
@@ -9,13 +10,15 @@ export function ExplorePage() {
     
     useEffect(() => {
         getTownsPreviews().then (townsPreviews=>{
-        setTowns(townsPreviews);
-        setIsLoading(false);
-        })
+            setTowns(townsPreviews);
+            setIsLoading(false);
+            })
     }, [])
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <div className="animate-pulse h-[80vh] overflow-hidden mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black">
+        {[1,2,3,4,5,6,7].map(i=><TownPlaceholder key={i}/>)}
+    </div>
     return <>
-        {towns.map((town,i)=><TownPreview idx={i} name={town.city.city} properties={town.properties} key={i}/>)}
+        {towns.map((town,i)=><TownPreview idx={i} city={town.city} properties={town.properties} key={i}/>)}
     </>
 }

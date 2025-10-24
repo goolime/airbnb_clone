@@ -41,7 +41,7 @@ export function Carousel({slides, className , auto=false}) {
     }
 
     return (
-        <div className={`overflow-hidden relative rounded-3xl ${className}`} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} > 
+        <div className={`overflow-hidden relative rounded-3xl ${className} group`} onMouseLeave={handleMouseLeave} onMouseEnter={handleMouseEnter} > 
             <div className="h-full w-full relative">
                 {slides.map((s, index) => {
                     return <img className={`absolute h-full w-full object-cover bottom-0 duration-500 ${currentIndex === index ? 'opacity-100' : 'opacity-0'}`} key={index} src={s} />;
@@ -49,16 +49,16 @@ export function Carousel({slides, className , auto=false}) {
             </div>
             <div className="absolute top-0 h-full w-full flex justify-between items-center text-white text-3xl px-[5px]">
                 <button onClick={prevSlide}>
-                    <TbSquareRoundedArrowLeftFilled className="duration-200 opacity-40 hover:opacity-100 hover:scale-110"/>
+                    <TbSquareRoundedArrowLeftFilled className="duration-200 opacity-0 group-hover:opacity-30 hover:opacity-100 hover:scale-110"/>
                 </button>
                 <button onClick={nextSlide}>
-                    <TbSquareRoundedArrowRightFilled className="duration-200 opacity-40 hover:opacity-100 hover:scale-110"/>
+                    <TbSquareRoundedArrowRightFilled className="duration-200 opacity-0 group-hover:opacity-30 hover:opacity-100 hover:scale-110"/>
                 </button>
             </div>
 
-            <div className="absolute bottom-0 flex justify-center py-5 w-full width-full" >
+            <div className="absolute bottom-0 flex justify-center py-3 w-full width-full" >
                 <div className="flex gap-2">
-                    {slides.map((_, index) =>  <div key={index} className={`rounded-full size-[10px] bg-white ${currentIndex === index ? 'opacity-100' : 'opacity-40'} hover:scale-110 hover:opacity-100 duration-200`} onClick={() => {setCurrentIndex(index)}}/>)}
+                    {slides.map((_, index) =>  <div key={index} className={`rounded-full size-[1dvw] md:size-[0.5dvw] bg-white opacity-0 ${currentIndex === index ? 'group-hover:opacity-100' : 'group-hover:opacity-30'} hover:scale-110 hover:opacity-100 duration-200`} onClick={() => {setCurrentIndex(index)}}/>)}
                 </div>
             </div>
         </div>

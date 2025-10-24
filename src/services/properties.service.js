@@ -183,7 +183,7 @@ async function getById(id) {
 
 
 function getPropertiesByCity(city) {
-    return storageService.query(PROPERTIES_KEY,50)
+    return storageService.query(PROPERTIES_KEY)
         .then(properties => {
             return properties.filter(property => 
                 property.loc.lat >= city.minLat &&
