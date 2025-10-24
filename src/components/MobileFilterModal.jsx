@@ -16,7 +16,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
     if (!isFilterModalOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-gray-100 z-50 overflow-hidden">
+        <div className="fixed inset-0 bg-gray-100 z-90 overflow-hidden">
             <button
                 onClick={onFilterModalClose}
                 className="fixed top-4 right-4 flex bg-white h-10 w-10 shadow-md border-2 border-gray-200 justify-center items-center rounded-full z-50 hover:bg-gray-50 transition"

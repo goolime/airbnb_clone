@@ -49,9 +49,9 @@ export function SearchPage() {
 
     return (
         <div className="relative">
-            <div className="md:grid md:grid-cols-2">
+            <div className="relative hidden md:grid md:grid-cols-2">
                 <div className="px-12 py-5 overflow-y-auto">
-                    <span className="font-semibold my-5 block">{properties.length} homes</span>
+                    <span className="font-semibold mb-5 block">{properties.length} homes</span>
                     <ListPreview
                         properties={properties}
                         checkIn={filterData.dates.from}
@@ -59,13 +59,15 @@ export function SearchPage() {
                     />
                 </div>
 
-                <div className="sticky top-0 h-screen py-5">
-                    <AppMap
-                        searchResults={properties}
-                        location={filterData?.loc}
-                        checkIn={filterData.dates.from}
-                        checkOut={filterData.dates.to}
-                    />
+                <div className="sticky top-5 h-screen py-5">
+                    <div className="w-full h-185">
+                        <AppMap
+                            searchResults={properties}
+                            location={filterData?.loc}
+                            checkIn={filterData.dates.from}
+                            checkOut={filterData.dates.to}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -82,7 +84,7 @@ export function SearchPage() {
                 ) : (
                     <div id="map" className="h-screen">
                         <AppMap
-                            
+
                             searchResults={properties}
                             location={filterData?.loc}
                             checkIn={filterData.dates.from}
@@ -94,7 +96,7 @@ export function SearchPage() {
 
             <button
                 onClick={() => setMapVisible(!mapVisible)}
-                className="md:hidden sticky bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-row gap-2 h-12 justify-center items-center bg-neutral-950 py-2 px-6 text-white rounded-full shadow-lg"
+                className="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-row gap-2 h-12 justify-center items-center bg-neutral-950 py-2 px-6 text-white rounded-full shadow-lg"
             >
                 {mapVisible ? (
                     <>
