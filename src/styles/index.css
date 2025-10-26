@@ -26,6 +26,14 @@
     @apply has-[button]:shadow-[-1em_0px_0.6em_rgba(0,0,0,0.1)];
 }
 
+.filter-place{
+    @apply border-gray-100 hover:bg-gray-100 hover:rounded-xl hover:border-gray-100 hover:scale-110;
+}
+
+.filter-place-selected{
+    @apply bg-gray-100 font-semibold scale-110 rounded-xl z-10;
+}
+
 /* Basics */
 @import url('./basics/base.css');
 @import url('./basics/helpers.css');

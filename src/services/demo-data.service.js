@@ -146,8 +146,8 @@ const nameParts=['Sunset','Pines', 'Rout 9', 'Pinecrest', 'Highway', "Traveler's
 
 const amenities=['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'A/C', 'Pool', 'Hot tub',
                  'Free Parking', 'Washer', 'Dryer', 'Heating', 'Workspace', 'Hairdryer','Iron', 'EV charger', 'Crib', 
-                 'King bed', 'Gym', 'Grill', 'Indoor fireplace', 'Beachfront', 'Waterfront', 'Smoke alarm', 'Carbon monoxide alarm',
-                 'Self check-in','free cancelation',]
+                 'King bed','Breakfast','Gym', 'Grill', 'Indoor fireplace', 'Beachfront', 'Waterfront', 'Smoke alarm', 'Carbon monoxide alarm',
+                 'Self check-in','free cancellation',]
 
 const propertyType=['House', 'Apartment', 'Guesthouse', 'Hotel']
 

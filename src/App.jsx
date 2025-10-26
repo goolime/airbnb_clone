@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
 import { DynamicDropDown } from "./components/DynamicDropDown.jsx"
 import { Test } from "./pages/Test.jsx"
+import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
 
 const Router = BrowserRouter
 
@@ -20,6 +21,7 @@ function App() {
 
   return (
     <>
+      <ServiceAnimalInfo />
       <Router>
         <section>
           <AppHeader />
@@ -35,6 +37,7 @@ function App() {
           <AppFooter />
         </section>
       </Router>
+      
     </>
   )
 }
