@@ -1,4 +1,6 @@
 import { useEffect,useState } from "react";
+import { UserInteruction } from "../util/UserInteruaction";
+import { showServiceAnimalInfo } from "../../services/event-bus.service.js";
 
 export function Capacity({onFilterChange}) {
 
@@ -208,8 +210,9 @@ export function Capacity({onFilterChange}) {
         <div className="flex flex-row justify-between py-6 pr-1 ">
             <div className="flex flex-col text-start">
                 <label className="font-semibold text-lg">Pets</label>
-                <a href="#" className="text-gray-500 font-semibold underline underline-offset-2">Bringing a service animal?</a>
+                <a href="#" className="text-gray-500 font-semibold underline underline-offset-2" onClick={() => showServiceAnimalInfo()}>Bringing a service animal?</a>
             </div>
+            
             <div className="flex flex-row items-center justify-between">
                 <button disabled={petsCount <= 0} onClick={onDecrementPets} className="
                                 flex 
@@ -250,5 +253,6 @@ export function Capacity({onFilterChange}) {
                                 ">+</button>
             </div>
         </div>
+        
     </>
 }
