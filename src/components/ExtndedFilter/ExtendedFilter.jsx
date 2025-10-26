@@ -8,6 +8,8 @@ import { BookingOptionsSelector } from "./BookingOptionsSelector.jsx";
 import { UserInteruction } from "../util/UserInteruaction.jsx";
 import { StandoutStaysSelector } from "./StandoutStaysSelector.jsx";
 import { PropertyTypesSelector } from "./PropertyTypesSelector.jsx";
+import { AccessibilityFeaturesSelector } from "./AccessibilityFeaturesSelector.jsx";
+import { FilterCheckMark } from "./FilterCheckMark.jsx";
 
 export function ExtendedFilter({ filter }) {
   const [isExtendedFilterOpen, setIsExtendedFilterOpen] = useState(false);
@@ -69,7 +71,10 @@ export function ExtendedFilter({ filter }) {
           />
         </FilterColapsable>
         <FilterColapsable title="Accessibility features" className="!border-none">
-          <div> place holder</div>
+          <AccessibilityFeaturesSelector
+            selectedFeatures={localFilter.accessibility || []}
+            onChange={(newFeatures) => handleFilterChange('accessibility', newFeatures)}
+          />
         </FilterColapsable>
       </div>
       <div className="w-[100%] col-span-full font-semibold text-xl text-gray-800 text-center border-t border-gray-300 flex justify-between items-center px-4 py-2">

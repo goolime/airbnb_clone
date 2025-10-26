@@ -132,6 +132,15 @@ export const ChevronRight = ({className}) => <FiChevronRight className={classNam
 export const ChevronLeft = ({className}) => <FiChevronLeft className={className} />
 export const ChevronUp = ({className}) => <FiChevronUp className={className} />
 export const ChevronDown = ({className}) => <FiChevronDown className={className} />
+export const Checkmark = (className) => <svg xmlns="http://www.w3.org/2000/svg"
+                                            className={className}
+                                            viewBox="0 0 32 32"
+                                            aria-hidden="true"
+                                            role="presentation"
+                                            focusable="false"
+                                            style={{display: "block", height: "11px", width: "11px", stroke: "currentcolor", strokeWidth: "4.36364", overflow: "visible"}}>
+                                                <path d="m4.5 14 8 8 16-16" fill="none" />
+                                            </svg>    
 export const Plus = ({className}) => <svg  xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "24px", width: "24px", fill: "currentcolor"}}>
                                         <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
                                       </svg>
