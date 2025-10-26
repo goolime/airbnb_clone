@@ -90,7 +90,8 @@ function getEmptyProperty( name = '',
 function getDefaultFilter() {
     return { 
         txt: '',
-        type: 'All',
+        type: 'any',
+        types: [],
         maxPrice: 0,
         minPrice: 0,
         guests: { adults: 0, kids: 0, infants: 0, pets: 0 },
