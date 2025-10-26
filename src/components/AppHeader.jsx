@@ -29,12 +29,12 @@ export function AppHeader() {
                 border-b 
                 border-gray-200 
                 shadow-sm 
-                px-4
-                sm:px-6
-                lg:px-8
+                px-2
+                sm:px-4
+                lg:px-6
             '>
                 {/* Logo Section */}
-                <div className='hidden sm:flex flex-row items-center py-3 md:py-4 gap-2'>
+                <div className='hidden sm:flex flex-row items-center py-3 sm:py-1 md:py-4 gap-2'>
                     <img
                         onClick={() => navigate('/')}
                         src={logoImage}
@@ -58,7 +58,7 @@ export function AppHeader() {
                     md:col-start-2
                     md:row-start-1
                     py-2
-                    sm:py-3
+                    sm:py-1
                     md:py-4
                 '>
                     <AppFilter />
