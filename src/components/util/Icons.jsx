@@ -29,7 +29,7 @@ import {
     TbCalendarOff,
     TbMug,
     TbMugOff,
-    TbX
+    TbX,
 } from "react-icons/tb";
 
 import {FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp  } from "react-icons/fi";

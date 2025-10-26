@@ -5,15 +5,13 @@ import logoImage from '../assets/images/airdnd-logo.png'
 import userImage from '../assets/images/user.png'
 import { AppFilter } from './AppFilter.jsx'
 import { useNavigate } from 'react-router'
-import { useLocation } from 'react-router-dom'
 
 
 export function AppHeader() {
+    
     const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    const location = useLocation();
-    console.log('Current location:', location);
     return (
         <>
             <div className='

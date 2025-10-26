@@ -5,7 +5,6 @@ import { SearchPage } from "./pages/SearchPage.jsx"
 import { AppFooter } from "./components/AppFooter.jsx"
 import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
-import { DynamicDropDown } from "./components/DynamicDropDown.jsx"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
 

@@ -75,7 +75,7 @@ export function SearchPage() {
                 </div>
 
                 <div className="relative">
-                    <div className="sticky px-5 top-37 h-[calc(100vh-7rem)]">
+                    <div className="sticky pl-5 pr-3 top-37 h-[calc(100vh-7rem)]">
                         <AppMap
                             searchResults={properties}
                             location={filterData?.loc}
@@ -97,7 +97,7 @@ export function SearchPage() {
                         />
                     </div>
                 ) : (
-                    <div ref={mapRef} className="h-full top-0">
+                    <div ref={mapRef} className="h-full top-37">
                         <AppMap
                             searchResults={properties}
                             location={filterData?.loc}
