@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDown, ChevronUp } from "../util/Icons.jsx";
 import { eventBusService } from '../../services/event-bus.service.js'
 import { PropertyTypeSelector } from "./PropertyTypeSelector.jsx";
@@ -9,14 +9,20 @@ import { UserInteruction } from "../util/UserInteruaction.jsx";
 import { StandoutStaysSelector } from "./StandoutStaysSelector.jsx";
 import { PropertyTypesSelector } from "./PropertyTypesSelector.jsx";
 import { AccessibilityFeaturesSelector } from "./AccessibilityFeaturesSelector.jsx";
-import { FilterCheckMark } from "./FilterCheckMark.jsx";
+import { useNavigate } from "react-router";
+import { propertiesService } from "../../services/properties.service.js";
 
 export function ExtendedFilter({ filter }) {
   const [isExtendedFilterOpen, setIsExtendedFilterOpen] = useState(false);
   const [localFilter, setLocalFilter] = useState({ ...filter });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setLocalFilter({ ...filter });
+  }, [filter]);
 
   function handleFilterChange(field, value) {
-    console.log('Field changed:', field, 'New value:', value);
+    //console.log('Field changed:', field, 'New value:', value);
     setLocalFilter((prevFilter) => ({
       ...prevFilter,
       [field]: value,
@@ -27,11 +33,19 @@ export function ExtendedFilter({ filter }) {
     setIsExtendedFilterOpen(true);
   });
 
+  function navigateToSearch() {
+    //const searchParams = createSearchParams();
+    navigate({pathname: '/search', search: `?${propertiesService.getSearchParamsFromFilter(localFilter).toString()}`});
+  }
+  
+
+  console.log('ExtendedFilter render with localFilter:', localFilter);
+
   return <>
   <UserInteruction mobileHeight="95%" isOpen={isExtendedFilterOpen} onClose={() => setIsExtendedFilterOpen(false)} className="!p-0">
     <div className="grid grid-cols-[1rem_1fr_1rem]">
-      <div className="w-[100%] col-span-full font-semibold text-xl text-gray-800 text-center border-b border-gray-300"> Filter </div>
-      <div className="col-start-2 col-end-4 overflow-y-scroll max-h-[80vh] sm:max-h-[65vh] pr-[1rem] flex flex-col">
+      <div className="w-[100%] col-span-full font-semibold text-xl text-gray-800 text-center border-b border-gray-300 pb-2"> Filter </div>
+      <div className="col-start-2 col-end-4 overflow-y-scroll max-h-[80vh] sm:max-h-[64vh] pr-[1rem] flex flex-col">
         <FilterSection title="Type of place " >
           <PropertyTypeSelector selectedType={localFilter.type} onChange={(newTypes) => handleFilterChange('type', newTypes)} />
         </FilterSection>
@@ -39,10 +53,7 @@ export function ExtendedFilter({ filter }) {
           <div> place holder</div>
         </FilterSection>
         <FilterSection title="Rooms and beds" >
-          <RoomsAndBedsSelector
-            rooms={localFilter.bedrooms}
-            beds={localFilter.beds}
-            bathrooms={localFilter.bathrooms}
+          <RoomsAndBedsSelector filter={localFilter}
             onChange={handleFilterChange}
           />
         </FilterSection>
@@ -78,8 +89,8 @@ export function ExtendedFilter({ filter }) {
         </FilterColapsable>
       </div>
       <div className="w-[100%] col-span-full font-semibold text-xl text-gray-800 text-center border-t border-gray-300 flex justify-between items-center px-4 py-2">
-        <button className="text-gray-700 hover:bg-gray-200 p-2 rounded-lg text-lg duration-300">Clear all</button>
-        <button className="bg-gray-900 text-white px-4 py-2 rounded-lg mb-4 mt-2 hover:bg-gray-950 duration-300">Show places</button>
+        <button className="text-gray-700 hover:bg-gray-200 p-2 rounded-lg text-lg duration-300" onClick={() => setLocalFilter({ ...filter })}>Clear all</button>
+        <button className="bg-gray-900 text-white px-4 py-2 rounded-lg mb-4 mt-2 hover:bg-gray-950 duration-300" onClick={navigateToSearch}>Show places</button>
       </div>
     </div>
   </UserInteruction>

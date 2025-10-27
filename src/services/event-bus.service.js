@@ -46,6 +46,10 @@ export function showInteraction(msg){
     eventBusService.emit('show-user-interaction', msg)
 }
 
+export function showLoginModal() {
+    eventBusService.emit('show-login-modal')
+}
+
 //window.showSuccessMsg = showSuccessMsg
 //window.showErrorMsg = showErrorMsg
 window.showMessage = showInteraction

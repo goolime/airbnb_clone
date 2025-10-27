@@ -14,16 +14,16 @@ export function AccessibilityFeaturesSelector({ selectedFeatures, onChange }) {
       }
     }
 
-    console.log(features);  
+    //console.log(features);  
 
     return <>
         {Object.keys(features).map((category) => {
-            console.log("1-" + category, features[category]);
+            //console.log("1-" + category, features[category]);
             return <div key={category} className="mb-4">
                 <div className="font-medium text-md mb-2">{category}</div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {Object.keys(features[category]).map((featureKey) => {
-                        console.log("2-" + featureKey, features[category][featureKey]);
+                        //console.log("2-" + featureKey, features[category][featureKey]);
                         return (
                             <div key={featureKey} className="flex items-center mt-1">
                                 <FilterCheckMark isChecked={selectedFeatures.includes(featureKey)} onClick={() => handleFeatureToggle(featureKey)} />

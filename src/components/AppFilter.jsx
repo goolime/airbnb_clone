@@ -7,6 +7,7 @@ import { Location } from "./search/Location"
 import { MobileFilterModal } from "./MobileFilterModal"
 import { propertiesService } from "../services/properties.service.js"
 import { useNavigate  } from 'react-router-dom'
+import { ExtendedFilter } from "./ExtndedFilter/ExtendedFilter.jsx"
 
 
 
@@ -179,6 +180,7 @@ export function AppFilter() {
                 </div>
             </div>
         </div>
+        <ExtendedFilter filter={filterData} />
     </>
 }
 

@@ -1,9 +1,10 @@
 import {  FilterIcon } from "../components/util/Icons";
 import { useState } from "react";
-import { showExtendedFilter } from "../services/event-bus.service.js";
+import { showLoginModal, showExtendedFilter } from "../services/event-bus.service.js";
 import { AppearOnURL } from "../components/util/AppearOnURL.jsx";
 import { propertiesService } from "../services/properties.service.js";
-import { ExtendedFilter } from "../components/ExtndedFilter/ExtendedFilter.jsx";
+import { UserLogin } from "../components/UserLogin.jsx";
+
 
 
 
@@ -22,9 +23,9 @@ export  function Test() {
         </button>
       </AppearOnURL>
 
-      {/* Go to Search Page */}
-      <ExtendedFilter filter={filterData} />
-      
+      <button onClick={() => showLoginModal() } className="p-2 rounded-full hover:bg-gray-100 hover:scale-110 duration-300 "> Login </button>
+
+      <UserLogin />
     </div>
   )
 }
