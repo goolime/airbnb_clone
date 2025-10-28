@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
+import { ProfilePage } from "./pages/ProfilePage.jsx"
 
 const Router = BrowserRouter
 
@@ -28,6 +29,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<ExplorePage />} />
                 <Route path="/search" element={<SearchPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/test" element={<Test />} />
               </Routes>
             </div>

@@ -7,6 +7,7 @@ const USERS_KEY = 'usersDB'
 
 export const usersService = {
     query,
+    login,
     get,
     remove,
     save,
@@ -25,6 +26,17 @@ function query(filterBy) {
         })
 }
 
+function login(userName, password) {
+    return storageService.query(USERS_KEY, 0)
+        .then(users => {
+            const user = users.find(user => user.username === userName )//&& user.password === password);
+            if (user) {
+                return user;
+            } else {
+                throw new Error('Invalid username or password');
+            }
+        });
+}
 
 function get(userId) {
     return storageService.get(USERS_KEY, userId)
