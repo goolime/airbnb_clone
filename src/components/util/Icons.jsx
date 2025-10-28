@@ -29,7 +29,8 @@ import {
     TbCalendarOff,
     TbMug,
     TbMugOff,
-    TbX
+    TbX,
+    TbPencil
 } from "react-icons/tb";
 
 import {FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp  } from "react-icons/fi";
@@ -208,3 +209,4 @@ export const ApartmentIcon = ({className,hexColor="#000000"}) => <svg xmlns="htt
                                                 <path d="M464 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
                                                </g>
                                                </svg>
+export const EditIcon = ({className}) => <TbPencil className={className} />

@@ -36,6 +36,7 @@ export function ExtendedFilter({ filter }) {
   function navigateToSearch() {
     //const searchParams = createSearchParams();
     navigate({pathname: '/search', search: `?${propertiesService.getSearchParamsFromFilter(localFilter).toString()}`});
+    setIsExtendedFilterOpen(false);
   }
   
 

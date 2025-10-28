@@ -4,13 +4,14 @@ import { showLoginModal, showExtendedFilter } from "../services/event-bus.servic
 import { AppearOnURL } from "../components/util/AppearOnURL.jsx";
 import { propertiesService } from "../services/properties.service.js";
 import { UserLogin } from "../components/UserLogin.jsx";
+import { useNavigate } from "react-router";
 
 
 
 
 export  function Test() {
   const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
-
+  const navigate = useNavigate()
 
   return (
     <div>
@@ -24,8 +25,9 @@ export  function Test() {
       </AppearOnURL>
 
       <button onClick={() => showLoginModal() } className="p-2 rounded-full hover:bg-gray-100 hover:scale-110 duration-300 "> Login </button>
+      <button onClick={()=> navigate('/profile')} className="p-2 rounded-full hover:bg-gray-100 hover:scale-110 duration-300 "> Profile Page </button>
 
-      <UserLogin />
+      
     </div>
   )
 }

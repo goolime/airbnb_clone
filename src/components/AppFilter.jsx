@@ -8,6 +8,7 @@ import { MobileFilterModal } from "./MobileFilterModal"
 import { propertiesService } from "../services/properties.service.js"
 import { useNavigate  } from 'react-router-dom'
 import { ExtendedFilter } from "./ExtndedFilter/ExtendedFilter.jsx"
+import { UserLogin } from "./UserLogin.jsx"
 
 
 
@@ -181,6 +182,7 @@ export function AppFilter() {
             </div>
         </div>
         <ExtendedFilter filter={filterData} />
+        <UserLogin />
     </>
 }
 
