@@ -20,11 +20,13 @@ export function SearchPage() {
 
     useEffect(() => {
         const filter = propertiesService.getFilterFromSearchParams(searchParams)
+        console.log('Location data from URL:', filter.loc)
         setFilterData(filter)
     }, [searchParams])
 
     useEffect(() => {
         if (!filterData) return
+        console.log('Filter Data:', filterData); // Add this line
         getProperties(filterData, 1).then(({ newProperties, newMaxPage, totalProperties }) => {
             setPage(1)
             setProperties(newProperties)
@@ -41,10 +43,15 @@ export function SearchPage() {
 
         if (!mapVisible) {
             setTimeout(() => {
-                mapRef.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                console.log('Attempting to scroll to map');
+                if (mapRef.current) {
+                    mapRef.current.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    console.log('Map ref not found');
+                }
             }, 100);
         }
     }
@@ -75,7 +82,7 @@ export function SearchPage() {
                 </div>
 
                 <div className="relative">
-                    <div className="sticky pl-5 pr-3 top-37 h-[calc(100vh-7rem)]">
+                    <div className="sticky pl-5 pr-3 top-37 pb-6 h-[calc(95vh-7rem)]">
                         <AppMap
                             searchResults={properties}
                             location={filterData?.loc}
@@ -97,7 +104,7 @@ export function SearchPage() {
                         />
                     </div>
                 ) : (
-                    <div ref={mapRef} className="h-full top-37">
+                    <div ref={mapRef} className="h-screen fixed inset-0">
                         <AppMap
                             searchResults={properties}
                             location={filterData?.loc}
@@ -110,7 +117,24 @@ export function SearchPage() {
 
             <button
                 onClick={handleToggleMap}
-                className="md:hidden fixed bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-row gap-2 h-12 justify-center items-center bg-neutral-950 py-2 px-6 text-white rounded-full shadow-lg"
+                className="
+                md:hidden 
+                fixed 
+                bottom-8 
+                left-1/2 
+                -translate-x-1/2 
+                z-10 
+                flex flex-row 
+                gap-2
+                h-12 
+                justify-center 
+                items-center 
+                bg-neutral-950 
+                py-2 px-6 
+                text-white 
+                rounded-full 
+                shadow-lg
+                "
             >
                 {mapVisible ? (
                     <>

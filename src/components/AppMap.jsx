@@ -42,7 +42,7 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
                 onMove={event => setViewPort(event.viewState)}
                 style={{
                     width: '100%',
-                    height: '80dvh',
+                    height: '100%',
                     borderRadius: '15px'
                 }}
                 mapStyle="mapbox://styles/tapuchips/cmgyvwabb007c01quf1ng3u4d"

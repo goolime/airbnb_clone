@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { MobileWherePicker } from "./search/MobileWherePicker"
-import { Capacity } from "./search/Capacity"
-import { MobileDatePicker } from "./search/MobileDatePicker"
+import { MobileWherePicker } from "../search/MobileWherePicker"
+import { Capacity } from "../search/Capacity"
+import { MobileDatePicker } from "../search/MobileDatePicker"
 
 
 
@@ -11,16 +11,24 @@ const sections = Object.freeze({
     WHO: 3,
 })
 
-export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handleFilterPropertyChange, submitSearch , locationString="I'm flexible", datesString="Add dates", guestsString="Add guests"}) {
+export function MobileFilterModal({
+    isFilterModalOpen,
+    onFilterModalClose,
+    handleFilterPropertyChange,
+    submitSearch,
+    locationString = "I'm flexible",
+    datesString = "Add dates",
+    guestsString = "Add guests"
+}) {
     const [activeSection, setActiveSection] = useState(sections.WHERE);
     if (!isFilterModalOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-gray-100 z-90 overflow-hidden">
+        <div className="fixed inset-0 bg-gray-100 z-100 overflow-hidden">
             <button
                 onClick={onFilterModalClose}
                 className="fixed top-4 right-4 flex bg-white h-10 w-10 shadow-md border-2 border-gray-200 justify-center items-center rounded-full z-50 hover:bg-gray-50 transition"
-            >   
+            >
                 ✕
             </button>
 
@@ -40,9 +48,9 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                     <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
                         <h1 className="text-2xl font-semibold mb-4">Where?</h1>
                         <MobileWherePicker onFilterChange={(value) => {
-                                                                handleFilterPropertyChange("loc", value)
-                                                                setActiveSection(sections.WHEN)
-                                                            }} />
+                            handleFilterPropertyChange("loc", value)
+                            setActiveSection(sections.WHEN)
+                        }} />
                     </div>
                 )}
 
@@ -59,12 +67,12 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                 }
 
                 {activeSection === sections.WHEN &&
-                <div className="flex flex-col">
-                    <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
-                    <h1 className="text-2xl font-semibold mb-4">When?</h1>
-                        <MobileDatePicker onFilterChange={(value) => handleFilterPropertyChange("dates", value)} />
+                    <div className="flex flex-col">
+                        <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
+                            <h1 className="text-2xl font-semibold mb-4">When?</h1>
+                            <MobileDatePicker onFilterChange={(value) => handleFilterPropertyChange("dates", value)} />
+                        </div>
                     </div>
-                </div>
                 }
                 {/* Who Section */}
                 {activeSection !== sections.WHO &&
@@ -79,7 +87,7 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                 {activeSection === sections.WHO &&
                     <div className="bg-white rounded-2xl shadow-lg p-6 mb-4">
                         <h1 className="text-2xl font-semibold mb-4">Who?</h1>
-                        <Capacity onFilterChange={(value)=> handleFilterPropertyChange('guests',value)}/>
+                        <Capacity onFilterChange={(value) => handleFilterPropertyChange('guests', value)} />
 
                     </div>
                 }
@@ -95,8 +103,8 @@ export function MobileFilterModal({ isFilterModalOpen, onFilterModalClose,handle
                         submitSearch()
                         onFilterModalClose()
                     }
-                    setActiveSection(currentSection => currentSection+1)
-                    }} className={`px-6 py-3 ${activeSection === sections.WHO ? "bg-gradient-to-r from-rose-500 to-pink-600" : "bg-gray-700"} text-white font-semibold rounded-lg hover:shadow-xl transition`}>
+                    setActiveSection(currentSection => currentSection + 1)
+                }} className={`px-6 py-3 ${activeSection === sections.WHO ? "bg-gradient-to-r from-rose-500 to-pink-600" : "bg-gray-700"} text-white font-semibold rounded-lg hover:shadow-xl transition`}>
                     {activeSection === sections.WHO ? "Search" : "Next"}
                 </button>
             </div>

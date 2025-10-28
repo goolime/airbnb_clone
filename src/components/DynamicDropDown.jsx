@@ -1,14 +1,14 @@
 
 
-export function DynamicDropDown({ isOpen, onClose, children, width, direction, position }) {
+export function DynamicDropDown({ isModalOpen, onCloseModal, children, width, direction, position }) {
 
 
 
-    if (!isOpen) return null
+    if (!isModalOpen) return null
 
     return <>
 
-        <div onClick={onClose} className="fixed inset-0 z-40" />
+        <div onClick={onCloseModal} className="fixed inset-0 z-40" />
 
         <div
             onClick={(e) => e.stopPropagation()}
@@ -29,9 +29,8 @@ export function DynamicDropDown({ isOpen, onClose, children, width, direction, p
                     transition-transform
                     duration-200
                     z-50
-                    ${isOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'}
-                `}
-        >
+                    ${isModalOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'}
+                `}>
             {children}
         </div>
     </>

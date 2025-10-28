@@ -10,7 +10,6 @@ import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
 
 const Router = BrowserRouter
 
-
 function App() {
 
   useEffect(() => {
