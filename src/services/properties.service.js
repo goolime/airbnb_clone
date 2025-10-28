@@ -90,7 +90,8 @@ function getEmptyProperty( name = '',
 function getDefaultFilter() {
     return { 
         txt: '',
-        type: 'All',
+        type: 'any',
+        types: [],
         maxPrice: 0,
         minPrice: 0,
         guests: { adults: 0, kids: 0, infants: 0, pets: 0 },
@@ -183,7 +184,7 @@ async function getById(id) {
 
 
 function getPropertiesByCity(city) {
-    return storageService.query(PROPERTIES_KEY)
+    return storageService.query(PROPERTIES_KEY, 100)
         .then(properties => {
             return properties.filter(property => 
                 property.loc.lat >= city.minLat &&

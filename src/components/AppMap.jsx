@@ -1,13 +1,13 @@
-import * as React from 'react';
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 import { Map, Popup, Marker } from 'react-map-gl/mapbox'
 import { getCenter } from 'geolib'
-import { useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 export function AppMap({ searchResults, location, checkIn = null, checkOut = null }) {
 
-    const [selectedLocation, setSelectedLocation] = useState({})
+    const [selectedLocation, setSelectedLocation] = useState(null)
+    const mapRef = useRef(null);
 
     const coordinates = [
         { latitude: location.maxLat, longitude: location.minLng },
@@ -19,14 +19,26 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
     const [viewPort, setViewPort] = useState({
         longitude: center.longitude,
         latitude: center.latitude,
-        zoom: 12
+        zoom: 10
     })
+
+    useEffect(() => {
+        if (mapRef.current) {
+            mapRef.current.getMap().flyTo({
+                center: [center.longitude, center.latitude],
+                zoom: 10,
+                essential: true,
+                duration: 3000,
+            });
+        }
+    }, [center.longitude, center.latitude]);
 
     return (
         <>
             <Map
                 mapboxAccessToken="pk.eyJ1IjoidGFwdWNoaXBzIiwiYSI6ImNtZ3l2bWljazE4dGMyanMycjRwcWtvdWUifQ.tadvkssqi_e58IHltgqa8A"
                 {...viewPort}
+                ref={mapRef}
                 onMove={event => setViewPort(event.viewState)}
                 style={{
                     width: '100%',
@@ -37,8 +49,14 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
             >
                 {searchResults &&
                     searchResults.map(result => (
-
-                        <Tag key={result._id} property={result} checkIn={checkIn} checkOut={checkOut} />
+                        <Tag
+                            key={result._id}
+                            property={result}
+                            checkIn={checkIn}
+                            checkOut={checkOut}
+                            selectedLocation={selectedLocation}
+                            setSelectedLocation={setSelectedLocation}
+                        />
                     ))
                 }
             </Map>
@@ -47,43 +65,46 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
 }
 
 function getPricingString(checkIn, checkOut, price) {
-
-    if (checkIn === null || checkOut === null) return  price 
+    if (checkIn === null || checkOut === null) return price
     const checkInDate = new Date(checkIn)
     const checkOutDate = new Date(checkOut)
     const time = Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24))
     return Math.ceil(price * time)
 }
 
-function Tag({ property, checkIn = null, checkOut = null }) {
+function Tag({ property, checkIn = null, checkOut = null, selectedLocation, setSelectedLocation }) {
+    const isSelected = selectedLocation?._id === property._id
 
-
-    return <>
-        <div key={property._id}>
-            <Marker
-                longitude={property.loc.lng}
-                latitude={property.loc.lat}
-                offsetLeft={-20}
-                offsetTop={-10}
+    return (
+        <Marker
+            longitude={property.loc.lng}
+            latitude={property.loc.lat}
+            offsetLeft={-33}
+            offsetTop={-14}
+        >
+            <div
+                onClick={() => setSelectedLocation(property)}
+                className={`
+                    cursor-pointer 
+                    flex
+                    justify-center 
+                    items-center 
+                    px-2.5
+                    py-1.5
+                    border
+                    rounded-lg
+                    transition-all
+                    whitespace-nowrap
+                    ${isSelected
+                        ? 'bg-gray-900 text-white border-gray-900 scale-110 shadow-lg z-10'
+                        : 'bg-white text-gray-900 border-gray-300 hover:scale-105 hover:shadow-md shadow-sm'
+                    }
+                `}
             >
-                <div
-                    onClick={() => { setSelectedLocation(property) }}
-                    className='
-                                    cursor-pointer 
-                                    shadow-sm
-                                    flex flex-row 
-                                    justify-center 
-                                    items-center 
-                                    bg-(--headerBg) 
-                                    w-[66px] 
-                                    h-[28] 
-                                    border-1 
-                                    border-gray-300 
-                                    rounded-lg'
-                >
-                    <label className='text-md font-semibold cursor-pointer'>{getPricingString(checkIn, checkOut, property.price)}€</label>
-                </div>
-            </Marker>
-        </div>
-    </>
+                <span className='text-sm font-semibold'>
+                    €{getPricingString(checkIn, checkOut, property.price)}
+                </span>
+            </div>
+        </Marker>
+    )
 }

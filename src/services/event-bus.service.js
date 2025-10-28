@@ -34,6 +34,14 @@ export function showErrorMsg(txt) {
     showUserMsg({ txt, type: 'error' })
 }
 */
+export function showExtendedFilter() {
+    eventBusService.emit('show-extended-filter')
+}
+
+export function showServiceAnimalInfo(){
+    eventBusService.emit('show-service-animal-info')
+}
+
 export function showInteraction(msg){
     eventBusService.emit('show-user-interaction', msg)
 }

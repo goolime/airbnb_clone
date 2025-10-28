@@ -3,7 +3,7 @@ import { TbSquareRoundedArrowRightFilled, TbSquareRoundedArrowLeftFilled , TbSqu
 import { IoChevronBackCircle, IoChevronBackCircleOutline, IoChevronForwardCircle, IoChevronForwardCircleOutline  } from "react-icons/io5";
 import { useRef, useState } from "react";
 import { PropertyPreview } from "./PropertyPreview";
-import { MdChevronRight } from "react-icons/md";
+import { ChevronRight } from "../util/Icons.jsx";
 import { useNavigate  } from 'react-router-dom'
 import { propertiesService } from "../../services/properties.service";
 
@@ -37,21 +37,21 @@ export function TownPreview({city,properties,idx}){
     }
 
     return <>
-        <div className="w-100vw h-fit py-1">
+        <div className="w-100vw h-fit py-1 mt-4">
             <div className="flex justify-between">
-                <div className="flex flex-row items-center cursor-pointer max-xl:px-5" onClick={()=>{
+                <div className="flex flex-row items-center cursor-pointer max-xl:px-5 m-1" onClick={()=>{
                     const filter={...propertiesService.getDefaultFilter(),loc:city}
                     navigate({pathname: '/search', search: `?${propertiesService.getSearchParamsFromFilter(filter).toString()}`});
                 }}>
                     <h1 className="text-lg font-semibold  ">{`${getRandomHeader(idx)} ${city.city}`}</h1>
-                    <MdChevronRight className="text-lg" />
+                    <ChevronRight className="text-lg" />
                 </div>
                 <div className="flex-row hidden sm:flex text-3xl mr-2">
                     <OnHoverFlipIcon onHoverIcon={<IoChevronBackCircle />} regIcon={<IoChevronBackCircleOutline />} onClick={handleScrollLeft} disabled={scrollX === 0.0} className={`text-gray-400 duration-300 ${scrollX === 0 ? 'opacity-20 cursor-not-allowed ' : 'opacity-60 hover:text-gray-500 hover:opacity-100 hover:scale-110'}`} />
                     <OnHoverFlipIcon onHoverIcon={<IoChevronForwardCircle />} regIcon={<IoChevronForwardCircleOutline />} onClick={handleScrollRight} disabled={scrollX === 1.0} className={`text-gray-400 duration-300 ${scrollX === 1 ? 'opacity-20 cursor-not-allowed ' : 'opacity-60 hover:text-gray-500 hover:opacity-100 hover:scale-110'}`} />
                 </div>
             </div>
-            <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll scrollbar-hide gap-5 max-sm:x-5`}>
+            <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll mt-3 scrollbar-hide gap-5 max-sm:x-5`}>
                 <div className="snap-start"  />
                 {properties.map(property=><>
                     <PropertyPreview property={property} key={property._id} styles={styles} />

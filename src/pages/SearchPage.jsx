@@ -1,7 +1,7 @@
 import { ListPreview } from "../components/preview/ListPreview.jsx"
 import { AppMap } from "../components/AppMap.jsx"
 import { useSearchParams } from "react-router"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { propertiesService } from "../services/properties.service.js"
 import { getProperties } from "../actions/explore.actions.js"
 import { BsMapFill } from "react-icons/bs"
@@ -20,19 +20,41 @@ export function SearchPage() {
 
     useEffect(() => {
         const filter = propertiesService.getFilterFromSearchParams(searchParams)
+        console.log('Location data from URL:', filter.loc)
         setFilterData(filter)
     }, [searchParams])
 
     useEffect(() => {
         if (!filterData) return
-            getProperties(filterData, 1).then(({ newProperties, newMaxPage, totalProperties }) => {
-                setPage(1)
-                setProperties(newProperties)
-                setMaxPage(newMaxPage)
-                setTotalProperties(totalProperties)
-                setLoading(false)
-            })
+        console.log('Filter Data:', filterData); // Add this line
+        getProperties(filterData, 1).then(({ newProperties, newMaxPage, totalProperties }) => {
+            setPage(1)
+            setProperties(newProperties)
+            setMaxPage(newMaxPage)
+            setTotalProperties(totalProperties)
+            setLoading(false)
+        })
     }, [filterData])
+
+    const mapRef = useRef(null);
+
+    function handleToggleMap() {
+        setMapVisible(!mapVisible);
+
+        if (!mapVisible) {
+            setTimeout(() => {
+                console.log('Attempting to scroll to map');
+                if (mapRef.current) {
+                    mapRef.current.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                } else {
+                    console.log('Map ref not found');
+                }
+            }, 100);
+        }
+    }
 
     if (loading) return <>
         <div className="relative  animate-pulse h-[80vh] overflow-hidden mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black">
@@ -45,13 +67,13 @@ export function SearchPage() {
                 </div>
             </div>
         </div>
-    </> 
+    </>
 
     return (
         <div className="relative">
-            <div className="md:grid md:grid-cols-2">
-                <div className="px-12 py-5 overflow-y-auto">
-                    <span className="font-semibold my-5 block">{properties.length} homes</span>
+            <div className="hidden md:grid md:grid-cols-2 gap-6">
+                <div className="p-5">
+                    <span className="font-semibold mb-5 block">{properties.length} homes</span>
                     <ListPreview
                         properties={properties}
                         checkIn={filterData.dates.from}
@@ -59,13 +81,15 @@ export function SearchPage() {
                     />
                 </div>
 
-                <div className="sticky top-0 h-screen py-5">
-                    <AppMap
-                        searchResults={properties}
-                        location={filterData?.loc}
-                        checkIn={filterData.dates.from}
-                        checkOut={filterData.dates.to}
-                    />
+                <div className="relative">
+                    <div className="sticky pl-5 pr-3 top-37 pb-6 h-[calc(95vh-7rem)]">
+                        <AppMap
+                            searchResults={properties}
+                            location={filterData?.loc}
+                            checkIn={filterData.dates.from}
+                            checkOut={filterData.dates.to}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -80,9 +104,8 @@ export function SearchPage() {
                         />
                     </div>
                 ) : (
-                    <div id="map" className="h-screen">
+                    <div ref={mapRef} className="h-screen fixed inset-0">
                         <AppMap
-                            
                             searchResults={properties}
                             location={filterData?.loc}
                             checkIn={filterData.dates.from}
@@ -93,8 +116,25 @@ export function SearchPage() {
             </div>
 
             <button
-                onClick={() => setMapVisible(!mapVisible)}
-                className="md:hidden sticky bottom-8 left-1/2 -translate-x-1/2 z-50 flex flex-row gap-2 h-12 justify-center items-center bg-neutral-950 py-2 px-6 text-white rounded-full shadow-lg"
+                onClick={handleToggleMap}
+                className="
+                md:hidden 
+                fixed 
+                bottom-8 
+                left-1/2 
+                -translate-x-1/2 
+                z-10 
+                flex flex-row 
+                gap-2
+                h-12 
+                justify-center 
+                items-center 
+                bg-neutral-950 
+                py-2 px-6 
+                text-white 
+                rounded-full 
+                shadow-lg
+                "
             >
                 {mapVisible ? (
                     <>
@@ -103,7 +143,7 @@ export function SearchPage() {
                     </>
                 ) : (
                     <>
-                        <span className="text-sm font-semibold"><a href="#map">Show map</a></span>
+                        <span className="text-sm font-semibold">Show map</span>
                         <BsMapFill />
                     </>
                 )}

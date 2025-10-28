@@ -3,10 +3,12 @@ import { AiOutlineMenu } from 'react-icons/ai'
 import { BiHeart, BiMessage, BiSearch, BiUser } from 'react-icons/bi'
 import logoImage from '../assets/images/airdnd-logo.png'
 import userImage from '../assets/images/user.png'
-import { AppFilter } from './AppFilter.jsx'
+import { AppFilter } from './filters/AppFilter.jsx'
 import { useNavigate } from 'react-router'
 
+
 export function AppHeader() {
+    
     const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -29,12 +31,12 @@ export function AppHeader() {
                 border-b 
                 border-gray-200 
                 shadow-sm 
-                px-4
-                sm:px-6
-                lg:px-8
+                px-2
+                sm:px-4
+                lg:px-6
             '>
                 {/* Logo Section */}
-                <div className='hidden sm:flex flex-row items-center py-3 md:py-4 gap-2'>
+                <div className='hidden sm:flex flex-row items-center py-3 sm:py-1 md:py-4 gap-2'>
                     <img
                         onClick={() => navigate('/')}
                         src={logoImage}
@@ -58,7 +60,7 @@ export function AppHeader() {
                     md:col-start-2
                     md:row-start-1
                     py-2
-                    sm:py-3
+                    sm:py-1
                     md:py-4
                 '>
                     <AppFilter />
@@ -79,8 +81,18 @@ export function AppHeader() {
                 '>
                     <div
                         onClick={() => navigate('/host')}
-                        className='hidden lg:block text-xs xl:text-sm font-semibold py-2 lg:py-3 px-3 lg:px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer whitespace-nowrap'
-                    >
+                        className='
+                        hidden 
+                        lg:block 
+                        text-xs 
+                        xl:text-sm 
+                        font-semibold 
+                        py-2 lg:py-3 px-3 lg:px-4 
+                        rounded-full 
+                        hover:bg-neutral-100 
+                        transition 
+                        cursor-pointer 
+                        whitespace-nowrap'>
                         Become a host
                     </div>
 
@@ -185,7 +197,7 @@ export function AppHeader() {
             </div>
 
             {/* Mobile Bottom Navigation */}
-            <div className='sm:hidden z-50 fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg'>
+            {/* <div className='sm:hidden z-50 fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg'>
                 <a
                     href='#'
                     className='grid place-items-center py-3 px-2 text-gray-500 active:text-rose-500 transition'
@@ -230,7 +242,8 @@ export function AppHeader() {
                     <BiUser size={24} />
                     <span className='font-light text-xs mt-1'>Profile</span>
                 </a>
-            </div>
+            </div> */}
         </>
     )
 }
+
