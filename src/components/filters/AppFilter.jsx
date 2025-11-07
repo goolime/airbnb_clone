@@ -6,6 +6,7 @@ import { propertiesService } from "../../services/properties.service.js"
 import { LargeFilter } from "../filters/LargeFilter.jsx";
 import { MobileFilter } from "../filters/MobileFilter.jsx";
 import { CompactFilter } from "./CompactFilter.jsx";
+import { ExtendedFilter } from "../ExtndedFilter/ExtendedFilter.jsx";
 
 
 export function AppFilter() {
@@ -174,6 +175,7 @@ export function AppFilter() {
                     filterData={filterData}
                 />
             </div>
+            <ExtendedFilter filter={filterData} />
         </>
     )
 }

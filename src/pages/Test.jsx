@@ -1,10 +1,11 @@
 import {  FilterIcon } from "../components/util/Icons";
 import { useState } from "react";
-import { showLoginModal, showExtendedFilter } from "../services/event-bus.service.js";
+import { showLoginModal, showExtendedFilter, showPropertyCreation } from "../services/event-bus.service.js";
 import { AppearOnURL } from "../components/util/AppearOnURL.jsx";
 import { propertiesService } from "../services/properties.service.js";
 import { UserLogin } from "../components/UserLogin.jsx";
 import { useNavigate } from "react-router";
+import { PropertyCreation } from "../components/PropertyCreation.jsx";
 
 
 
@@ -26,8 +27,8 @@ export  function Test() {
 
       <button onClick={() => showLoginModal() } className="p-2 rounded-full hover:bg-gray-100 hover:scale-110 duration-300 "> Login </button>
       <button onClick={()=> navigate('/profile')} className="p-2 rounded-full hover:bg-gray-100 hover:scale-110 duration-300 "> Profile Page </button>
-
-      
+      <button onClick={() => showPropertyCreation()} className="p-2 rounded-full hover:bg-gray-100 hover:scale-110 duration-300 "> Create Property </button>
+      <PropertyCreation />
     </div>
   )
 }

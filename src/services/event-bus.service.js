@@ -42,9 +42,15 @@ export function showServiceAnimalInfo(){
     eventBusService.emit('show-service-animal-info')
 }
 
+export function showPropertyCreation(){
+    eventBusService.emit('show-property-creation')
+}
+
 export function showInteraction(msg){
     eventBusService.emit('show-user-interaction', msg)
 }
+
+
 
 export function showLoginModal() {
     eventBusService.emit('show-login-modal')
