@@ -1,4 +1,4 @@
-import { utilService } from './util.service.js'
+//import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
 
 const USERS_KEY = 'usersDB'
@@ -14,12 +14,14 @@ export const usersService = {
     getById,
     getEmptyUser,
     getDefaultFilter,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    getHost,
+    setNewPropertyToHost
 }
 // For Debug (easy access from console):
 window.cs = usersService
 
-function query(filterBy) {
+function query(filterBy={}) {
     return storageService.query(USERS_KEY)
         .then(users => {
             return users
@@ -89,4 +91,21 @@ async function getFilterFromSearchParams(searchParams) {
 
 async function getById(id) {
     return await storageService.get(USERS_KEY, id)
+}
+
+function getHost(user) {
+    const host = {
+        _id: user._id,
+        fullname: user.fullname,
+        imgUrl: user.imgUrl,
+    }
+    return host
+}
+
+function setNewPropertyToHost(propertyId, userId) {
+    return get(userId).then(user => {
+        if (!user.properties) user.properties = []
+        user.properties.push(propertyId)
+        return save(user)
+    })
 }
