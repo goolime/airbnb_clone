@@ -179,7 +179,10 @@ function getFilterFromSearchParams(searchParams) {
 }
 
 async function getById(id) {
-    return await storageService.get(PROPERTIES_KEY, id)
+    console.log(id)
+    const property =  await storageService.get(PROPERTIES_KEY, id)
+    console.log(property)
+    return property
 }
 
 
