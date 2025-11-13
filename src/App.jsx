@@ -8,6 +8,7 @@ import { UserData } from "./components/profile/UserData.jsx"
 import { setDemoData } from "./services/demo-data.service.js"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
+import { PropertyDetails } from "./pages/PropertyDetails.jsx"
 
 import { ProfilePage } from "./pages/ProfilePage.jsx"
 

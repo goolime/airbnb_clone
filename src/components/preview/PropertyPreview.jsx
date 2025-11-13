@@ -1,6 +1,7 @@
 import { Carousel } from "../util/Carousel";
 import { calculateRating } from "../../services/util.service";
 import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 export function PropertyPreview({ property, checkIn = null, checkOut = null, guests = null, styles }) {
 
@@ -9,6 +10,7 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
     const navigate = useNavigate()
 
     return <>
+        <div className="snap-start cursor-pointer" onClick={() => navigate(`/rooms/${property._id}`)}>
         <div className="snap-start cursor-pointer" onClick={() => {
             const params = new URLSearchParams();
             if (checkIn) {
