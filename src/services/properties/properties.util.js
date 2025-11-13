@@ -130,4 +130,31 @@ function getFilterFromSearchParams(searchParams) {
         else filterBy.caseSensitive=false
     }
     return filterBy
+<<<<<<< HEAD:src/services/properties/properties.util.js
 }
+=======
+}
+
+async function getById(id) {
+    console.log(id)
+    const property =  await storageService.get(PROPERTIES_KEY, id)
+    console.log(property)
+    return property
+}
+
+
+function getPropertiesByCity(city) {
+    return storageService.query(PROPERTIES_KEY, 100)
+        .then(properties => {
+            return properties.filter(property => 
+                property.loc.lat >= city.minLat &&
+                property.loc.lat <= city.maxLat &&
+                property.loc.lng >= city.minLng &&
+                property.loc.lng <= city.maxLng
+            )
+        }).then(filteredProperties => {
+            return reduceList(filteredProperties,8)
+    })
+}
+
+>>>>>>> 152114b (added property details page):src/services/properties.service.js

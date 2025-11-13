@@ -1,13 +1,15 @@
 import { Carousel } from "../util/Carousel";
 import { calculateRating } from "../../services/util.service";
+import { useNavigate } from "react-router";
 
 export function PropertyPreview({ property, checkIn = null, checkOut = null, styles }) {
 
     const raitingString = `★${calculateRating(property.reviews)}${property.reviews ? `(${property.reviews.length})` : ''}`;
     const priceString = getPricingString(checkIn, checkOut, property.price);
+    const navigate = useNavigate()
 
     return <>
-        <div className="snap-start">
+        <div className="snap-start cursor-pointer" onClick={() => navigate(`/rooms/${property._id}`)}>
             <Carousel slides={property.imgUrls} className={styles.carousel} auto="hover" />
             <div className={`flex justify-between items-center mt-2 mb-1 text-gray-900 ${styles.header}`}>
                 <div className="font-semibold">{property.type} | {property.loc.city}</div>

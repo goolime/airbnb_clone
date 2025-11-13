@@ -8,10 +8,14 @@ import { UserData } from "./components/profile/UserData.jsx"
 import { setDemoData } from "./services/demo-data.service.js"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
+<<<<<<< HEAD
 import { ProfilePage } from "./pages/ProfilePage.jsx"
 import { UserOrders } from "./components/profile/UserOrders.jsx"
 import { UserProperties } from "./components/profile/UserProperties.jsx"
 import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
+=======
+import { PropertyDetails } from "./pages/PropertyDetails.jsx"
+>>>>>>> 152114b (added property details page)
 
 const Router = BrowserRouter
 
@@ -32,6 +36,8 @@ function App() {
             <div className="col-start-1 col-span-3 md:col-span-1 md:col-start-2">
               <Routes>
                 <Route path="/" element={<ExplorePage />} />
+                <Route path="/explore" element={<ExplorePage />} />
+                <Route path="/rooms/:propertyId" element={<PropertyDetails />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/profile" element={<ProfilePage />} >
                   <Route path="/profile/user" element={<UserData />} />

@@ -4,7 +4,8 @@ export const utilService = {
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
-    animateCSS
+    animateCSS,
+    avg
 }
 
 export function makeId(length = 6) {
@@ -74,7 +75,6 @@ export function debounce(func, delay) {
         }, delay)
     }
 }
-
 
 export function getExistingProperties(obj) {
     const truthyObj = {}
