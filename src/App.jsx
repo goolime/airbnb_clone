@@ -7,6 +7,7 @@ import { useEffect } from "react"
 import { setDemoData } from "./services/demo-data.service.js"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
+import { ProfilePage } from "./pages/ProfilePage.jsx"
 import { PropertyDetails } from "./pages/PropertyDetails.jsx"
 
 const Router = BrowserRouter
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/explore" element={<ExplorePage />} />
                 <Route path="/rooms/:propertyId" element={<PropertyDetails />} />
                 <Route path="/search" element={<SearchPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/test" element={<Test />} />
               </Routes>
             </div>

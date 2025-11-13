@@ -207,7 +207,7 @@ function getSublist(list, size) {
     return arr
 }
 
-function getPictures(num = 5) {
+export function getPictures(num=5){
     return getSublist(demoPropertiesPictures, num)
 }
 

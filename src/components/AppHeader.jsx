@@ -5,6 +5,7 @@ import logoImage from '../assets/images/airdnd-logo.png'
 import userImage from '../assets/images/user.png'
 import { AppFilter } from './filters/AppFilter.jsx'
 import { useNavigate } from 'react-router'
+import { UserLogin } from './UserLogin.jsx'
 
 
 export function AppHeader() {
@@ -195,6 +196,7 @@ export function AppHeader() {
                     </button>
                 </div>
             </div>
+            <UserLogin />
 
             {/* Mobile Bottom Navigation */}
             {/* <div className='sm:hidden z-50 fixed grid grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg'>

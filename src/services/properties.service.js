@@ -1,6 +1,6 @@
 import { reduceList, utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
-import { da, fi, se } from 'react-day-picker/locale'
+import { ordersService } from './orders.service.js'
 
 const PROPERTIES_KEY = 'propertiesDB'
 
@@ -24,10 +24,70 @@ window.cs = propertiesService
 function query(filterBy,orderBy = { field: 'name', direction: 1 }) {
     return storageService.query(PROPERTIES_KEY)
         .then(properties => {
-            return properties
+            return properties.filter(async property => {
+                for (const field in filterBy) {
+                    switch (field) {
+                        case 'type':
+                            if (filterBy.type !== 'any' && filterBy.type !== 'room' && filterBy.type !== 'home') return false
+                            else if (filterBy.type === 'room' && (property.type !== 'Guesthouse' && property.type !== 'Hotel')) return false
+                            else if (filterBy.type === 'home' && (property.type !== 'House' && property.type !== 'Apartment')) return false
+                            else continue
+                        case 'types':
+                        case 'amenities':
+                        case 'accessibility':
+                        case 'labels':
+                        case 'rules':
+                            for (const val of filterBy[field]) {
+                                if (!property[field].includes(val)) return false
+                            }
+                            break
+                        case 'minPrice':
+                            if (property.price < filterBy.minPrice) return false
+                            break
+                        case 'maxPrice':
+                            if (filterBy.maxPrice > 0 && property.price > filterBy.maxPrice) return false
+                            break
+                        case 'bedrooms':
+                        case 'beds':
+                        case 'raiting':
+                        case 'bathrooms':
+                            if (property[field] < filterBy[field]) return false
+                            break
+                        case 'guests':
+                            for (const guestType in filterBy.guests) {
+                                if (property.capacity[guestType] < filterBy.guests[guestType]) return false
+                            }
+                            break
+                        case 'loc':
+                            if(
+                            property.loc.lat < filterBy.loc.minLat &&
+                            property.loc.lat > filterBy.loc.maxLat &&
+                            property.loc.lng >= filterBy.loc.minLng &&
+                            property.loc.lng <= filterBy.loc.maxLng) return false
+                            break
+                        case 'dates':
+                            if (!await _checkPropertyAvailability(property, filterBy.dates.from, filterBy.dates.to)) return false
+                            break
+                        default:
+                            console.log('Unknown filter field:', field);
+                            return false;
+                    }
+                }
+                return true;
+            }
+        )
         })
 }
 
+async function _checkPropertyAvailability(property, startDate, endDate) {
+    const orderFilter = ordersService.getDefaultFilter();
+    orderFilter.propertyId = property._id;
+    orderFilter.startDate = startDate;
+    orderFilter.endDate = endDate;
+    const orders = await ordersService.query(orderFilter)
+    if (orders.length>0) return false
+    return true
+}
 
 function get(propertyId) {
     return storageService.get(PROPERTIES_KEY, propertyId)
@@ -53,20 +113,20 @@ function save(property) {
 }
 
 function getEmptyProperty( name = '', 
-                           type= 'House',
+                           type= null,
                            imgUrls= [], 
                            price = 0, 
                            summary= '', 
-                           capacity= {adults:0,kids:0,infants:0,pets:0},
+                           capacity= {adults:1,kids:0,infants:0,pets:0},
                            amenities= [],
                            accessibility= [],
-                           bathrooms= 0,
-                           bedrooms= 0,
-                           beds= 0,
+                           bathrooms= 1,
+                           bedrooms= 1,
+                           beds= 1,
                            rules= [],
                            labels= [],
                            host= undefined,
-                           loc= {country: 'Portugal', countryCode: 'PT', city: 'Lisbon', address: '17 Kombo st', lat: -8.61308, lng: 41.1413},
+                           loc= {country: null, countryCode: null, city: null, address: null, lat: 0, lng: 0},
                            reviews= []) {
     return { name,
              type,
@@ -89,7 +149,6 @@ function getEmptyProperty( name = '',
 
 function getDefaultFilter() {
     return { 
-        txt: '',
         type: 'any',
         types: [],
         maxPrice: 0,

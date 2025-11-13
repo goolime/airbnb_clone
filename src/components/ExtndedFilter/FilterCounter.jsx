@@ -1,6 +1,8 @@
 import { Minus, Plus } from "../util/Icons.jsx";
 
 export function FilterCounter({ label, count, onChange }) {
+  
+
   return <>
     <div className="flex justify-between items-center my-3">
       <span className="font-semibold text-gray-700">{label}</span>

@@ -30,6 +30,7 @@ import {
     TbMug,
     TbMugOff,
     TbX,
+    TbPencil
 } from "react-icons/tb";
 
 import { FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp } from "react-icons/fi";
@@ -118,84 +119,94 @@ export const AppLogo = ({ className, hexColor = "#000000" }) => {
         </g>
     </svg>
 }
-export const Xicon = ({ className }) => <TbX className={className} />
-export const FilterIcon = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    viewBox="0 0 32 32"
-    aria-hidden="true"
-    role="presentation"
-    focusable="false"
-    style={{ display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: '2.5', overflow: 'visible' }}>
-    <path fill="none" d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3" />
-</svg>
-export const ChevronRight = ({ className }) => <FiChevronRight className={className} />
-export const ChevronLeft = ({ className }) => <FiChevronLeft className={className} />
-export const ChevronUp = ({ className }) => <FiChevronUp className={className} />
-export const ChevronDown = ({ className }) => <FiChevronDown className={className} />
-export const Plus = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{ display: "block", height: "24px", width: "24px", fill: "currentcolor" }}>
-    <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
-</svg>
-export const Minus = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{ display: "block", height: "24px", width: "24px", fill: "currentcolor" }}>
-    <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
-</svg>
-export const HouseIcon = ({ className, hexColor = "#000000" }) => <svg xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    version="1.0"
-    height="64.0pt"
-    width="64.0pt"
-    viewBox="0 0 64 64"
-    preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
-        <path d="M159 463 c-109 -108 -136 -139 -127 -150 9 -11 14 -11 29 3 18 17 19 13 19 -127 0 -100 4 -149 12 -157 17 -17 439 -17 456 0 8 8 12 57 12 157 0 140 1 144 19 127 15 -14 20 -14 29 -3 16 19 -253 287 -288 287 -17 0 -63 -39 -161 -137z m262 6 l99 -91 0 -159 0 -159 -50 0 -50 0 0 108 c0 71 -4 112 -12 120 -16 16 -160 16 -176 0 -8 -8 -12 -49 -12 -120 l0 -108 -50 0 -50 0 0 158 0 157 97 92 c54 51 100 92 102 93 2 0 48 -41 102 -91z m-41 -309 l0 -100 -60 0 -60 0 0 100 0 100 60 0 60 0 0 -100z" />
-    </g>
-</svg>
-export const HotelIcon = ({ className, hexColor = "#000000" }) => <svg xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    version="1.0"
-    height="64.0pt"
-    width="64.0pt"
-    viewBox="0 0 64 64"
-    preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
-        <path d="M52 588 c-17 -17 -17 -519 0 -536 17 -17 519 -17 536 0 17 17 17 519 0 536 -17 17 -519 17 -536 0z m508 -68 l0 -40 -83 0 c-79 0 -85 1 -112 30 -16 17 -36 30 -45 30 -9 0 -29 -13 -45 -30 -27 -29 -33 -30 -112 -30 l-83 0 0 40 0 40 240 0 240 0 0 -40z m-205 -50 c28 -29 32 -30 117 -30 l88 0 0 -180 0 -180 -80 0 -80 0 0 58 c0 32 -5 63 -12 70 -7 7 -37 12 -68 12 -31 0 -61 -5 -68 -12 -7 -7 -12 -38 -12 -70 l0 -58 -80 0 -80 0 0 180 0 180 88 0 c85 0 89 1 117 30 16 17 32 30 35 30 3 0 19 -13 35 -30z m5 -340 l0 -50 -40 0 -40 0 0 50 0 50 40 0 40 0 0 -50z" />
-        <path d="M144 369 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M304 369 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M464 369 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M144 289 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M464 289 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M144 209 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M464 209 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-    </g></svg>
-export const GuesthouseIcon = ({ className, hexColor = "#000000" }) => <svg xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    version="1.0"
-    height="64.0pt"
-    width="64.0pt"
-    viewBox="0 0 64 64"
-    preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
-        <path d="M540 590 l0 -30 -260 0 c-253 0 -260 -1 -260 -20 0 -13 7 -20 20 -20 18 0 20 -8 22 -157 l3 -158 255 0 255 0 3 158 c2 149 4 157 22 157 13 0 20 7 20 20 0 13 -7 20 -20 20 -16 0 -20 7 -20 30 0 23 -4 30 -20 30 -16 0 -20 -7 -20 -30z m0 -210 l0 -140 -70 0 -69 0 -3 88 -3 87 -75 0 -75 0 -3 -87 -3 -88 -69 0 -70 0 0 140 0 140 220 0 220 0 0 -140z m-180 -70 l0 -70 -40 0 -40 0 0 70 0 70 40 0 40 0 0 -70z" />
-        <path d="M464 469 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M260 140 c0 -18 7 -20 60 -20 53 0 60 2 60 20 0 18 -7 20 -60 20 -53 0 -60 -2 -60 -20z" />
-        <path d="M220 60 c0 -19 7 -20 100 -20 93 0 100 1 100 20 0 19 -7 20 -100 20 -93 0 -100 -1 -100 -20z" />
-    </g>
-</svg>
-export const ApartmentIcon = ({ className, hexColor = "#000000" }) => <svg xmlns="http://www.w3.org/2000/svg"
-    className={className}
-    version="1.0"
-    height="64.0pt"
-    width="64.0pt"
-    viewBox="0 0 64 64"
-    preserveAspectRatio="xMidYMid meet">
-    <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
-        <path d="M52 588 c-17 -17 -17 -519 0 -536 17 -17 519 -17 536 0 17 17 17 419 0 436 -8 8 -45 12 -100 12 l-88 0 0 38 c0 21 -5 43 -12 50 -17 17 -319 17 -336 0z m308 -268 l0 -240 -30 0 c-30 0 -30 0 -30 58 0 32 -5 63 -12 70 -16 16 -120 16 -136 0 -7 -7 -12 -38 -12 -70 0 -58 0 -58 -30 -58 l-30 0 0 240 0 240 140 0 140 0 0 -240z m200 -50 l0 -190 -80 0 -80 0 0 190 0 190 80 0 80 0 0 -190z m-300 -140 l0 -50 -40 0 -40 0 0 50 0 50 40 0 40 0 0 -50z" />
-        <path d="M144 489 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M264 489 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M144 409 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M264 409 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M144 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M264 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M464 409 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-        <path d="M464 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
-    </g>
-</svg>
+export const Xicon = ({className}) => <TbX className={className} />
+export const FilterIcon = ({className}) => <svg xmlns="http://www.w3.org/2000/svg" 
+                                                className={className} 
+                                                viewBox="0 0 32 32" 
+                                                aria-hidden="true" 
+                                                role="presentation" 
+                                                focusable="false" 
+                                                style={{display: 'block', fill: 'none', height: '16px', width: '16px', stroke: 'currentcolor', strokeWidth: '2.5', overflow: 'visible'}}>
+                                                <path fill="none" d="M7 16H3m26 0H15M29 6h-4m-8 0H3m26 20h-4M7 16a4 4 0 1 0 8 0 4 4 0 0 0-8 0zM17 6a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 20a4 4 0 1 0 8 0 4 4 0 0 0-8 0zm0 0H3" />
+                                            </svg>
+export const ChevronRight = ({className}) => <FiChevronRight className={className} />
+export const ChevronLeft = ({className}) => <FiChevronLeft className={className} />
+export const ChevronUp = ({className}) => <FiChevronUp className={className} />
+export const ChevronDown = ({className}) => <FiChevronDown className={className} />
+export const Checkmark = (className) => <svg xmlns="http://www.w3.org/2000/svg"
+                                            className={className}
+                                            viewBox="0 0 32 32"
+                                            aria-hidden="true"
+                                            role="presentation"
+                                            focusable="false"
+                                            style={{display: "block", height: "11px", width: "11px", stroke: "currentcolor", strokeWidth: "4.36364", overflow: "visible"}}>
+                                                <path d="m4.5 14 8 8 16-16" fill="none" />
+                                            </svg>    
+export const Plus = ({className}) => <svg  xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "24px", width: "24px", fill: "currentcolor"}}>
+                                        <path d="m6.75.75v4.5h4.5v1.5h-4.5v4.5h-1.5v-4.5h-4.5v-1.5h4.5v-4.5z"></path>
+                                      </svg>
+export const Minus = ({className}) => <svg  xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 12 12" aria-hidden="true" role="presentation" focusable="false" style={{display: "block", height: "24px", width: "24px", fill: "currentcolor"}}>
+                                        <path d="m.75 6.75h10.5v-1.5h-10.5z"></path>
+                                      </svg>
+export const HouseIcon = ({className,hexColor="#000000"}) => <svg xmlns="http://www.w3.org/2000/svg" 
+                                               className={className} 
+                                               version="1.0"
+                                               height="64.0pt"
+                                               width="64.0pt"
+                                               viewBox="0 0 64 64"
+                                               preserveAspectRatio="xMidYMid meet">
+                                               <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
+                                                    <path d="M159 463 c-109 -108 -136 -139 -127 -150 9 -11 14 -11 29 3 18 17 19 13 19 -127 0 -100 4 -149 12 -157 17 -17 439 -17 456 0 8 8 12 57 12 157 0 140 1 144 19 127 15 -14 20 -14 29 -3 16 19 -253 287 -288 287 -17 0 -63 -39 -161 -137z m262 6 l99 -91 0 -159 0 -159 -50 0 -50 0 0 108 c0 71 -4 112 -12 120 -16 16 -160 16 -176 0 -8 -8 -12 -49 -12 -120 l0 -108 -50 0 -50 0 0 158 0 157 97 92 c54 51 100 92 102 93 2 0 48 -41 102 -91z m-41 -309 l0 -100 -60 0 -60 0 0 100 0 100 60 0 60 0 0 -100z"/>
+                                               </g>
+                                          </svg>
+export const HotelIcon = ({className,hexColor="#000000"}) => <svg xmlns="http://www.w3.org/2000/svg"
+                                               className={className} 
+                                               version="1.0"
+                                               height="64.0pt"
+                                               width="64.0pt"
+                                               viewBox="0 0 64 64"
+                                               preserveAspectRatio="xMidYMid meet">
+                                               <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
+                                                <path d="M52 588 c-17 -17 -17 -519 0 -536 17 -17 519 -17 536 0 17 17 17 519 0 536 -17 17 -519 17 -536 0z m508 -68 l0 -40 -83 0 c-79 0 -85 1 -112 30 -16 17 -36 30 -45 30 -9 0 -29 -13 -45 -30 -27 -29 -33 -30 -112 -30 l-83 0 0 40 0 40 240 0 240 0 0 -40z m-205 -50 c28 -29 32 -30 117 -30 l88 0 0 -180 0 -180 -80 0 -80 0 0 58 c0 32 -5 63 -12 70 -7 7 -37 12 -68 12 -31 0 -61 -5 -68 -12 -7 -7 -12 -38 -12 -70 l0 -58 -80 0 -80 0 0 180 0 180 88 0 c85 0 89 1 117 30 16 17 32 30 35 30 3 0 19 -13 35 -30z m5 -340 l0 -50 -40 0 -40 0 0 50 0 50 40 0 40 0 0 -50z"/>
+                                                <path d="M144 369 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M304 369 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M464 369 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M144 289 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M464 289 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M144 209 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M464 209 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                </g></svg>
+export const GuesthouseIcon = ({className,hexColor="#000000"}) => <svg xmlns="http://www.w3.org/2000/svg"
+                                               className={className} 
+                                               version="1.0"
+                                               height="64.0pt"
+                                               width="64.0pt"
+                                               viewBox="0 0 64 64"
+                                               preserveAspectRatio="xMidYMid meet">
+                                               <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
+                                                <path d="M540 590 l0 -30 -260 0 c-253 0 -260 -1 -260 -20 0 -13 7 -20 20 -20 18 0 20 -8 22 -157 l3 -158 255 0 255 0 3 158 c2 149 4 157 22 157 13 0 20 7 20 20 0 13 -7 20 -20 20 -16 0 -20 7 -20 30 0 23 -4 30 -20 30 -16 0 -20 -7 -20 -30z m0 -210 l0 -140 -70 0 -69 0 -3 88 -3 87 -75 0 -75 0 -3 -87 -3 -88 -69 0 -70 0 0 140 0 140 220 0 220 0 0 -140z m-180 -70 l0 -70 -40 0 -40 0 0 70 0 70 40 0 40 0 0 -70z"/>
+                                                <path d="M464 469 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M260 140 c0 -18 7 -20 60 -20 53 0 60 2 60 20 0 18 -7 20 -60 20 -53 0 -60 -2 -60 -20z"/>
+                                                <path d="M220 60 c0 -19 7 -20 100 -20 93 0 100 1 100 20 0 19 -7 20 -100 20 -93 0 -100 -1 -100 -20z"/>
+                                               </g>
+                                               </svg>
+export const ApartmentIcon = ({className,hexColor="#000000"}) => <svg xmlns="http://www.w3.org/2000/svg"
+                                               className={className} 
+                                               version="1.0"
+                                               height="64.0pt"
+                                               width="64.0pt"
+                                               viewBox="0 0 64 64"
+                                               preserveAspectRatio="xMidYMid meet">
+                                               <g transform="translate(0.000000,64.000000) scale(0.100000,-0.100000)" fill={hexColor} stroke="none">
+                                                <path d="M52 588 c-17 -17 -17 -519 0 -536 17 -17 519 -17 536 0 17 17 17 419 0 436 -8 8 -45 12 -100 12 l-88 0 0 38 c0 21 -5 43 -12 50 -17 17 -319 17 -336 0z m308 -268 l0 -240 -30 0 c-30 0 -30 0 -30 58 0 32 -5 63 -12 70 -16 16 -120 16 -136 0 -7 -7 -12 -38 -12 -70 0 -58 0 -58 -30 -58 l-30 0 0 240 0 240 140 0 140 0 0 -240z m200 -50 l0 -190 -80 0 -80 0 0 190 0 190 80 0 80 0 0 -190z m-300 -140 l0 -50 -40 0 -40 0 0 50 0 50 40 0 40 0 0 -50z"/>
+                                                <path d="M144 489 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M264 489 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M144 409 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M264 409 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M144 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M264 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M464 409 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                                <path d="M464 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z"/>
+                                               </g>
+                                               </svg>
+export const EditIcon = ({className}) => <TbPencil className={className} />
