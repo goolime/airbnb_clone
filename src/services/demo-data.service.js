@@ -4,56 +4,56 @@ import { storageService } from './async-storage.service.js'
 import { makeId } from "./util.service.js";
 
 const users = [
-    {...usersService.getEmptyUser('Alice Johnson','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'alicej',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Bob Smith','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'bobsmith',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Charlie Brown','https://static.wixstatic.com/media/449abe_5bcdc480851443d6b592c87fa3552f4e~mv2.jpg/v1/fill/w_744,h_744,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cb-color.jpg', 'charlieb',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Diana Prince','https://static.wikia.nocookie.net/marvel_dc/images/c/cc/Wonder_Woman_Vol_5_4_Textless.jpg/revision/latest?cb=20160810132845', 'dianap',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Ethan Hunt','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'ethanh',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Fiona Gallagher','https://decider.com/wp-content/uploads/2019/03/shameless-season-9-finale-emmy-rossum.jpg?quality=75&strip=all&w=978&h=652&crop=1', 'fionag',[]), _id:makeId()},
-    {...usersService.getEmptyUser('George Martin','https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png', 'georgem',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Hannah Lee','https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397_1280.png', 'hannahl',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Ian Somerhalder','https://img.freepik.com/free-vector/woman-with-long-brown-hair-pink-shirt_90220-2940.jpg?semt=ais_hybrid&w=740&q=80', 'ians',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Julia Roberts','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'juliar',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Kevin Spacey','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'kevins',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Laura Palmer','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'laurap',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Michael Scott','https://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8', 'michaels',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Nina Dobrev','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'ninad',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Oscar Isaac','https://bst.icons8.com/wp-content/uploads/2024/05/parakeet_female_profile_icon.webp', 'oscari',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Pam Beesly','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'pamb',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Quentin Tarantino','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'quentint',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Rachel Green','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'rachelg',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Steve Rogers','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'stever',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Tina Fey','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'tinaf',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Uma Thurman','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'umat',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Victor Stone','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'victors',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Wendy Darling','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'wendyd',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Xander Cage','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'xanderc',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Yara Shahidi','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'yaras',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Zoe Saldana','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'zoes',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Aaron Paul','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'aaronp',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Betty Cooper','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'bettyc',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Carl Grimes','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'carlg',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Donna Paulsen','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'donnap',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Elliot Alderson','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'elliota',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Felicity Smoak','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'felicitys',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Gordon Freeman','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'gordonf',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Harley Quinn','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'harleyq',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Isaac Clarke','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'isaacc',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Jesse Pinkman','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'jessep',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Kara Danvers','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'karad',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Leonard Hofstadter','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'leonardh',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Monica Geller','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'monicag',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Nathan Drake','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'nathand',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Olivia Pope','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'oliviap',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Peter Parker','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'peterp',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Quinn Fabray','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'quinnf',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Rick Grimes','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'rickg',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Samantha Carter','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'samanthac',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Tommy Shelby','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'tommys',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Ursula Buffay','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'ursulab',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Vince Gilligan','https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'vinceg',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Wanda Maximoff','https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'wandam',[]), _id:makeId()},
-    {...usersService.getEmptyUser('Xena Warrior','https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'xenaw',[]), _id:makeId()},
+    { ...usersService.getEmptyUser('Alice Johnson', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'alicej', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Bob Smith', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'bobsmith', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Charlie Brown', 'https://static.wixstatic.com/media/449abe_5bcdc480851443d6b592c87fa3552f4e~mv2.jpg/v1/fill/w_744,h_744,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/cb-color.jpg', 'charlieb', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Diana Prince', 'https://static.wikia.nocookie.net/marvel_dc/images/c/cc/Wonder_Woman_Vol_5_4_Textless.jpg/revision/latest?cb=20160810132845', 'dianap', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Ethan Hunt', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'ethanh', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Fiona Gallagher', 'https://decider.com/wp-content/uploads/2019/03/shameless-season-9-finale-emmy-rossum.jpg?quality=75&strip=all&w=978&h=652&crop=1', 'fionag', []), _id: makeId() },
+    { ...usersService.getEmptyUser('George Martin', 'https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png', 'georgem', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Hannah Lee', 'https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397_1280.png', 'hannahl', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Ian Somerhalder', 'https://img.freepik.com/free-vector/woman-with-long-brown-hair-pink-shirt_90220-2940.jpg?semt=ais_hybrid&w=740&q=80', 'ians', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Julia Roberts', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'juliar', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Kevin Spacey', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'kevins', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Laura Palmer', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'laurap', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Michael Scott', 'https://newprofilepic.photo-cdn.net//assets/images/article/profile.jpg?90af0c8', 'michaels', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Nina Dobrev', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'ninad', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Oscar Isaac', 'https://bst.icons8.com/wp-content/uploads/2024/05/parakeet_female_profile_icon.webp', 'oscari', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Pam Beesly', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'pamb', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Quentin Tarantino', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'quentint', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Rachel Green', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'rachelg', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Steve Rogers', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'stever', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Tina Fey', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'tinaf', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Uma Thurman', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'umat', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Victor Stone', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'victors', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Wendy Darling', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'wendyd', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Xander Cage', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'xanderc', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Yara Shahidi', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'yaras', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Zoe Saldana', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'zoes', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Aaron Paul', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'aaronp', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Betty Cooper', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'bettyc', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Carl Grimes', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'carlg', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Donna Paulsen', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'donnap', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Elliot Alderson', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'elliota', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Felicity Smoak', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'felicitys', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Gordon Freeman', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'gordonf', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Harley Quinn', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'harleyq', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Isaac Clarke', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'isaacc', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Jesse Pinkman', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'jessep', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Kara Danvers', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'karad', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Leonard Hofstadter', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'leonardh', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Monica Geller', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'monicag', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Nathan Drake', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'nathand', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Olivia Pope', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'oliviap', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Peter Parker', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'peterp', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Quinn Fabray', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'quinnf', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Rick Grimes', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'rickg', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Samantha Carter', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'samanthac', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Tommy Shelby', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'tommys', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Ursula Buffay', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'ursulab', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Vince Gilligan', 'https://cdn.pixabay.com/photo/2017/01/31/21/23/avatar-2027366_1280.png', 'vinceg', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Wanda Maximoff', 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png', 'wandam', []), _id: makeId() },
+    { ...usersService.getEmptyUser('Xena Warrior', 'https://cdn.pixabay.com/photo/2016/04/15/18/05/computer-1331579_1280.png', 'xenaw', []), _id: makeId() },
 ]
 
 const demoPropertiesPictures = [
@@ -139,68 +139,68 @@ const demoPropertiesPictures = [
     'https://media.designcafe.com/wp-content/uploads/2023/07/05145205/balcony-storage-solutions.jpg'
 ]
 
-const nameParts=['Sunset','Pines', 'Rout 9', 'Pinecrest', 'Highway', "Traveler's", "Evergreen", 'Stop',
-                 'Desert', 'Palms', 'Stopover', 'Coastline', 'Moonlight', 'Crossroads', 'Road', 'Blubird',
-                 'Orchard', 'Trail', 'Valley', 'View', 'Lakeside', 'Golden', 'Harbor', 'Starlit', 'House',
-                 'Summit', 'Inn', 'Park', 'North', 'West', 'East', 'South', 'Ember', 'Lodge', 'Grove']
+const nameParts = ['Sunset', 'Pines', 'Rout 9', 'Pinecrest', 'Highway', "Traveler's", "Evergreen", 'Stop',
+    'Desert', 'Palms', 'Stopover', 'Coastline', 'Moonlight', 'Crossroads', 'Road', 'Blubird',
+    'Orchard', 'Trail', 'Valley', 'View', 'Lakeside', 'Golden', 'Harbor', 'Starlit', 'House',
+    'Summit', 'Inn', 'Park', 'North', 'West', 'East', 'South', 'Ember', 'Lodge', 'Grove']
 
-const amenities=['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'A/C', 'Pool', 'Hot tub',
-                 'Free Parking', 'Washer', 'Dryer', 'Heating', 'Workspace', 'Hairdryer','Iron', 'EV charger', 'Crib', 
-                 'King bed','Breakfast','Gym', 'Grill', 'Indoor fireplace', 'Beachfront', 'Waterfront', 'Smoke alarm', 'Carbon monoxide alarm',
-                 'Self check-in','free cancellation',]
+const amenities = ['TV', 'Wifi', 'Kitchen', 'Smoking allowed', 'Pets allowed', 'Cooking basics', 'A/C', 'Pool', 'Hot tub',
+    'Free Parking', 'Washer', 'Dryer', 'Heating', 'Workspace', 'Hairdryer', 'Iron', 'EV charger', 'Crib',
+    'King bed', 'Breakfast', 'Gym', 'Grill', 'Indoor fireplace', 'Beachfront', 'Waterfront', 'Smoke alarm', 'Carbon monoxide alarm',
+    'Self check-in', 'free cancellation',]
 
-const propertyType=['House', 'Apartment', 'Guesthouse', 'Hotel']
+const propertyType = ['House', 'Apartment', 'Guesthouse', 'Hotel']
 
-const accessibility=['Step-free access', 'Disabled parking', 'Wide entrance', 'Step-free bedroom', 'Wide bedroom enterance',
-                     'Step-free bathroom', 'Wide bathroom enterance', 'Toilet grab bar', 'Shower grab bar', 'Step-free shower',
-                     'bath chair', 'Ceilling or mobile host']
+const accessibility = ['Step-free access', 'Disabled parking', 'Wide entrance', 'Step-free bedroom', 'Wide bedroom enterance',
+    'Step-free bathroom', 'Wide bathroom enterance', 'Toilet grab bar', 'Shower grab bar', 'Step-free shower',
+    'bath chair', 'Ceilling or mobile host']
 
-const reviews=['Very helpful hosts. Cooked traditional meals for us and gave great tips about the area.',
-               'Amazing location and stunning views! The apartment was clean and well-equipped.',
-               'Had a wonderful stay! The host was very accommodating and the place felt like home.',
-               'Beautiful property with great amenities. Would definitely recommend to others!',
-               'The house was spacious and comfortable. Perfect for our family vacation.',
-               'Fantastic experience from start to finish. The host went above and beyond to ensure we had a great stay.',
-               'Lovely decor and a cozy atmosphere. The balcony had the best views of the city.',
-               'Great value for the price. The location was convenient and the neighborhood was safe.',
-               'The kitchen had everything we needed to cook our own meals. Made our stay even better!',
-               'Highly recommend this place! The host was responsive and provided excellent recommendations for local attractions.',
-               "Room was dirty on arrival — stained sheets and a mildew smell in the bathroom. Staff took forever to respond.",
-               "Photos are misleading. The place is tiny, the bed is lumpy, and the HVAC rattled all night.",
-               "Check-in was a mess and the host was rude. Hidden cleaning fees added at checkout.",
-               "Host cancelled our stay last minute and offered a refund — left us scrambling for alternatives.",
-               "Good location but poor upkeep: broken shower head, flickering lights, and a loose door latch.",
-               "Overpriced for what you get. Minimal supplies, no toiletries, and the Wi-Fi didn't work.",
-               "Thin walls — neighbors were loud until the early morning and management never intervened.",
-               "Safety concerns: exterior lighting was out and the deadbolt was loose. I didn't feel secure."
+const reviews = ['Very helpful hosts. Cooked traditional meals for us and gave great tips about the area.',
+    'Amazing location and stunning views! The apartment was clean and well-equipped.',
+    'Had a wonderful stay! The host was very accommodating and the place felt like home.',
+    'Beautiful property with great amenities. Would definitely recommend to others!',
+    'The house was spacious and comfortable. Perfect for our family vacation.',
+    'Fantastic experience from start to finish. The host went above and beyond to ensure we had a great stay.',
+    'Lovely decor and a cozy atmosphere. The balcony had the best views of the city.',
+    'Great value for the price. The location was convenient and the neighborhood was safe.',
+    'The kitchen had everything we needed to cook our own meals. Made our stay even better!',
+    'Highly recommend this place! The host was responsive and provided excellent recommendations for local attractions.',
+    "Room was dirty on arrival — stained sheets and a mildew smell in the bathroom. Staff took forever to respond.",
+    "Photos are misleading. The place is tiny, the bed is lumpy, and the HVAC rattled all night.",
+    "Check-in was a mess and the host was rude. Hidden cleaning fees added at checkout.",
+    "Host cancelled our stay last minute and offered a refund — left us scrambling for alternatives.",
+    "Good location but poor upkeep: broken shower head, flickering lights, and a loose door latch.",
+    "Overpriced for what you get. Minimal supplies, no toiletries, and the Wi-Fi didn't work.",
+    "Thin walls — neighbors were loud until the early morning and management never intervened.",
+    "Safety concerns: exterior lighting was out and the deadbolt was loose. I didn't feel secure."
 ]
 
-const citys=[{ countryCode: 'US', city: 'New York', minLat: 40.4774, maxLat: 40.9176, minLng: -74.2591, maxLng: -73.7004 },
-             { countryCode: 'FR', city: 'Paris', minLat: 48.8156, maxLat: 48.9022, minLng: 2.2241, maxLng: 2.4699 },
-             { countryCode: 'JP', city: 'Tokyo', minLat: 35.5285, maxLat: 35.8395, minLng: 139.6100, maxLng: 139.9100 },
-             { countryCode: 'AU', city: 'Sydney', minLat: -34.1183, maxLat: -33.5781, minLng: 150.5209, maxLng: 151.3430 },
-             { countryCode: 'BR', city: 'Rio de Janeiro', minLat: -23.0827, maxLat: -22.7468, minLng: -43.7955, maxLng: -43.0900 },
-             { countryCode: 'ZA', city: 'Cape Town', minLat: -34.2580, maxLat: -33.7900, minLng: 18.3554, maxLng: 18.7034 },
-             { countryCode: 'IT', city: 'Rome', minLat: 41.7690, maxLat: 42.0092, minLng: 12.3959, maxLng: 12.8555 },
-             { countryCode: 'CA', city: 'Toronto', minLat: 43.5810, maxLat: 43.8555, minLng: -79.6393, maxLng: -79.1152 },
-             { countryCode: 'IN', city: 'Mumbai', minLat: 18.8920, maxLat: 19.2710, minLng: 72.7754, maxLng: 72.9860 },
-             { countryCode: 'GB', city: 'London', minLat: 51.2868, maxLat: 51.6919, minLng: -0.5103, maxLng: 0.3340 },
-             { countryCode: 'DE', city: 'Berlin', minLat: 52.3383, maxLat: 52.6755, minLng: 13.0884, maxLng: 13.7611 },
-             { countryCode: 'ES', city: 'Barcelona', minLat: 41.3200, maxLat: 41.4690, minLng: 2.0520, maxLng: 2.2280 },
-             { countryCode: 'NL', city: 'Amsterdam', minLat: 52.3396, maxLat: 52.5000, minLng: 4.8342, maxLng: 5.1000 },
-             { countryCode: 'MX', city: 'Mexico City', minLat: 19.2041, maxLat: 19.5926, minLng: -99.3633, maxLng: -99.0421 },
-             { countryCode: 'RU', city: 'Moscow', minLat: 55.4500, maxLat: 55.9500, minLng: 37.3000, maxLng: 37.8000 },
-             { countryCode: 'KR', city: 'Seoul', minLat: 37.4133, maxLat: 37.7151, minLng: 126.7341, maxLng: 127.1022 },
-             { countryCode: 'ISR', city: 'Tel Aviv', minLat: 32.0150, maxLat: 32.1500, minLng: 34.7500, maxLng: 34.9000 },
-             { countryCode: 'TR', city: 'Istanbul', minLat: 40.8500, maxLat: 41.2000, minLng: 28.7000, maxLng: 29.3000 },
-             { countryCode: 'SE', city: 'Stockholm', minLat: 59.2000, maxLat: 59.4500, minLng: 17.8000, maxLng: 18.2000 },
-             { countryCode: 'CH', city: 'Zurich', minLat: 47.3200, maxLat: 47.4500, minLng: 8.4500, maxLng: 8.6500 }
-            ]
+const citys = [{ countryCode: 'US', city: 'New York', minLat: 40.4774, maxLat: 40.9176, minLng: -74.2591, maxLng: -73.7004 },
+{ countryCode: 'FR', city: 'Paris', minLat: 48.8156, maxLat: 48.9022, minLng: 2.2241, maxLng: 2.4699 },
+{ countryCode: 'JP', city: 'Tokyo', minLat: 35.5285, maxLat: 35.8395, minLng: 139.6100, maxLng: 139.9100 },
+{ countryCode: 'AU', city: 'Sydney', minLat: -34.1183, maxLat: -33.5781, minLng: 150.5209, maxLng: 151.3430 },
+{ countryCode: 'BR', city: 'Rio de Janeiro', minLat: -23.0827, maxLat: -22.7468, minLng: -43.7955, maxLng: -43.0900 },
+{ countryCode: 'ZA', city: 'Cape Town', minLat: -34.2580, maxLat: -33.7900, minLng: 18.3554, maxLng: 18.7034 },
+{ countryCode: 'IT', city: 'Rome', minLat: 41.7690, maxLat: 42.0092, minLng: 12.3959, maxLng: 12.8555 },
+{ countryCode: 'CA', city: 'Toronto', minLat: 43.5810, maxLat: 43.8555, minLng: -79.6393, maxLng: -79.1152 },
+{ countryCode: 'IN', city: 'Mumbai', minLat: 18.8920, maxLat: 19.2710, minLng: 72.7754, maxLng: 72.9860 },
+{ countryCode: 'GB', city: 'London', minLat: 51.2868, maxLat: 51.6919, minLng: -0.5103, maxLng: 0.3340 },
+{ countryCode: 'DE', city: 'Berlin', minLat: 52.3383, maxLat: 52.6755, minLng: 13.0884, maxLng: 13.7611 },
+{ countryCode: 'ES', city: 'Barcelona', minLat: 41.3200, maxLat: 41.4690, minLng: 2.0520, maxLng: 2.2280 },
+{ countryCode: 'NL', city: 'Amsterdam', minLat: 52.3396, maxLat: 52.5000, minLng: 4.8342, maxLng: 5.1000 },
+{ countryCode: 'MX', city: 'Mexico City', minLat: 19.2041, maxLat: 19.5926, minLng: -99.3633, maxLng: -99.0421 },
+{ countryCode: 'RU', city: 'Moscow', minLat: 55.4500, maxLat: 55.9500, minLng: 37.3000, maxLng: 37.8000 },
+{ countryCode: 'KR', city: 'Seoul', minLat: 37.4133, maxLat: 37.7151, minLng: 126.7341, maxLng: 127.1022 },
+{ countryCode: 'ISR', city: 'Tel Aviv', minLat: 32.0150, maxLat: 32.1500, minLng: 34.7500, maxLng: 34.9000 },
+{ countryCode: 'TR', city: 'Istanbul', minLat: 40.8500, maxLat: 41.2000, minLng: 28.7000, maxLng: 29.3000 },
+{ countryCode: 'SE', city: 'Stockholm', minLat: 59.2000, maxLat: 59.4500, minLng: 17.8000, maxLng: 18.2000 },
+{ countryCode: 'CH', city: 'Zurich', minLat: 47.3200, maxLat: 47.4500, minLng: 8.4500, maxLng: 8.6500 }
+]
 
-function getSublist(list, size){
-    const arr=[]
-    for(let i=0;i<size;i++){
-        const idx = Math.floor(Math.random()*list.length)
+function getSublist(list, size) {
+    const arr = []
+    for (let i = 0; i < size; i++) {
+        const idx = Math.floor(Math.random() * list.length)
         arr.push(list[idx])
     }
 
@@ -211,86 +211,88 @@ export function getPictures(num=5){
     return getSublist(demoPropertiesPictures, num)
 }
 
-function getName(){
-    const arr=getSublist(nameParts, 2)
+function getName() {
+    const arr = getSublist(nameParts, 2)
     return `${arr[0]} ${arr[1]}`
 }
 
-function getAmenities(num=8){
+function getAmenities(num = 8) {
     return getSublist(amenities, num)
 }
 
-function getAccessibility(num=3){
+function getAccessibility(num = 3) {
     return getSublist(accessibility, num)
 }
 
-function getPropertyType(){
-    const idx = Math.floor(Math.random()*propertyType.length)
+function getPropertyType() {
+    const idx = Math.floor(Math.random() * propertyType.length)
     return propertyType[idx]
 }
 
-function getHost(){
-    const idx = Math.floor(Math.random()*users.length)
-    return {fullname: users[idx].fullname, imgUrl: users[idx].imgUrl, _id: users[idx]._id}
+function getHost() {
+    const idx = Math.floor(Math.random() * users.length)
+    return { fullname: users[idx].fullname, imgUrl: users[idx].imgUrl, _id: users[idx]._id }
 }
 
-function getLoc(loc){
+function getLoc(loc) {
     const lat = Math.random() * (loc.maxLat - loc.minLat) + loc.minLat
     const lng = Math.random() * (loc.maxLng - loc.minLng) + loc.minLng
-    return { country: loc.country || 'Country', countryCode: loc.countryCode || 'CC', city: loc.city || 'City', address: `${Math.floor(Math.random()*100)} Random St`, lat,  lng}
+    return { country: loc.country || 'Country', countryCode: loc.countryCode || 'CC', city: loc.city || 'City', address: `${Math.floor(Math.random() * 100)} Random St`, lat, lng }
 }
 
-function getReview(){
+function getReview() {
     return {
-			id: makeId(),
-			txt: reviews[Math.floor(Math.random()*reviews.length)],
-			rate: Math.floor(Math.random()*5+1),
-			by: getHost(),
-		}
+        id: makeId(),
+        txt: reviews[Math.floor(Math.random() * reviews.length)],
+        rate: Math.floor(Math.random() * 5 + 1),
+        by: getHost(),
+    }
 }
 
-function getReviews(num=10){
+function getReviews(num = 10) {
     const arr = []
-    for(let i=0;i<num;i++){
+    for (let i = 0; i < num; i++) {
         arr.push(getReview())
     }
     return arr
 }
 
-export function getDemoProperty(loc = { countryCode: '', city: '', maxLat: 90, minLat: -90, maxLng: 180, minLng: -180}){
-    return { ...propertiesService.getEmptyProperty(
-        getName(),
-        getPropertyType(),
-        getPictures(),
-        parseFloat((Math.random()*300+50).toFixed(1)), //price
-        'Fantastic duplex apartment...',
-        {adults: Math.floor(Math.random()*5+1), children: Math.floor(Math.random()*4), infants: Math.floor(Math.random()*2),pets: Math.floor(Math.random()*2)},
-        getAmenities(),
-        getAccessibility(),
-        Math.floor(Math.random()*3+1), //bathrooms
-        Math.floor(Math.random()*6+1), //beds
-        Math.floor(Math.random()*5+1), //bedrooms
-        [], //rules
-        [], //labels
-        getHost(),
-        getLoc(loc),
-        getReviews(Math.floor(Math.random()*12+3))
-    ), _id: makeId()}
+export function getDemoProperty(loc = { countryCode: '', city: '', maxLat: 90, minLat: -90, maxLng: 180, minLng: -180 }) {
+    return {
+        ...propertiesService.getEmptyProperty(
+            getName(),
+            getPropertyType(),
+            getPictures(),
+            parseFloat((Math.random() * 300 + 50).toFixed(1)), //price
+            'Fantastic duplex apartment...',
+            { adults: Math.floor(Math.random() * 5 + 1), children: Math.floor(Math.random() * 4), infants: Math.floor(Math.random() * 2), pets: Math.floor(Math.random() * 2) },
+            getAmenities(),
+            getAccessibility(),
+            Math.floor(Math.random() * 3 + 1), //bathrooms
+            Math.floor(Math.random() * 6 + 1), //beds
+            Math.floor(Math.random() * 5 + 1), //bedrooms
+            [], //rules
+            [], //labels
+            getHost(),
+            getLoc(loc),
+            getReviews(Math.floor(Math.random() * 12 + 3))
+        ), _id: makeId()
+    }
 }
 
-function generateDemoData(){
-    const demoProperties=[]
-    for(let i=0;i<citys.length;i++){
-        for(let j=0;j<40;j++){
+function generateDemoData() {
+    const demoProperties = []
+    for (let i = 0; i < citys.length; i++) {
+        for (let j = 0; j < 40; j++) {
             const loc = citys[i]
             demoProperties.push(getDemoProperty(loc))
         }
     }
-    const demoUesers=[...users]
-    for (let i=0;i<demoProperties.length;i++){
-        const prop=demoProperties[i]
-        const hostIdx=demoUesers.findIndex(user=>user._id===prop.host._id)
-        if(hostIdx!==-1){
+    const demoUesers = [...users]
+    for (let i = 0; i < demoProperties.length; i++) {
+        const prop = demoProperties[i]
+        const hostIdx = demoUesers.findIndex(user => user._id === prop.host._id)
+        if (hostIdx !== -1) {
             demoUesers[hostIdx].properties.push(demoProperties[i]._id)
         }
     }
@@ -300,7 +302,7 @@ function generateDemoData(){
 export function setDemoData() {
     const PROPERTIES_KEY = 'propertiesDB'
     const USERS_KEY = 'usersDB'
-    const [demoProperties, demoUsers]=generateDemoData()
+    const [demoProperties, demoUsers] = generateDemoData()
     localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
     localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
 }
