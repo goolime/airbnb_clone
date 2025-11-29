@@ -305,5 +305,6 @@ export function setDemoData() {
     const [demoProperties, demoUsers] = generateDemoData()
     localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
     localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
+    console.log('Demo data generated and saved to localStorage.')
 }
 
