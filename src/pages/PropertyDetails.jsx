@@ -9,22 +9,59 @@ import { PiDoorOpen, PiDotsNineBold } from "react-icons/pi"
 import { RxStarFilled } from "react-icons/rx"
 import { LuCalendarFold } from "react-icons/lu"
 import { CiLocationOn } from "react-icons/ci"
-import { TbToolsKitchen, TbToolsKitchen2 } from "react-icons/tb"
+import { MdOutlineKeyboardArrowDown, MdFlag } from "react-icons/md"
+import { AirConditioner, Tv, Kitchen, HotTub, Heating, WorkSpace, Wifi, Washer, Dryer, HairDryer, Iron, Pool, EvCharger, Parking, Crib, KingSizeBed, Gym, BBQGrill, Breakfast, FirePlace, Smoking, Beachfront, Waterfront, SmokeAlarm, CarbonMonoxideAlarm, ChevronDown, ChevronUp } from "../components/util/Icons.jsx";
+import { TbKey, TbPaw } from "react-icons/tb"
+import { DayPicker } from "react-day-picker"
+import { DetailsDatePicker } from "../components/search/DetailsDatePicker.jsx"
+import { StarRating } from "../components/util/StarRating.jsx"
+import { AppMap } from "../components/AppMap.jsx"
 
+
+export const amenityList = {
+
+    "A/C": { icon: <AirConditioner className="size-[1.5rem]" />, label: "A/C" },
+    "TV": { icon: <Tv className="size-[1.5rem]" />, label: "TV" },
+    "Kitchen": { icon: <Kitchen className="size-[1.5rem]" />, label: "Kitchen" },
+    "Hot tub": { icon: <HotTub className="size-[1.5rem]" />, label: "Hot tub" },
+    "Heating": { icon: <Heating className="size-[1.5rem]" />, label: "Heating" },
+    "Workspace": { icon: <WorkSpace className="size-[1.5rem]" />, label: "Dedicated workspace" },
+    "Wifi": { icon: <Wifi className="size-[1.5rem]" />, label: "Wifi" },
+    "Washer": { icon: <Washer className="size-[1.5rem]" />, label: "Washer" },
+    "Dryer": { icon: <Dryer className="size-[1.5rem]" />, label: "Dryer" },
+    "Hairdryer": { icon: <HairDryer className="size-[1.5rem]" />, label: "Hair dryer" },
+    "Iron": { icon: <Iron className="size-[1.5rem]" />, label: "Iron" },
+    "Pool": { icon: <Pool className="size-[1.5rem]" />, label: "Pool" },
+    "EV charger": { icon: <EvCharger className="size-[1.5rem]" />, label: "EV charger" },
+    "Free Parking": { icon: <Parking className="size-[1.5rem]" />, label: "Free parking" },
+    "Crib": { icon: <Crib className="size-[1.5rem]" />, label: "Crib" },
+    "King bed": { icon: <KingSizeBed className="size-[1.5rem]" />, label: "King bed" },
+    "Gym": { icon: <Gym className="size-[1.5rem]" />, label: "Gym" },
+    "Grill": { icon: <BBQGrill className="size-[1.5rem]" />, label: "BBQ Grill" },
+    "Breakfast": { icon: <Breakfast className="size-[1.5rem]" />, label: "Breakfast" },
+    "FirePlace": { icon: <FirePlace className="size-[1.5rem]" />, label: "Indoor fireplace" },
+    "Smoking allowed": { icon: <Smoking className="size-[1.5rem]" />, label: "Smoking allowed" },
+    "Beachfront": { icon: <Beachfront className="size-[1.5rem]" />, label: "Beachfront" },
+    "Waterfront": { icon: <Waterfront className="size-[1.5rem]" />, label: "Waterfront" },
+    "Smoke alarm": { icon: <SmokeAlarm className="size-[1.5rem]" />, label: "Smoke alarm" },
+    "Carbon monoxide alarm": { icon: <CarbonMonoxideAlarm className="size-[1.5rem]" />, label: "Carbon monoxide alarm" },
+    "Self check-in": { icon: <TbKey className="size-[1.5rem]" />, label: "Self check-in" },
+    "Pets allowed": { icon: <TbPaw className="size-[1.5rem]" />, label: "Pets allowed" },
+};
 
 
 export function PropertyDetails() {
 
     const [property, setProperty] = useState()
-    const propertyId = useParams()
-    console.log(propertyId)
+    const { propertyId } = useParams()
     useEffect(() => {
+
         loadProperty()
     }, [])
 
     async function loadProperty() {
         try {
-            const property = await propertiesService.getById('dDlgWU')
+            const property = await propertiesService.getById(propertyId)
             console.log(property)
             setProperty(property)
 
@@ -49,12 +86,12 @@ export function PropertyDetails() {
 
                     <div className="flex gap-2">
                         <button className="flex items-center gap-2 p-2 underline font-semibold hover:bg-gray-100 rounded-md transition">
-                            <FiShare size={20} />
-                            <span className="hidden sm:inline">Share</span>
+                            <FiShare size={18} />
+                            <span className="hidden text-sm sm:inline">Share</span>
                         </button>
                         <button className="flex items-center gap-2 p-2 underline font-semibold hover:bg-gray-100 rounded-md transition">
-                            <IoHeartOutline size={20} />
-                            <span className="hidden sm:inline">Save</span>
+                            <IoHeartOutline size={18} />
+                            <span className="hidden text-sm sm:inline">Save</span>
                         </button>
                     </div>
                 </div>
@@ -92,10 +129,10 @@ export function PropertyDetails() {
                     </div>
                 </div>
 
-                <div className="grid grid-cols sm:grid grid-cols-5 text-[#222222]">
+                <div className="grid grid-cols-1 sm:grid grid-cols-5 text-[#222222]">
                     <div className="col-span-3 flex flex-col">
                         <div className="justify-center py-8 border-b border-gray-200">
-                            <h1 className="text-lg md:text-xl font-semibold">Entire {property.type} in {property.loc.city}, {property.loc.countryCode}</h1>
+                            <h1 className="text-xl md:text-2xl font-semibold">Entire {property.type} in {property.loc.city}, {property.loc.countryCode}</h1>
                             <span className="flex flex-row items-center">
                                 {property.capacity.adults + property.capacity.children} guests &middot; {property.bedrooms} bedrooms &middot; {property.beds} beds &middot; {property.bathrooms} bathrooms
                             </span>
@@ -153,7 +190,7 @@ export function PropertyDetails() {
                             </div>
                         </div>
                         <div className="flex flex-col py-12 border-b border-gray-200">
-                            <h2 className="font-semibold text-xl pb-6">Where you'll sleep</h2>
+                            <h2 className="font-semibold text-2xl pb-6">Where you'll sleep</h2>
                             <div className="flex flex-row gap-4">
                                 <div className="flex flex-col flex-1">
                                     <div className="relative aspect-[4/3] w-full">
@@ -172,37 +209,100 @@ export function PropertyDetails() {
                             </div>
                         </div>
                         <div className="flex flex-col py-12 border-b border-gray-200">
-                            <h2 className="text-xl font-semibold pb-6">What this place offers</h2>
-                            <div className="grid grid-cols-2">
-                                <div className="col-span-1">
-                                    <TbToolsKitchen2 />
+                            <h2 className="text-2xl font-semibold pb-6">What this place offers</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {property.amenities.map((amenity, index) => (
+                                    <div key={index} className="flex flex-row items-center gap-4">
+                                        {amenityList[amenity]?.icon || <PiDoorOpen size={20} />}
+                                        <span>{amenity}</span>
+                                    </div>
+                                ))}
+                            </div>
+                            {property.amenities.length > 10 && (
+                                <button className="mt-6 bg-white border border-gray-900 py-3 px-6 rounded-lg font-semibold cursor-pointer hover:bg-gray-50">
+                                    Show all {property.amenities.length} amenities
+                                </button>
+                            )}
+                        </div>
+                        <div className="flex flex-col py-12 border-b border-gray-200">
+                            <h2 className="text-2xl font-semibold">6 nights in {property.loc.city}</h2>
+                            <label className="pt-2">Dates</label>
+                            <DetailsDatePicker />
+                        </div>
+                    </div>
+                    <div className="relative col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
+                        <div className="sticky top-40 mb-12 self-start">
+                            <div className="flex flex-col border border-gray-200 p-6 shadow-lg w-full rounded-lg">
+                                <div className="flex flex-row items-end mb-6">
+                                    <span className="font-semibold text-xl underline mr-1 cursor-pointer">₪2,885</span>
+                                    <span>for 3 nights</span>
                                 </div>
-                                <div className="col-span-1">
-
+                                <div className="cursor-pointer">
+                                    <div className="border rounded-md">
+                                        <div className="grid grid-cols-2">
+                                            <div className="flex flex-col pt-4 px-3 pb-3 border-r">
+                                                <span className="text-xs font-semibold">CHECK-IN</span>
+                                                <span className="text-sm">12/14/25</span>
+                                            </div>
+                                            <div className="flex flex-col pt-4 px-3 pb-3">
+                                                <span className="text-xs font-semibold">CHECK-OUT</span>
+                                                <span className="text-sm">12/14/25</span>
+                                            </div>
+                                        </div>
+                                        <div className="flex flex-row border-t pt-4 px-3 pb-3">
+                                            <div className="flex-1">
+                                                <div className="flex flex-col">
+                                                    <span className="text-xs font-semibold">GUESTS</span>
+                                                    <span className="text-sm">1 guest, 1 infant</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex-none flex items-center">
+                                                <MdOutlineKeyboardArrowDown size={28} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold">Reserve</button>
                                 </div>
+                                <span className="text-center mt-2 text-sm">You won't be charged yet</span>
+                            </div>
+                            <div className="flex flex-row mt-6 justify-center items-center gap-2 cursor-pointer">
+                                <MdFlag className="text-gray-500" />
+                                <span className="underline font-semibold text-gray-500">Report this listing</span>
                             </div>
                         </div>
                     </div>
-                    <div className="relative col-span-2 ml-auto">
-                        <div className="sticky flex flex-col border border-gray-200 p-6 shadow-lg w-full max-w-sm rounded-lg top-40 mt-8">
-                            <div className="flex flex-row items-end">
-                                <span className="font-semibold text-xl underline mr-1">₪2,885</span>
-                                <span>for 3 nights</span>
-                            </div>
-                            <div className="border-1 rounded-md">
-                                <div className="flex flex-cols-2">
-                                    <div className="flex flex-col">
-                                        <span className="text-xs">CHECK-IN</span>
-                                        <span>12/14/25</span>
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className="text-xs">CHECK-OUT</span>
-                                        <span>12/14/25</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div className="flex flex-col py-12 border-b border-gray-200">
+                    <div className="flex items-center gap-2">
+                        <span><RxStarFilled size={26} /></span>
+                        <span className="text-3xl font-semibold">{getPropertyRankAvg()} &middot; {property.reviews.length} Reviews</span>
                     </div>
+                    <div className="grid grid-cols-2 gap-3 mt-8">
+                        {
+                            property.reviews.slice(0, 6).map((review) => (
+                                <div key={review._id} className="flex flex-col py-6">
+                                    <div className="flex items-start gap-3 mb-3">
+                                        <img src={review.by.imgUrl} alt={review.by.fullname} className="w-12 h-12 rounded-full object-cover" />
+                                        <div className="flex-1">
+                                            <span className="font-semibold block">{review.by.fullname}</span>
+                                            <div className="py-2">
+                                                <StarRating rating={review.rate} />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-700">{review.txt}</p>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    {/* {property.reviews.length > 6 && ( */}
+                    <div className="mt-4">
+                        <button className="bg-gray-100 py-3 rounded-xl px-6 font-semibold cursor-pointer hover:bg-gray-200">Show all {property.reviews.length} reviews</button>
+                    </div>
+                    {/* )} */}
+                </div>
+                <div className="flex flex-col py-12 border-b border-gray-200">
+                    
                 </div>
             </div>
         }

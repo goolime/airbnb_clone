@@ -2,10 +2,8 @@ import { useState } from "react"
 import { DayPicker, /*getDefaultClassNames*/ } from "react-day-picker"
 
 
-export function DatePicker({ onFilterChange, selectedRange = undefined }) {
-  const [selected, setSelected] = useState(selectedRange);
-
-
+export function DatePicker({ onFilterChange }) {
+    const [selected, setSelected] = useState(undefined);
 
   // FOR DEBUGGING PURPOSES ONLY
   /*
