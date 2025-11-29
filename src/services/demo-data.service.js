@@ -306,20 +306,15 @@ function generateDemoData() {
 }
 
 export function setDemoData() {
-<<<<<<< HEAD
     if (VITE_LOCAL){
         const PROPERTIES_KEY = 'propertiesDB'
         const USERS_KEY = 'usersDB'
         const [demoProperties, demoUsers]=generateDemoData()
         localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
         localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
+        console.log('Demo data generated and saved to localStorage.')
     }
-=======
-    const PROPERTIES_KEY = 'propertiesDB'
-    const USERS_KEY = 'usersDB'
-    const [demoProperties, demoUsers] = generateDemoData()
-    localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
-    localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
->>>>>>> 152114b (added property details page)
+
+
 }
 

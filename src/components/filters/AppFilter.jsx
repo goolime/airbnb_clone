@@ -10,16 +10,15 @@ import { ExtendedFilter } from "../ExtndedFilter/ExtendedFilter.jsx";
 
 
 export function AppFilter() {
-    const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
 
-    const [totalCapacity, setTotalCapacity] = useState(null)
+    const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isLargeFilterVisible, setIsLargeFilterVisible] = useState(true);
-    
+
     // Track which modal should open
     const [pendingModalType, setPendingModalType] = useState(null);
-
+    
     const [scrollPosition, setScrollPosition] = useState(0);
     const navigate = useNavigate()
     const location = useLocation();
@@ -45,7 +44,7 @@ export function AppFilter() {
                 }
                 setPendingModalType(null);
             }, 400);
-            
+
             return () => clearTimeout(timer);
         }
     }, [isLargeFilterVisible, pendingModalType]);
@@ -53,14 +52,14 @@ export function AppFilter() {
     function handleScroll() {
         const position = window.pageYOffset;
         setScrollPosition(position);
-        
+
         if (position > 5) {
             setIsLargeFilterVisible(false);
         }
     }
 
     function handleLargeFilterVisibility(isVisible) {
-        console.log('Setting large filter visibility to:', isVisible);
+
         setIsLargeFilterVisible(isVisible);
     }
 
@@ -123,8 +122,8 @@ export function AppFilter() {
                         duration-400
                         ease-[cubic-bezier(0.4,0,0.2,1)]
                         ${showLargeFilter
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 -translate-y-1 pointer-events-none'
+                            ? 'opacity-100 scale-100'
+                            : 'opacity-0 scale-95 pointer-events-none'
                         }
                     `}>
                         <LargeFilter
@@ -145,12 +144,12 @@ export function AppFilter() {
                         duration-400
                         ease-[cubic-bezier(0.4,0,0.2,1)]
                         ${!showLargeFilter
-                            ? 'opacity-100 translate-y-0'
-                            : 'opacity-0 translate-y-1 pointer-events-none'
+                            ? 'opacity-100'
+                            : 'opacity-0 scale-145 pointer-events-none'
                         }
                     `}>
-                        <CompactFilter 
-                            currentPath={currentPath} 
+                        <CompactFilter
+                            currentPath={currentPath}
                             handleLargeFilterVisibility={handleLargeFilterVisibility}
                             onOpenLocationModal={onOpenLocationModal}
                             onOpenDateModal={onOpenDateModal}

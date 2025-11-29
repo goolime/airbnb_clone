@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { MobileWherePicker } from "../search/MobileWherePicker"
-import { Capacity } from "../search/Capacity"
-import { MobileDatePicker } from "../search/MobileDatePicker"
+import { MobileWherePicker } from "../search/MobileWherePicker.jsx"
+import { Capacity } from "../search/Capacity.jsx"
+import { MobileDatePicker } from "../search/MobileDatePicker.jsx"
 
 
 

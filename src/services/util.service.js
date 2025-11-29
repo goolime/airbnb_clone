@@ -108,6 +108,6 @@ export function avg(arr) {
     if (!arr || !arr.length) return 0
 
     const sum = arr.reduce((acc, curr) => acc + curr, 0)
-    return sum / arr.length
+    return Math.round((sum / arr.length) * 100) / 100
 }
 
