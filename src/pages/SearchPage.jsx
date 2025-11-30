@@ -1,5 +1,5 @@
 import { ListPreview } from "../components/preview/ListPreview.jsx"
-import { AppMap } from "../components/AppMap.jsx"
+import { AppMap } from "../components/maps/AppMap.jsx"
 import { useSearchParams } from "react-router"
 import { useEffect, useRef, useState } from "react"
 import { propertiesService } from "../services/properties/index.js"
