@@ -3,19 +3,20 @@ import { useParams } from "react-router"
 import { propertiesService } from '../services/properties.service.js'
 import { avg } from "../services/util.service.js"
 
-import { FiShare } from "react-icons/fi"
+import { FiChevronRight, FiShare } from "react-icons/fi"
 import { IoHeartOutline } from "react-icons/io5"
 import { PiDoorOpen, PiDotsNineBold } from "react-icons/pi"
 import { RxStarFilled } from "react-icons/rx"
 import { LuCalendarFold } from "react-icons/lu"
 import { CiLocationOn } from "react-icons/ci"
 import { MdOutlineKeyboardArrowDown, MdFlag } from "react-icons/md"
-import { AirConditioner, Tv, Kitchen, HotTub, Heating, WorkSpace, Wifi, Washer, Dryer, HairDryer, Iron, Pool, EvCharger, Parking, Crib, KingSizeBed, Gym, BBQGrill, Breakfast, FirePlace, Smoking, Beachfront, Waterfront, SmokeAlarm, CarbonMonoxideAlarm, ChevronDown, ChevronUp } from "../components/util/Icons.jsx";
+import { AirConditioner, Tv, Kitchen, HotTub, Heating, WorkSpace, Wifi, Washer, Dryer, HairDryer, Iron, Pool, EvCharger, Parking, Crib, KingSizeBed, Gym, BBQGrill, Breakfast, FirePlace, Smoking, Beachfront, Waterfront, SmokeAlarm, CarbonMonoxideAlarm, ChevronDown, ChevronUp, ChevronRight } from "../components/util/Icons.jsx";
 import { TbKey, TbPaw } from "react-icons/tb"
-import { DayPicker } from "react-day-picker"
+import { PiGlobeStand } from "react-icons/pi";
+import { GrLanguage } from "react-icons/gr";
 import { DetailsDatePicker } from "../components/search/DetailsDatePicker.jsx"
 import { StarRating } from "../components/util/StarRating.jsx"
-import { AppMap } from "../components/AppMap.jsx"
+import { DetailsMap } from "../components/maps/DetailsMap.jsx"
 
 
 export const amenityList = {
@@ -280,7 +281,7 @@ export function PropertyDetails() {
                     <div className="grid grid-cols-2 gap-3 mt-8">
                         {
                             property.reviews.slice(0, 6).map((review) => (
-                                <div key={review._id} className="flex flex-col py-6">
+                                <div key={review.id} className="flex flex-col py-6">
                                     <div className="flex items-start gap-3 mb-3">
                                         <img src={review.by.imgUrl} alt={review.by.fullname} className="w-12 h-12 rounded-full object-cover" />
                                         <div className="flex-1">
@@ -295,14 +296,71 @@ export function PropertyDetails() {
                             ))
                         }
                     </div>
-                    {/* {property.reviews.length > 6 && ( */}
+                    {/* {property.reviews.length > 6 &&  */}
                     <div className="mt-4">
                         <button className="bg-gray-100 py-3 rounded-xl px-6 font-semibold cursor-pointer hover:bg-gray-200">Show all {property.reviews.length} reviews</button>
                     </div>
                     {/* )} */}
                 </div>
-                <div className="flex flex-col py-12 border-b border-gray-200">
-                    
+                <div className=" py-12 border-b border-gray-200">
+                    <div className="mb-6">
+                        <h2 className="text-2xl font-semibold pb-6">Where you’ll be</h2>
+                        <span>{property.loc.city}, {property.loc.countryCode}</span>
+                    </div>
+                    <div className="h-[480px]">
+                        <DetailsMap property={property} />
+                    </div>
+                    <p className="text-md py-4">This listing's location is verified and the exact location will be provided after booking.</p>
+                </div>
+                <div className="py-12">
+                    <h2 className="text-2xl font-semibold mb-6">Meet your host</h2>
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div className="grid rounded-3xl border border-gray-200 shadow-lg bg-white p-8 max-w-md items-center">
+                            <div className="grid grid-cols-2 gap-8 items-center">
+                                <div className="flex flex-col justify-center items-center">
+                                    <img src={property.host.imgUrl} alt={property.host.fullname} className="w-20 h-20 object-cover rounded-full" />
+                                    <h3 className="text-xl font-semibold text-center my-2">{property.host.fullname}</h3>
+                                    <p className="text-xs text-gray-600">Host</p>
+                                </div>
+                                <div className="flex flex-col">
+                                    <div className="border-b border-gray-200 pb-4 mb-4">
+                                        <p className="text-2xl font-semibold">{property.reviews.length}</p>
+                                        <p className="text-xs text-gray-600">Reviews</p>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <div className="flex items-center gap-1">
+                                            <span className="text-lg font-semibold">{getPropertyRankAvg()}</span>
+                                            <RxStarFilled size={15} />
+                                        </div>
+                                        <p className="text-xs text-gray-600">Rating</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-col text-gray-900">
+                            <div className="flex flex-col gap-4 mb-6">
+                                <div className="flex gap-2 items-center">
+                                    <GrLanguage size={24} />
+                                    <p>Speaks English</p>
+                                </div>
+                                <div className="flex gap-2 items-center">
+                                    <PiGlobeStand size={24} />
+                                    <p>Lives in {property.loc.city}, {property.loc.countryCode}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center cursor-pointer hover:underline mb-6">
+                                <span className="text-md font-semibold underline">Show more</span>
+                                <FiChevronRight size={18} />
+                            </div>
+                            <button className="bg-gray-100 w-fit py-3 rounded-xl px-6 font-semibold cursor-pointer hover:bg-gray-200 mb-6">
+                                Contact host
+                            </button>
+                            <div className="text-md space-y-1">
+                                <p>Response rate: 100%</p>
+                                <p>Response within an hour</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         }
