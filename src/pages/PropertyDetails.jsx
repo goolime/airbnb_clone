@@ -54,6 +54,7 @@ export const amenityList = {
 export function PropertyDetails() {
 
     const [property, setProperty] = useState()
+    const [selectedDates, setSelectedDates] = useState(undefined)
     const { propertyId } = useParams()
     useEffect(() => {
 
@@ -77,6 +78,10 @@ export function PropertyDetails() {
         return avg(rates)
     }
 
+    function handleDateChange(dateRange) {
+        setSelectedDates(dateRange)
+    }
+
     return <>
         {property &&
             <div className="px-4 md:px-10 lg:px-20">
@@ -86,11 +91,11 @@ export function PropertyDetails() {
                     </h1>
 
                     <div className="flex gap-2">
-                        <button className="flex items-center gap-2 p-2 underline font-semibold hover:bg-gray-100 rounded-md transition">
+                        <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-gray-100 rounded-md transition">
                             <FiShare size={18} />
                             <span className="hidden text-sm sm:inline">Share</span>
                         </button>
-                        <button className="flex items-center gap-2 p-2 underline font-semibold hover:bg-gray-100 rounded-md transition">
+                        <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-gray-100 rounded-md transition">
                             <IoHeartOutline size={18} />
                             <span className="hidden text-sm sm:inline">Save</span>
                         </button>
@@ -228,7 +233,7 @@ export function PropertyDetails() {
                         <div className="flex flex-col py-12 border-b border-gray-200">
                             <h2 className="text-2xl font-semibold">6 nights in {property.loc.city}</h2>
                             <label className="pt-2">Dates</label>
-                            <DetailsDatePicker />
+                            <DetailsDatePicker onFilterChange={handleDateChange} selectedRange={selectedDates} />
                         </div>
                     </div>
                     <div className="relative col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
