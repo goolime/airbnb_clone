@@ -3,6 +3,11 @@ import { propertiesService } from "./properties/index.js";
 const { DEV, VITE_LOCAL } = import.meta.env
 
 
+import { usersService } from "./users/index.js"
+import { propertiesService } from "./properties/index.js";
+const { DEV, VITE_LOCAL } = import.meta.env
+
+
 import { makeId } from "./util.service.js";
 
 const users = [
@@ -209,11 +214,7 @@ function getSublist(list, size) {
     return arr
 }
 
-<<<<<<< HEAD
 export function getPictures(num=5){
-=======
-function getPictures(num = 5) {
->>>>>>> 152114b (added property details page)
     return getSublist(demoPropertiesPictures, num)
 }
 
@@ -312,9 +313,6 @@ export function setDemoData() {
         const [demoProperties, demoUsers]=generateDemoData()
         localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
         localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
-        console.log('Demo data generated and saved to localStorage.')
     }
-
-
 }
 
