@@ -13,7 +13,7 @@ export const orders = [
 			adults: 1,
 			kids: 2,
 		},
-		stay: {
+		property: {
 			// mini-stay
 			_id: 'h102',
 			name: 'House Of Uncle My',

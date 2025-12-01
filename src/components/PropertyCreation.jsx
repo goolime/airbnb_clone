@@ -1,4 +1,4 @@
-import { propertiesService } from "../services/properties.service";
+import { propertiesService } from "../services/properties/index.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserInteruction } from "./util/UserInteruaction.jsx";
@@ -10,7 +10,7 @@ import { PropertyBaiscsForm } from "./PropertyCreation/PropertyBaiscsForm.jsx";
 import { RoomsAndBedsSelector } from "./PropertyCreation/RoomsAndBedsSelector.jsx"
 import { GuestsCapacitySelector } from "./PropertyCreation/GuestsCapacitySelector.jsx";
 import { PriceSelector } from "./PropertyCreation/PriceSelector.jsx";
-import { usersService } from "../services/users.service.js";
+import { usersService } from "../services/users/index.js";
 import { store } from "../store/store.js";
 import { getPictures } from "../services/demo-data.service.js";
 import { getCordinates } from "../actions/property.actions.js";

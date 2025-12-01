@@ -10,7 +10,7 @@ import { StandoutStaysSelector } from "./StandoutStaysSelector.jsx";
 import { PropertyTypesSelector } from "./PropertyTypesSelector.jsx";
 import { AccessibilityFeaturesSelector } from "./AccessibilityFeaturesSelector.jsx";
 import { useNavigate } from "react-router";
-import { propertiesService } from "../../services/properties.service.js";
+import { propertiesService } from "../../services/properties/index.js";
 
 export function ExtendedFilter({ filter }) {
   const [isExtendedFilterOpen, setIsExtendedFilterOpen] = useState(false);

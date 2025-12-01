@@ -1,6 +1,8 @@
-import { usersService } from "./users.service.js";
-import { propertiesService } from "./properties.service.js";
-import { storageService } from './async-storage.service.js'
+import { usersService } from "./users/index.js"
+import { propertiesService } from "./properties/index.js";
+const { DEV, VITE_LOCAL } = import.meta.env
+
+
 import { makeId } from "./util.service.js";
 
 const users = [
@@ -298,10 +300,12 @@ function generateDemoData(){
 }
 
 export function setDemoData() {
-    const PROPERTIES_KEY = 'propertiesDB'
-    const USERS_KEY = 'usersDB'
-    const [demoProperties, demoUsers]=generateDemoData()
-    localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
-    localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
+    if (VITE_LOCAL){
+        const PROPERTIES_KEY = 'propertiesDB'
+        const USERS_KEY = 'usersDB'
+        const [demoProperties, demoUsers]=generateDemoData()
+        localStorage.setItem(PROPERTIES_KEY, JSON.stringify(demoProperties))
+        localStorage.setItem(USERS_KEY, JSON.stringify(demoUsers))
+    }
 }
 
