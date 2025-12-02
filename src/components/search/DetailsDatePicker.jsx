@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { DayPicker } from "react-day-picker"
 
 export function DetailsDatePicker({ onFilterChange, selectedRange = undefined }) {
@@ -8,7 +8,11 @@ export function DetailsDatePicker({ onFilterChange, selectedRange = undefined })
         onFilterChange(selectedRange);
         setSelected(selectedRange);
     }
-    
+
+    useEffect(() => {
+        setSelected(selectedRange);
+    }, [selectedRange]);
+
     const now = new Date();
 
     return (
@@ -19,30 +23,40 @@ export function DetailsDatePicker({ onFilterChange, selectedRange = undefined })
                 onSelect={handleSelectedChange}
                 numberOfMonths={2}
                 navLayout="around"
-                fixedWeeks={true}
-                disabled={{ before: now, after: new Date(now.getFullYear() + 2, now.getMonth(), now.getDate()) }}
+                fixedWeeks={false}
+                disabled={{ before: now, after: new Date(now.getFullYear() + 2, now.getMonth() - 1, now.getDate()) }}
                 startMonth={new Date(now.getFullYear(), now.getMonth())}
-                endMonth={new Date(now.getFullYear() + 2, now.getMonth())}
+                endMonth={new Date(now.getFullYear() + 2, now.getMonth() - 1)}
                 classNames={{
-                    months: "flex flex-col sm:flex-row gap-8",
-                    month_caption: "flex justify-center items-center h-12 font-semibold text-base mb-4",
-                    nav: "flex items-center justify-between",
-                    button_previous: "absolute left-4 top-3 p-2 rounded-full hover:bg-gray-100",
-                    button_next: "absolute right-4 top-3 p-2 rounded-full hover:bg-gray-100",
-                    month_grid: "border-collapse",
+                    months: "flex sm:flex-row gap-4",
+                    month_caption: "flex justify-center items-end h-12 font-semibold text-base mb-4",
                     weekdays: "flex",
                     weekday: "text-gray-500 font-medium text-xs w-12 h-8 flex items-center justify-center",
                     week: "flex mb-1",
-                    day: "w-12 h-12 flex items-center justify-center relative",
-                    day_button: "w-10 h-10 rounded-full hover:border-1 hover:border-gray-700 flex items-center justify-center font-normal text-sm cursor-pointer",
-                    range_start: "!bg-black text-white hover:!border-none rounded-full",
-                    range_end: "!bg-black text-white hover:!border-none rounded-full",
-                    range_middle: "bg-gray-100 rounded-none",
-                    selected: "bg-gray-100",
+                    day_button: "w-full h-full rounded-full hover:border hover:border-1 hover:border-gray-700",
+                    button_previous: "absolute left-4 top-1 p-5 rounded-full hover:bg-gray-100 aria-disabled:hidden",
+                    button_next: "absolute right-4 top-1 p-5 rounded-full hover:bg-gray-100 aria-disabled:hidden",
+                    day: "w-12 h-12 flex text-sm items-center justify-center relative",
+                    range_start: "rounded-l-full text-white rangeStart",
+                    range_end: "rounded-r-full text-white rangeEnd",
+                    selected: "has-[button]:bg-gray-200 selected",
                     disabled: "opacity-20 line-through",
-                    outside: "text-gray-300 !bg-transparent hover:border-none",
-                    today: "font-bold"
                 }}
+                components={
+                    {
+                        Day: (props) => {
+                            const { day, modifiers, ...tdProps } = props;
+                            const Month = day.date.getMonth()
+                            if (day.date.getDate() === 1) {
+                                tdProps.className += " start-of-month"
+                            }
+                            if (Month !== (new Date(day.date.getTime() + 10006060 * 24)).getMonth()) {
+                                tdProps.className += " end-of-month"
+                            }
+                            return <td {...tdProps} />
+                        }
+                    }
+                }
             />
         </div>
     )

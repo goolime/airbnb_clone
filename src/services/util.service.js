@@ -5,7 +5,8 @@ export const utilService = {
     loadFromStorage,
     saveToStorage,
     animateCSS,
-    avg
+    avg,
+    debounce,
 }
 
 export function makeId(length = 6) {
@@ -104,10 +105,11 @@ export function reduceList(list, num) {
 
 export function avg(arr) {
 
-    console.log('arr in avg:', arr);
     if (!arr || !arr.length) return 0
 
     const sum = arr.reduce((acc, curr) => acc + curr, 0)
     return Math.round((sum / arr.length) * 100) / 100
 }
+
+
 

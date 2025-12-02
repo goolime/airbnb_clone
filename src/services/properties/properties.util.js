@@ -7,43 +7,44 @@ export const propertiesUtil = {
     getFilterFromSearchParams
 }
 
-function getEmptyProperty( name = '', 
-                           type= null,
-                           imgUrls= [], 
-                           price = 0, 
-                           summary= '', 
-                           capacity= {adults:1,kids:0,infants:0,pets:0},
-                           amenities= [],
-                           accessibility= [],
-                           bathrooms= 1,
-                           bedrooms= 1,
-                           beds= 1,
-                           rules= [],
-                           labels= [],
-                           host= undefined,
-                           loc= {country: null, countryCode: null, city: null, address: null, lat: 0, lng: 0},
-                           reviews= []) {
-    return { name,
-             type,
-             imgUrls,
-             price,
-             summary,
-             capacity,
-             amenities,
-             accessibility,
-             bathrooms,
-             bedrooms,
-             beds,
-             rules,
-             labels,
-             host,
-             loc,
-             reviews
-         }
+function getEmptyProperty(name = '',
+    type = null,
+    imgUrls = [],
+    price = 0,
+    summary = '',
+    capacity = { adults: 1, kids: 0, infants: 0, pets: 0 },
+    amenities = [],
+    accessibility = [],
+    bathrooms = 1,
+    bedrooms = 1,
+    beds = 1,
+    rules = [],
+    labels = [],
+    host = undefined,
+    loc = { country: null, countryCode: null, city: null, address: null, lat: 0, lng: 0 },
+    reviews = []) {
+    return {
+        name,
+        type,
+        imgUrls,
+        price,
+        summary,
+        capacity,
+        amenities,
+        accessibility,
+        bathrooms,
+        bedrooms,
+        beds,
+        rules,
+        labels,
+        host,
+        loc,
+        reviews
+    }
 }
 
 function getDefaultFilter() {
-    return { 
+    return {
         type: 'any',
         types: [],
         maxPrice: 0,
@@ -57,8 +58,8 @@ function getDefaultFilter() {
         bedrooms: 0,
         beds: 0,
         //host: null,
-        dates: {from:null,to:null},
-        loc: { countryCode: '', city: '', maxLat: 90, minLat: -90, maxLng: 180, minLng: -180},
+        dates: { from: null, to: null },
+        loc: { countryCode: '', city: '', maxLat: 90, minLat: -90, maxLng: 180, minLng: -180 },
         raiting: 0,
     }
 }
@@ -66,7 +67,7 @@ function getDefaultFilter() {
 function getSearchParamsFromFilter(filterBy) {
     const searchParams = new URLSearchParams()
     for (const field in filterBy) {
-        if (Array.isArray(filterBy[field])){
+        if (Array.isArray(filterBy[field])) {
             // console.log('array field:', field, filterBy[field], JSON.stringify(filterBy[field]))
             searchParams.set(field, JSON.stringify(filterBy[field]))
             continue
@@ -88,8 +89,8 @@ function getFilterFromSearchParams(searchParams) {
     const defaultFilter = getDefaultFilter()
     const filterBy = {}
     for (const field in defaultFilter) {
-        if (Array.isArray(defaultFilter[field])){
-           //console.log('array field parse:', field, filterBy[field], JSON.parse(searchParams.get(field)))
+        if (Array.isArray(defaultFilter[field])) {
+            //console.log('array field parse:', field, filterBy[field], JSON.parse(searchParams.get(field)))
             filterBy[field] = searchParams.get(field) ? JSON.parse(searchParams.get(field)) : defaultFilter[field]
             continue
         }
@@ -98,13 +99,13 @@ function getFilterFromSearchParams(searchParams) {
                 const key = `${field}.${subField}`
                 filterBy[field] = filterBy[field] || {}
                 if (field === 'dates') {
-                   filterBy[field][subField] = ( searchParams.get(key) && searchParams.get(key) !== "null" ) ? new Date(searchParams.get(key)) : defaultFilter[field][subField]
+                    filterBy[field][subField] = (searchParams.get(key) && searchParams.get(key) !== "null") ? new Date(searchParams.get(key)) : defaultFilter[field][subField]
                 }
-                else if( field === 'guests' ) {
+                else if (field === 'guests') {
                     filterBy[field][subField] = +searchParams.get(key) || defaultFilter[field][subField]
                 }
                 else if (field === 'loc') {
-                    if(subField==='countryCode' || subField==='city'){
+                    if (subField === 'countryCode' || subField === 'city') {
                         filterBy[field][subField] = searchParams.get(key) || defaultFilter[field][subField]
                     }
                     else {
@@ -112,7 +113,7 @@ function getFilterFromSearchParams(searchParams) {
                     }
                 }
                 else {
-                    
+
                     filterBy[field][subField] = searchParams.get(key) || defaultFilter[field][subField]
                 }
             }
@@ -125,9 +126,9 @@ function getFilterFromSearchParams(searchParams) {
             filterBy[field] = +searchParams.get(field) || defaultFilter[field]
         }
     }
-    if(filterBy.caseSensitive){
-        if(filterBy.caseSensitive==='true') filterBy.caseSensitive=true
-        else filterBy.caseSensitive=false
+    if (filterBy.caseSensitive) {
+        if (filterBy.caseSensitive === 'true') filterBy.caseSensitive = true
+        else filterBy.caseSensitive = false
     }
     return filterBy
 <<<<<<< HEAD:src/services/properties/properties.util.js
@@ -137,7 +138,7 @@ function getFilterFromSearchParams(searchParams) {
 
 async function getById(id) {
     console.log(id)
-    const property =  await storageService.get(PROPERTIES_KEY, id)
+    const property = await storageService.get(PROPERTIES_KEY, id)
     console.log(property)
     return property
 }
@@ -146,7 +147,7 @@ async function getById(id) {
 function getPropertiesByCity(city) {
     return storageService.query(PROPERTIES_KEY, 100)
         .then(properties => {
-            return properties.filter(property => 
+            return properties.filter(property =>
                 property.loc.lat >= city.minLat &&
                 property.loc.lat <= city.maxLat &&
                 property.loc.lng >= city.minLng &&
