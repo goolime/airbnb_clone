@@ -2,14 +2,16 @@ import { useState } from "react"
 import { DayPicker, /*getDefaultClassNames*/ } from "react-day-picker"
 
 
-export function DatePicker({ onFilterChange }) {
-    const [selected, setSelected] = useState(undefined);
+export function DatePicker({ onFilterChange, selectedRange = undefined }) {
+  const [selected, setSelected] = useState(selectedRange);
 
-  // FOR DEBUGGING PURPOSES ONLY
-  /*
-  const defaultClassNames = getDefaultClassNames();
-  console.log('defaultClassNames', defaultClassNames);
-  */
+
+
+    // FOR DEBUGGING PURPOSES ONLY
+    /*
+    const defaultClassNames = getDefaultClassNames();
+    console.log('defaultClassNames', defaultClassNames);
+    */
 
   function handleSelectedChange(selectedRange) {
     onFilterChange(selectedRange);

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useParams, useSearchParams } from "react-router"
 import { propertiesService } from '../services/properties.service.js'
 import { avg } from "../services/util.service.js"
 
@@ -17,6 +17,9 @@ import { GrLanguage } from "react-icons/gr";
 import { DetailsDatePicker } from "../components/search/DetailsDatePicker.jsx"
 import { StarRating } from "../components/util/StarRating.jsx"
 import { DetailsMap } from "../components/maps/DetailsMap.jsx"
+import { DynamicDropDown } from "../components/DynamicDropDown.jsx"
+import { Capacity } from "../components/search/Capacity.jsx"
+import { getGuestsString, guestStringLength } from "../actions/filter.actions.js"
 
 
 export const amenityList = {
@@ -54,12 +57,26 @@ export const amenityList = {
 export function PropertyDetails() {
 
     const [property, setProperty] = useState()
-    const [selectedDates, setSelectedDates] = useState(undefined)
+    const [searchParams] = useSearchParams()
+    const [selectedDates, setSelectedDates] = useState({ from: null, to: null })
+    const [selectedCapacity, setSelectedCapacity] = useState({ adults: 0, children: 0, infants: 0, pets: 0 })
+    const [isDateModalOpen, setIsDateModalOpen] = useState(false)
+    const [isGuestModalOpen, setIsGuestModalOpen] = useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false)
     const { propertyId } = useParams()
+    const [checkInActive, setCheckInActive] = useState(true)
+    const [checkOutActive, setCheckOutActive] = useState(false)
+
     useEffect(() => {
 
         loadProperty()
     }, [])
+
+    useEffect(() => {
+        setSelectedDates(getDatesFromParams())
+        setSelectedCapacity(getGuestsFromParams())
+    }, [searchParams])
+
 
     async function loadProperty() {
         try {
@@ -72,15 +89,69 @@ export function PropertyDetails() {
         }
     }
 
+    function onOpenModal() {
+        setIsModalOpen(true)
+    }
+
+    function onCloseModal() {
+        setIsModalOpen(false)
+    }
+
+    function getDatesFromParams() {
+        const from = searchParams.get('checkIn')
+        const to = searchParams.get('checkOut')
+        return {
+            from: from ? new Date(from) : null,
+            to: to ? new Date(to) : null
+        }
+    }
+
+    function getGuestsFromParams() {
+        const adults = parseInt(searchParams.get('adults')) || 0
+        const kids = parseInt(searchParams.get('kids')) || 0
+        const infants = parseInt(searchParams.get('infants')) || 0
+        const pets = parseInt(searchParams.get('pets')) || 0
+        return { adults, kids, infants, pets }
+    }
+
+    function formatLongDate(date) {
+        if (!date) return '';
+
+        return new Date(date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    };
+
+    function formatShortDate(date) {
+        if (!date) return ''
+        const d = date instanceof Date ? date : new Date(date)
+        if (isNaN(d)) return ''
+        return d.toLocaleDateString('en-GB', { day: '2-digit', year: '2-digit', month: '2-digit' })
+    }
     function getPropertyRankAvg() {
         const rates = []
         property.reviews.map(review => rates.push(review.rate))
         return avg(rates)
     }
 
-    function handleDateChange(dateRange) {
-        setSelectedDates(dateRange)
+    function clearDates() {
+
+        setSelectedDates({ from: null, to: null })
     }
+
+    function handleDateChange({ from, to }) {
+        setSelectedDates({ from, to })
+    }
+
+    function handleCapacityChange({ adults, kids, infants, pets }) {
+
+        setSelectedCapacity({ adults, kids, infants, pets })
+    }
+
+    const nights = propertiesService.getNightsFromDateRange(selectedDates.from, selectedDates.to)
+    const totalPrice = propertiesService.totalPricePerNight(property?.price, nights)
 
     return <>
         {property &&
@@ -231,35 +302,113 @@ export function PropertyDetails() {
                             )}
                         </div>
                         <div className="flex flex-col py-12 border-b border-gray-200">
-                            <h2 className="text-2xl font-semibold">6 nights in {property.loc.city}</h2>
-                            <label className="pt-2">Dates</label>
+                            <h2 className="text-2xl font-semibold">{nights} nights in {property.loc.city}</h2>
+                            <label className="pt-2 text-gray-500">{selectedDates?.from && selectedDates?.to ? `${formatLongDate(selectedDates?.from)} - ${formatLongDate(selectedDates?.to)}` : 'Add your travel dates for exact pricing'}</label>
                             <DetailsDatePicker onFilterChange={handleDateChange} selectedRange={selectedDates} />
+                            <div className="flex justify-end px-8">
+                                <span className="text-sm font-semibold rounded-lg cursor-pointer hover:bg-gray-100 p-2 underline" onClick={() => { clearDates() }}>Clear dates</span>
+                            </div>
                         </div>
                     </div>
                     <div className="relative col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
+
                         <div className="sticky top-40 mb-12 self-start">
                             <div className="flex flex-col border border-gray-200 p-6 shadow-lg w-full rounded-lg">
                                 <div className="flex flex-row items-end mb-6">
-                                    <span className="font-semibold text-xl underline mr-1 cursor-pointer">₪2,885</span>
-                                    <span>for 3 nights</span>
+                                    <span className="font-semibold text-2xl underline mr-1 cursor-pointer">₪{totalPrice}</span>
+                                    <span>for {nights} nights</span>
                                 </div>
                                 <div className="cursor-pointer">
-                                    <div className="border rounded-md">
-                                        <div className="grid grid-cols-2">
-                                            <div className="flex flex-col pt-4 px-3 pb-3 border-r">
+                                    <div className='border rounded-md'>
+                                        <div
+                                            className='relative grid grid-cols-2 transition-colors'
+                                            onClick={() => {
+                                                setIsDateModalOpen(!isDateModalOpen)
+                                                setIsGuestModalOpen(false)
+                                                onOpenModal()
+                                            }}
+                                        >
+                                            {isDateModalOpen &&
+                                                <DynamicDropDown isModalOpen={isModalOpen} onCloseModal={onCloseModal} width={'w-auto'} direction={'-right-10'} position={'absolute'} className={'!-top-6'}>
+                                                    <div className="flex justify-between gap-4">
+                                                        <div className="flex flex-1 flex-col">
+                                                            <span className="font-semibold text-2xl">{nights} nights</span>
+                                                            <span className="text-sm pt-2 text-gray-500">
+                                                                {selectedDates?.from && selectedDates?.to ? `${formatLongDate(selectedDates?.from)} - ${formatLongDate(selectedDates?.to)}` : 'Add your travel dates for exact pricing'}
+                                                            </span>
+                                                        </div>
+                                                        <div className={`flex flex-1 justify-around rounded-lg overflow-hidden ${checkInActive ? 'border-l-0 border-1' : 'border-r-0 border-1'}`}>
+                                                            <div className={`flex justify-between items-center pt-4 px-3 pb-3 w-1/2 cursor-pointer ${checkInActive ? 'border-2 border-black rounded-lg bg-white' : 'bg-white'}`}>
+                                                                <div className='flex flex-col'
+                                                                    onClick={() => {
+                                                                        setCheckInActive(true)
+                                                                        setCheckOutActive(false)
+                                                                    }}>
+                                                                    <span className="text-xs font-semibold">CHECK-IN</span>
+                                                                    <span className="text-sm">{formatShortDate(selectedDates?.from) || 'Add date'}</span>
+                                                                </div>
+                                                                <button
+                                                                    type="button"
+                                                                    className="rounded-full w-7 h-7 flex text-gray-700 font-semibold justify-center cursor-pointer hover:bg-gray-200"
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation()
+                                                                        clearDates()
+                                                                    }}>x
+                                                                </button>
+                                                            </div>
+
+                                                            <div className={`flex justify-between items-center pt-4 px-3 pb-3 w-1/2 cursor-pointer ${checkOutActive ? 'border-2 border-black rounded-lg bg-white' : 'bg-white'}`}>
+                                                                <div className='flex flex-col'
+                                                                    onClick={() => {
+                                                                        setCheckInActive(false)
+                                                                        setCheckOutActive(true)
+                                                                    }}>
+                                                                    <span className="text-xs font-semibold">CHECK-OUT</span>
+                                                                    <span className="text-sm">{formatShortDate(selectedDates?.to) || 'Add date'}</span>
+                                                                </div>
+                                                                <button
+                                                                    type="button"
+                                                                    className="rounded-full w-7 h-7 flex text-gray-700 font-semibold justify-center cursor-pointer hover:bg-gray-200"
+                                                                    onClick={(e) => {
+                                                                        e.stopPropagation()
+                                                                        clearDates()
+                                                                    }}>x
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <DetailsDatePicker onFilterChange={handleDateChange} selectedRange={selectedDates} />
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="text-sm font-semibold rounded-lg hover:bg-gray-100 p-2 underline" onClick={() => { clearDates() }}>Clear dates</span>
+                                                        <button onClick={() => { onCloseModal() }} className="cursor-pointer rounded-lg bg-gray-800 hover:bg-black text-white py-2 px-4 text-sm">Close</button>
+                                                    </div>
+                                                </DynamicDropDown>
+                                            }
+                                            <div className={`flex flex-col pt-4 px-3 pb-3 border-r`}>
                                                 <span className="text-xs font-semibold">CHECK-IN</span>
-                                                <span className="text-sm">12/14/25</span>
+                                                <span className="text-sm">{formatShortDate(selectedDates?.from) || 'Add date'}</span>
                                             </div>
-                                            <div className="flex flex-col pt-4 px-3 pb-3">
+                                            <div className={`flex flex-col pt-4 px-3 pb-3`}>
                                                 <span className="text-xs font-semibold">CHECK-OUT</span>
-                                                <span className="text-sm">12/14/25</span>
+                                                <span className="text-sm">{formatShortDate(selectedDates?.to) || 'Add date'}</span>
                                             </div>
                                         </div>
-                                        <div className="flex flex-row border-t pt-4 px-3 pb-3">
+                                        <div className={`relative flex flex-row border-t pt-4 px-3 pb-3 transition-colors ${isGuestModalOpen && 'border-1 border border-t-2'}`}
+                                            onClick={() => {
+                                                setIsDateModalOpen(false)
+                                                setIsGuestModalOpen(!isGuestModalOpen)
+                                                onOpenModal()
+                                            }}
+                                        >
+                                            {isGuestModalOpen &&
+                                                <DynamicDropDown isModalOpen={isModalOpen} onCloseModal={onCloseModal} width={'w-full'} direction={'right-0'} position={'absolute'}>
+                                                    <Capacity onFilterChange={handleCapacityChange} initialCapacity={selectedCapacity} />
+                                                </DynamicDropDown>
+                                            }
                                             <div className="flex-1">
                                                 <div className="flex flex-col">
                                                     <span className="text-xs font-semibold">GUESTS</span>
-                                                    <span className="text-sm">1 guest, 1 infant</span>
+                                                    <span className="text-sm">{getGuestsString(selectedCapacity, guestStringLength.LONG)}</span>
                                                 </div>
                                             </div>
                                             <div className="flex-none flex items-center">
@@ -267,7 +416,7 @@ export function PropertyDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold">Reserve</button>
+                                    <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold cursor-pointer">Reserve</button>
                                 </div>
                                 <span className="text-center mt-2 text-sm">You won't be charged yet</span>
                             </div>
@@ -367,7 +516,7 @@ export function PropertyDetails() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         }
 
     </>
