@@ -78,6 +78,7 @@ export function SearchPage() {
                         properties={properties}
                         checkIn={filterData.dates.from}
                         checkOut={filterData.dates.to}
+                        guests={filterData.guests}
                     />
                 </div>
 

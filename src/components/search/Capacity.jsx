@@ -1,25 +1,39 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { UserInteruction } from "../util/UserInteruaction";
 import { showServiceAnimalInfo } from "../../services/event-bus.service.js";
 
-export function Capacity({onFilterChange}) {
+export function Capacity({ onFilterChange, initialCapacity }) {
 
-    const [adultsCount, setAdultsCount] = useState(0);
-    const [childrenCount, setChildrenCount] = useState(0);
-    const [infantsCount, setInfantsCount] = useState(0);
-    const [petsCount, setPetsCount] = useState(0);
-    const [totalGuests, setTotalGuests] = useState(0);
+    const [adultsCount, setAdultsCount] = useState(initialCapacity?.adults || 0);
+    const [childrenCount, setChildrenCount] = useState(initialCapacity?.kids || 0);
+    const [infantsCount, setInfantsCount] = useState(initialCapacity?.infants || 0);
+    const [petsCount, setPetsCount] = useState(initialCapacity?.pets || 0);
+    const [totalGuests, setTotalGuests] = useState(
+        (initialCapacity?.adults || 0) + (initialCapacity?.kids || 0)
+    );
 
-    const minAdults = (childrenCount>0|| infantsCount>0) ? 1 : 0;
+    const minAdults = (childrenCount > 0 || infantsCount > 0) ? 1 : 0;
+
+    // Update state when initialCapacity changes (from URL params)
+    // Use individual properties as dependencies to avoid object reference issues
+    useEffect(() => {
+        if (initialCapacity) {
+            setAdultsCount(initialCapacity.adults || 0);
+            setChildrenCount(initialCapacity.kids || 0);
+            setInfantsCount(initialCapacity.infants || 0);
+            setPetsCount(initialCapacity.pets || 0);
+            setTotalGuests((initialCapacity.adults || 0) + (initialCapacity.kids || 0));
+        }
+    }, [initialCapacity?.adults, initialCapacity?.kids, initialCapacity?.infants, initialCapacity?.pets]);
 
     useEffect(() => {
-            onFilterChange({
-                adults: adultsCount,
-                kids: childrenCount,
-                infants: infantsCount,
-                pets: petsCount
-            });
-    },[adultsCount, childrenCount, infantsCount, petsCount ])
+        onFilterChange({
+            adults: adultsCount,
+            kids: childrenCount,
+            infants: infantsCount,
+            pets: petsCount
+        });
+    }, [adultsCount, childrenCount, infantsCount, petsCount])
 
     function onIncrementAdults() {
         setAdultsCount(adultsCount + 1)
@@ -29,7 +43,7 @@ export function Capacity({onFilterChange}) {
 
     function onDecrementAdults() {
 
-        if (adultsCount > minAdults ) {
+        if (adultsCount > minAdults) {
             setAdultsCount(adultsCount - 1)
             setTotalGuests(totalGuests - 1)
         }
@@ -83,10 +97,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg 
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -103,10 +117,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg 
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -128,10 +142,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10 
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg 
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -148,10 +162,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10 
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -173,10 +187,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10 
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -193,10 +207,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10 
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -212,17 +226,17 @@ export function Capacity({onFilterChange}) {
                 <label className="font-semibold text-lg">Pets</label>
                 <a href="#" className="text-gray-500 font-semibold underline underline-offset-2" onClick={() => showServiceAnimalInfo()}>Bringing a service animal?</a>
             </div>
-            
+
             <div className="flex flex-row items-center justify-between">
                 <button disabled={petsCount <= 0} onClick={onDecrementPets} className="
                                 flex 
                                 justify-center 
                                 items-center 
                                 w-10 h-10 
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg 
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -239,10 +253,10 @@ export function Capacity({onFilterChange}) {
                                 justify-center 
                                 items-center 
                                 w-10 h-10 
-                                border-2 border-gray-400 
+                                border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-xl 
+                                text-lg
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -253,6 +267,6 @@ export function Capacity({onFilterChange}) {
                                 ">+</button>
             </div>
         </div>
-        
+
     </>
 }
