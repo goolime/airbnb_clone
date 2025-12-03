@@ -186,7 +186,7 @@ export function AppHeader() {
                                 <a
                                     href='#'
                                     className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
-                                    onClick={(e) => { e.preventDefault(); navigate('/profile') }}
+                                    onClick={(e) => { e.preventDefault(); navigate('/profile/user') }}
                                 >
                                     <BiUser size={20} />
                                     <span className='font-semibold text-sm pl-3'>Profile</span>

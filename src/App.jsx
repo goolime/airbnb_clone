@@ -4,10 +4,14 @@ import { ExplorePage } from "./pages/explorePage.jsx"
 import { SearchPage } from "./pages/SearchPage.jsx"
 import { AppFooter } from "./components/AppFooter.jsx"
 import { useEffect } from "react"
+import { UserData } from "./components/profile/UserData.jsx"
 import { setDemoData } from "./services/demo-data.service.js"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
 import { ProfilePage } from "./pages/ProfilePage.jsx"
+import { UserOrders } from "./components/profile/UserOrders.jsx"
+import { UserProperties } from "./components/profile/UserProperties.jsx"
+import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
 
 const Router = BrowserRouter
 
@@ -29,7 +33,12 @@ function App() {
               <Routes>
                 <Route path="/" element={<ExplorePage />} />
                 <Route path="/search" element={<SearchPage />} />
-                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/profile" element={<ProfilePage />} >
+                  <Route path="/profile/user" element={<UserData />} />
+                  <Route path="/profile/orders" element={<PropertyOrders />} />
+                  <Route path="/profile/properties" element={<UserProperties />} />
+                  <Route path="/profile/myorders" element={<UserOrders />} />
+                </Route>
                 <Route path="/test" element={<Test />} />
               </Routes>
             </div>
