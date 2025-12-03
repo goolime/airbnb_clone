@@ -3,6 +3,7 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { Map, Popup, Marker } from 'react-map-gl/mapbox'
 import { getCenter } from 'geolib'
 import { useRef, useState, useEffect } from 'react'
+import { Carousel } from '../util/Carousel.jsx'
 
 export function AppMap({ searchResults, location, checkIn = null, checkOut = null }) {
 
@@ -32,6 +33,8 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
             });
         }
     }, [center.longitude, center.latitude]);
+
+
 
     return (
         <>
@@ -74,6 +77,12 @@ function getPricingString(checkIn, checkOut, price) {
 
 function Tag({ property, checkIn = null, checkOut = null, selectedLocation, setSelectedLocation }) {
     const isSelected = selectedLocation?._id === property._id
+    const styles = {
+
+        carousel: "size-[86dvw] sm:size-[45.5dvw] md:size-[21dvw] lg:size-[21.6dvw] xl:size-[200px]",
+        header: "sm:text-[2dvw] md:text-[1.4dvw] lg:text-[1.1dvw] xl:text-[14.2px]",
+        text: " sm:text-[1.93dvw] md:text-[1.4dvw] lg:text-[1.1dvw] xl:text-[14.2px]"
+    }
 
     return (
         <Marker
@@ -85,6 +94,8 @@ function Tag({ property, checkIn = null, checkOut = null, selectedLocation, setS
             <div
                 onClick={() => setSelectedLocation(property)}
                 className={`
+                    relative
+                    z-40
                     cursor-pointer 
                     flex
                     justify-center 
@@ -105,6 +116,11 @@ function Tag({ property, checkIn = null, checkOut = null, selectedLocation, setS
                     €{getPricingString(checkIn, checkOut, property.price)}
                 </span>
             </div>
+            {isSelected &&
+                <div className='fixed z-50 right-0'>
+
+                </div>
+            }
         </Marker>
     )
 }
