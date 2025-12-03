@@ -8,14 +8,16 @@ import { UserData } from "./components/profile/UserData.jsx"
 import { setDemoData } from "./services/demo-data.service.js"
 import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
-<<<<<<< HEAD
+
 import { ProfilePage } from "./pages/ProfilePage.jsx"
+
 import { UserOrders } from "./components/profile/UserOrders.jsx"
 import { UserProperties } from "./components/profile/UserProperties.jsx"
 import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
-=======
 import { PropertyDetails } from "./pages/PropertyDetails.jsx"
->>>>>>> 152114b (added property details page)
+import { UserOrders } from "./components/profile/UserOrders.jsx"
+import { UserProperties } from "./components/profile/UserProperties.jsx"
+import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
 
 const Router = BrowserRouter
 

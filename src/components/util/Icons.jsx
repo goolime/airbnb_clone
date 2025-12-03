@@ -34,6 +34,7 @@ import {
 } from "react-icons/tb";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { FaSuitcase,FaMoneyCheckAlt } from "react-icons/fa";
 import { MdOutlineHolidayVillage } from "react-icons/md";
 
@@ -41,6 +42,15 @@ import {FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp  } from "react
 =======
 import { FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp } from "react-icons/fi";
 >>>>>>> 152114b (added property details page)
+=======
+import { FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp } from "react-icons/fi";
+=======
+import { FaSuitcase,FaMoneyCheckAlt } from "react-icons/fa";
+import { MdOutlineHolidayVillage } from "react-icons/md";
+
+import {FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp  } from "react-icons/fi";
+>>>>>>> ac89941 (feat(Profile): Enhance profile navigation and add user-related components)
+>>>>>>> b1bae0d (feat(Profile): Enhance profile navigation and add user-related components)
 
 function SVGIcon({ svgContent, className = "" }) {
     return <svg xmlns="http://www.w3.org/2000/svg" className={className} viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style={{ display: "block", height: "24px", width: "24px", fill: "currentcolor" }}>
@@ -218,10 +228,6 @@ export const ApartmentIcon = ({className,hexColor="#000000"}) => <svg xmlns="htt
                                                </g>
                                                </svg>
 export const EditIcon = ({className}) => <TbPencil className={className} />
-export const Suitcase = ({className}) => <FaSuitcase className={className} />
-export const PropertyIcon = ({className}) => <MdOutlineHolidayVillage className={className} />
-export const BookingIcon = ({className}) => <FaMoneyCheckAlt className={className} />
-=======
 export const Xicon = ({ className }) => <TbX className={className} />
 export const FilterIcon = ({ className }) => <svg xmlns="http://www.w3.org/2000/svg"
     className={className}
@@ -303,4 +309,6 @@ export const ApartmentIcon = ({ className, hexColor = "#000000" }) => <svg xmlns
         <path d="M464 329 c-10 -17 13 -36 27 -22 12 12 4 33 -11 33 -5 0 -12 -5 -16 -11z" />
     </g>
 </svg>
->>>>>>> 152114b (added property details page)
+export const Suitcase = ({className}) => <FaSuitcase className={className} />
+export const PropertyIcon = ({className}) => <MdOutlineHolidayVillage className={className} />
+export const BookingIcon = ({className}) => <FaMoneyCheckAlt className={className} />

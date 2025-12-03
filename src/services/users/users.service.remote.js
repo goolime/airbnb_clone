@@ -18,8 +18,8 @@ function query(filterBy={}) {
     return httpService.get(USER_URL + '?' + queryParams)
 }
 
-function login(userName, password) {
-    return httpService.post(AUTH_URL + 'login', { userName, password })
+function login(username, password) {
+    return httpService.post(AUTH_URL + 'login', { username, password })
 }
 
 function remove(userId) {
