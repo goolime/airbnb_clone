@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { PropertyPreview } from "./PropertyPreview";
 import { ChevronRight } from "../util/Icons.jsx";
 import { useNavigate  } from 'react-router-dom'
-import { propertiesService } from "../../services/properties.service";
+import { propertiesService } from "../../services/properties/index.js";
 
 /**
  * @param {Array} properties - exactly 8 properties 
