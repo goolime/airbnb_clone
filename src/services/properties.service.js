@@ -16,12 +16,14 @@ export const propertiesService = {
     getDefaultFilter,
     getFilterFromSearchParams,
     getSearchParamsFromFilter,
-    getPropertiesByCity
+    getPropertiesByCity,
+    totalPricePerNight,
+    getNightsFromDateRange,
 }
 // For Debug (easy access from console):
 window.cs = propertiesService
 
-function query(filterBy,orderBy = { field: 'name', direction: 1 }) {
+function query(filterBy, orderBy = { field: 'name', direction: 1 }) {
     return storageService.query(PROPERTIES_KEY)
         .then(properties => {
             return properties.filter(async property => {
@@ -59,11 +61,11 @@ function query(filterBy,orderBy = { field: 'name', direction: 1 }) {
                             }
                             break
                         case 'loc':
-                            if(
-                            property.loc.lat < filterBy.loc.minLat &&
-                            property.loc.lat > filterBy.loc.maxLat &&
-                            property.loc.lng >= filterBy.loc.minLng &&
-                            property.loc.lng <= filterBy.loc.maxLng) return false
+                            if (
+                                property.loc.lat < filterBy.loc.minLat &&
+                                property.loc.lat > filterBy.loc.maxLat &&
+                                property.loc.lng >= filterBy.loc.minLng &&
+                                property.loc.lng <= filterBy.loc.maxLng) return false
                             break
                         case 'dates':
                             if (!await _checkPropertyAvailability(property, filterBy.dates.from, filterBy.dates.to)) return false
@@ -75,7 +77,7 @@ function query(filterBy,orderBy = { field: 'name', direction: 1 }) {
                 }
                 return true;
             }
-        )
+            )
         })
 }
 
@@ -85,7 +87,7 @@ async function _checkPropertyAvailability(property, startDate, endDate) {
     orderFilter.startDate = startDate;
     orderFilter.endDate = endDate;
     const orders = await ordersService.query(orderFilter)
-    if (orders.length>0) return false
+    if (orders.length > 0) return false
     return true
 }
 
@@ -112,43 +114,44 @@ function save(property) {
     }
 }
 
-function getEmptyProperty( name = '', 
-                           type= null,
-                           imgUrls= [], 
-                           price = 0, 
-                           summary= '', 
-                           capacity= {adults:1,kids:0,infants:0,pets:0},
-                           amenities= [],
-                           accessibility= [],
-                           bathrooms= 1,
-                           bedrooms= 1,
-                           beds= 1,
-                           rules= [],
-                           labels= [],
-                           host= undefined,
-                           loc= {country: null, countryCode: null, city: null, address: null, lat: 0, lng: 0},
-                           reviews= []) {
-    return { name,
-             type,
-             imgUrls,
-             price,
-             summary,
-             capacity,
-             amenities,
-             accessibility,
-             bathrooms,
-             bedrooms,
-             beds,
-             rules,
-             labels,
-             host,
-             loc,
-             reviews
-         }
+function getEmptyProperty(name = '',
+    type = null,
+    imgUrls = [],
+    price = 0,
+    summary = '',
+    capacity = { adults: 1, kids: 0, infants: 0, pets: 0 },
+    amenities = [],
+    accessibility = [],
+    bathrooms = 1,
+    bedrooms = 1,
+    beds = 1,
+    rules = [],
+    labels = [],
+    host = undefined,
+    loc = { country: null, countryCode: null, city: null, address: null, lat: 0, lng: 0 },
+    reviews = []) {
+    return {
+        name,
+        type,
+        imgUrls,
+        price,
+        summary,
+        capacity,
+        amenities,
+        accessibility,
+        bathrooms,
+        bedrooms,
+        beds,
+        rules,
+        labels,
+        host,
+        loc,
+        reviews
+    }
 }
 
 function getDefaultFilter() {
-    return { 
+    return {
         type: 'any',
         types: [],
         maxPrice: 0,
@@ -162,8 +165,8 @@ function getDefaultFilter() {
         bedrooms: 0,
         beds: 0,
         //host: null,
-        dates: {from:null,to:null},
-        loc: { countryCode: '', city: '', maxLat: 90, minLat: -90, maxLng: 180, minLng: -180},
+        dates: { from: null, to: null },
+        loc: { countryCode: '', city: '', maxLat: 90, minLat: -90, maxLng: 180, minLng: -180 },
         raiting: 0,
     }
 }
@@ -171,7 +174,7 @@ function getDefaultFilter() {
 function getSearchParamsFromFilter(filterBy) {
     const searchParams = new URLSearchParams()
     for (const field in filterBy) {
-        if (Array.isArray(filterBy[field])){
+        if (Array.isArray(filterBy[field])) {
             // console.log('array field:', field, filterBy[field], JSON.stringify(filterBy[field]))
             searchParams.set(field, JSON.stringify(filterBy[field]))
             continue
@@ -193,8 +196,8 @@ function getFilterFromSearchParams(searchParams) {
     const defaultFilter = getDefaultFilter()
     const filterBy = {}
     for (const field in defaultFilter) {
-        if (Array.isArray(defaultFilter[field])){
-           //console.log('array field parse:', field, filterBy[field], JSON.parse(searchParams.get(field)))
+        if (Array.isArray(defaultFilter[field])) {
+            //console.log('array field parse:', field, filterBy[field], JSON.parse(searchParams.get(field)))
             filterBy[field] = searchParams.get(field) ? JSON.parse(searchParams.get(field)) : defaultFilter[field]
             continue
         }
@@ -203,13 +206,13 @@ function getFilterFromSearchParams(searchParams) {
                 const key = `${field}.${subField}`
                 filterBy[field] = filterBy[field] || {}
                 if (field === 'dates') {
-                   filterBy[field][subField] = ( searchParams.get(key) && searchParams.get(key) !== "null" ) ? new Date(searchParams.get(key)) : defaultFilter[field][subField]
+                    filterBy[field][subField] = (searchParams.get(key) && searchParams.get(key) !== "null") ? new Date(searchParams.get(key)) : defaultFilter[field][subField]
                 }
-                else if( field === 'guests' ) {
+                else if (field === 'guests') {
                     filterBy[field][subField] = +searchParams.get(key) || defaultFilter[field][subField]
                 }
                 else if (field === 'loc') {
-                    if(subField==='countryCode' || subField==='city'){
+                    if (subField === 'countryCode' || subField === 'city') {
                         filterBy[field][subField] = searchParams.get(key) || defaultFilter[field][subField]
                     }
                     else {
@@ -217,7 +220,7 @@ function getFilterFromSearchParams(searchParams) {
                     }
                 }
                 else {
-                    
+
                     filterBy[field][subField] = searchParams.get(key) || defaultFilter[field][subField]
                 }
             }
@@ -230,29 +233,47 @@ function getFilterFromSearchParams(searchParams) {
             filterBy[field] = +searchParams.get(field) || defaultFilter[field]
         }
     }
-    if(filterBy.caseSensitive){
-        if(filterBy.caseSensitive==='true') filterBy.caseSensitive=true
-        else filterBy.caseSensitive=false
+    if (filterBy.caseSensitive) {
+        if (filterBy.caseSensitive === 'true') filterBy.caseSensitive = true
+        else filterBy.caseSensitive = false
     }
     return filterBy
 }
 
 async function getById(id) {
-    return await storageService.get(PROPERTIES_KEY, id)
+    console.log(id)
+    const property = await storageService.get(PROPERTIES_KEY, id)
+    console.log(property)
+    return property
 }
 
 
 function getPropertiesByCity(city) {
     return storageService.query(PROPERTIES_KEY, 100)
         .then(properties => {
-            return properties.filter(property => 
+            return properties.filter(property =>
                 property.loc.lat >= city.minLat &&
                 property.loc.lat <= city.maxLat &&
                 property.loc.lng >= city.minLng &&
                 property.loc.lng <= city.maxLng
             )
         }).then(filteredProperties => {
-            return reduceList(filteredProperties,8)
-    })
+            return reduceList(filteredProperties, 8)
+        })
+}
+
+export function totalPricePerNight(price, nights) {
+    return (price * nights).toFixed(2)
+}
+
+export function getNightsFromDateRange(from, to) {
+
+    const startDay = new Date(from);
+    const endDay = new Date(to);
+    const oneDay = 1000 * 60 * 60 * 24;
+    const diffInTime = endDay.getTime() - startDay.getTime();
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
 }
 

@@ -2,7 +2,7 @@ export function AppFooter() {
 
     return <>
 
-        <footer className="flex flex-col bg-(--headerBg) px-10">
+        <footer className="flex flex-col bg-(--headerBg) px-10 border-t border-gray-200">
             <div className="grid grid-cols-wrap sm:grid-cols-[5px_repeat(6,1fr)_5px] lg:grid-cols-[5px_repeat(12,1fr)_5px] gap-8 px-10 sm:px-0 sm:border-b sm:border-gray-200 py-12">
                 <div className="flex flex-col sm:col-[2/4] lg:col-[2/4] sm:py-0 sm:border-0 border-b-1 border-gray-200 py-6">
                     <span className="font-semibold mb-4">Support</span>

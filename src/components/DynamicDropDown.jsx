@@ -1,6 +1,6 @@
 
 
-export function DynamicDropDown({ isModalOpen, onCloseModal, children, width, direction, position }) {
+export function DynamicDropDown({ isModalOpen, onCloseModal, children, width, direction, position, className='' }) {
 
 
 
@@ -21,7 +21,6 @@ export function DynamicDropDown({ isModalOpen, onCloseModal, children, width, di
                     rounded-3xl
                     py-4
                     px-8
-                    mt-4
                     shadow-lg
                     border-2
                     border-gray-200
@@ -30,6 +29,7 @@ export function DynamicDropDown({ isModalOpen, onCloseModal, children, width, di
                     duration-200
                     z-50
                     ${isModalOpen ? 'scale-y-100 opacity-100' : 'scale-y-0 opacity-0'}
+                    ${className}
                 `}>
             {children}
         </div>

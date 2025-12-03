@@ -40,7 +40,7 @@ export function ExtendedFilter({ filter }) {
   }
   
 
-  console.log('ExtendedFilter render with localFilter:', localFilter);
+  // console.log('ExtendedFilter render with localFilter:', localFilter);
 
   return <>
   <UserInteruction mobileHeight="95%" isOpen={isExtendedFilterOpen} onClose={() => setIsExtendedFilterOpen(false)} className="!p-0">

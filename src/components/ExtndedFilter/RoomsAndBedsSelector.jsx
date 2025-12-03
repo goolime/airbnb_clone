@@ -6,7 +6,7 @@ export function RoomsAndBedsSelector({filter, onChange }) {
   const [bedsCount, setBedsCount] = useState(filter.beds);
   const [bathroomsCount, setBathroomsCount] = useState(filter.bathrooms);
 
-  console.log('RoomsAndBedsSelector render with filter:', filter, 'roomsCount:', roomsCount, 'bedsCount:', bedsCount, 'bathroomsCount:', bathroomsCount);
+  // console.log('RoomsAndBedsSelector render with filter:', filter, 'roomsCount:', roomsCount, 'bedsCount:', bedsCount, 'bathroomsCount:', bathroomsCount);
 
   useEffect(() => {
     onChange('bedrooms', roomsCount);

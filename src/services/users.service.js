@@ -19,7 +19,7 @@ export const usersService = {
     setNewPropertyToHost
 }
 // For Debug (easy access from console):
-window.cs = usersService
+// window.cs = usersService
 
 function query(filterBy={}) {
     return storageService.query(USERS_KEY)

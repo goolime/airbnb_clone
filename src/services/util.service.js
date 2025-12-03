@@ -4,7 +4,9 @@ export const utilService = {
     getRandomIntInclusive,
     loadFromStorage,
     saveToStorage,
-    animateCSS
+    animateCSS,
+    avg,
+    debounce,
 }
 
 export function makeId(length = 6) {
@@ -75,7 +77,6 @@ export function debounce(func, delay) {
     }
 }
 
-
 export function getExistingProperties(obj) {
     const truthyObj = {}
     for (const key in obj) {
@@ -104,10 +105,11 @@ export function reduceList(list, num) {
 
 export function avg(arr) {
 
-    console.log('arr in avg:', arr);
     if (!arr || !arr.length) return 0
 
     const sum = arr.reduce((acc, curr) => acc + curr, 0)
-    return sum / arr.length
+    return Math.round((sum / arr.length) * 100) / 100
 }
+
+
 

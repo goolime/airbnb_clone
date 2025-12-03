@@ -85,8 +85,8 @@ export function AppHeader() {
                         className='
                         hidden 
                         lg:block 
-                        text-xs 
-                        xl:text-sm 
+                        text-sm 
+                        xl:text-md 
                         font-semibold 
                         py-2 lg:py-3 px-3 lg:px-4 
                         rounded-full 

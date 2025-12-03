@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FilterButton } from "../ExtndedFilter/FilterButton";
 import { AirConditioner, Tv, Kitchen, HotTub, Heating, WorkSpace, Wifi, Washer, Dryer, HairDryer, Iron, Pool, EvCharger, Parking, Crib, KingSizeBed, Gym, BBQGrill, Breakfast, FirePlace, Smoking, Beachfront, Waterfront, SmokeAlarm, CarbonMonoxideAlarm, ChevronDown, ChevronUp } from "../util/Icons.jsx";
 
-const amenityList = {
+export const amenityList = {
     'popular': {
         "A/C": { icon: <AirConditioner className="size-[1.5rem]" />, label: "Air conditioning" },
         "TV": { icon: <Tv className="size-[1.5rem]" />, label: "TV" },
@@ -41,6 +41,7 @@ const amenityList = {
       }
     }
   };
+  
 
 export function AmenitiesSelector({ selectedAmenities, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
