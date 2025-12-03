@@ -71,7 +71,7 @@ export function PropertyDetails() {
 
         loadProperty()
     }, [])
-
+    
     useEffect(() => {
         setSelectedDates(getDatesFromParams())
         setSelectedCapacity(getGuestsFromParams())

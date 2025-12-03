@@ -9,11 +9,25 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
     const navigate = useNavigate()
 
     return <>
-        <div className="snap-start cursor-pointer"  onClick={() => navigate(`/rooms/${property._id}${checkIn ? `/?checkIn=${checkIn}&checkOut=${checkOut}` : ''}&${guests ? `&adults=${guests.adults}&kids=${guests.kids}&infants=${guests.infants}&pets=${guests.pets}` : ''}`)}>
+        <div className="snap-start cursor-pointer" onClick={() => {
+            const params = new URLSearchParams();
+            if (checkIn) {
+                params.append('checkIn', checkIn);
+                params.append('checkOut', checkOut);
+            }
+            if (guests) {
+                params.append('adults', guests.adults);
+                params.append('kids', guests.kids);
+                params.append('infants', guests.infants);
+                params.append('pets', guests.pets);
+            }
+            const queryString = params.toString();
+            navigate(`/rooms/${property._id}${queryString ? `?${queryString}` : ''}`);
+        }}>
             <Carousel slides={property.imgUrls} className={styles.carousel} auto="hover" />
             <div className={`flex justify-between items-center mt-2 mb-1 text-gray-900 ${styles.header}`}>
                 <div className="font-semibold">{property.type} | {property.loc.city}</div>
-                <div>{raitingString}</div>
+                <div className="ml-2">{raitingString}</div>
             </div>
             <div className={`text-gray-600 ${styles.text}`}>{property.summary}</div>
             <div className={`text-gray-600 ${styles.text}`}>{property.bedrooms} Bedrooms - {property.beds} Beds</div>
