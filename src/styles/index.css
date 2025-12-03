@@ -34,6 +34,24 @@
     @apply bg-gray-100 font-semibold scale-110 rounded-xl z-10;
 }
 
+.property-popup .mapboxgl-popup-content {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.property-popup .mapboxgl-popup-tip {
+    display: none !important;
+}
+
+.property-popup .mapboxgl-popup-close-button {
+    right: 8px;
+    top: 8px;
+    font-size: 20px;
+    color: #666;
+}
+
 /* Basics */
 @import url('./basics/base.css');
 @import url('./basics/helpers.css');

@@ -25,7 +25,7 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
             navigate(`/rooms/${property._id}${queryString ? `?${queryString}` : ''}`);
         }}>
             <Carousel slides={property.imgUrls} className={styles.carousel} auto="hover" />
-            <div className={`flex justify-between items-center mt-2 mb-1 text-gray-900 ${styles.header}`}>
+            <div className={`flex justify-between items-center pt-2 pb-1 text-gray-900 ${styles.header}`}>
                 <div className="font-semibold">{property.type} | {property.loc.city}</div>
                 <div className="ml-2">{raitingString}</div>
             </div>

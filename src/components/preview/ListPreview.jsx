@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 /**
  * @param {Array} properties - exactly 8 properties 
  */
-export function ListPreview({ properties, checkIn = null, checkOut = null, guests = null, className = '' }) {
+export function ListPreview({ properties, checkIn = null, checkOut = null, guests = null }) {
     const containerRef = useRef(null)
 
     const styles = {
