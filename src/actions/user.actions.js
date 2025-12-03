@@ -1,4 +1,4 @@
-import { usersService } from '../services/users.service';
+import { usersService } from '../services/users/index.js';
 import { SET_USER, REMOVE_USER } from '../store/user.reducer.js';
 import { store } from '../store/store.js';
 

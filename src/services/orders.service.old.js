@@ -3,7 +3,6 @@ import { storageService } from './async-storage.service.js'
 const ORDER_KEY = 'ordersDB'
 
 export const ordersService = {
-    query,
     get,
     remove,
     save,
@@ -15,12 +14,6 @@ export const ordersService = {
 // For Debug (easy access from console):
 window.cs = ordersService
 
-function query(filterBy,orderBy = { field: 'name', direction: 1 }) {
-    return storageService.query(ORDER_KEY)
-        .then(orders => {
-            return orders
-        })
-}
 
 
 function get(orderId) {

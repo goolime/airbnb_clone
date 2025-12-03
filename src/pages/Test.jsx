@@ -2,7 +2,7 @@ import {  FilterIcon } from "../components/util/Icons";
 import { useState } from "react";
 import { showLoginModal, showExtendedFilter, showPropertyCreation } from "../services/event-bus.service.js";
 import { AppearOnURL } from "../components/util/AppearOnURL.jsx";
-import { propertiesService } from "../services/properties.service.js";
+import { propertiesService } from "../services/properties/index.js";
 import { UserLogin } from "../components/UserLogin.jsx";
 import { useNavigate } from "react-router";
 import { PropertyCreation } from "../components/PropertyCreation.jsx";

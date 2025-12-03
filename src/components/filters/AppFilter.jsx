@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { propertiesService } from "../../services/properties.service.js"
+import { propertiesService } from "../../services/properties/index.js"
 
 import { LargeFilter } from "../filters/LargeFilter.jsx";
 import { MobileFilter } from "../filters/MobileFilter.jsx";
