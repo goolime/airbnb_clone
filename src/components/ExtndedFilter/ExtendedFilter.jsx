@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { propertiesService } from "../../services/properties.service.js";
 
 export function ExtendedFilter({ filter }) {
+
   const [isExtendedFilterOpen, setIsExtendedFilterOpen] = useState(false);
   const [localFilter, setLocalFilter] = useState({ ...filter });
   const navigate = useNavigate();
@@ -34,13 +35,10 @@ export function ExtendedFilter({ filter }) {
   });
 
   function navigateToSearch() {
-    //const searchParams = createSearchParams();
+
     navigate({pathname: '/search', search: `?${propertiesService.getSearchParamsFromFilter(localFilter).toString()}`});
     setIsExtendedFilterOpen(false);
   }
-  
-
-  // console.log('ExtendedFilter render with localFilter:', localFilter);
 
   return <>
   <UserInteruction mobileHeight="95%" isOpen={isExtendedFilterOpen} onClose={() => setIsExtendedFilterOpen(false)} className="!p-0">

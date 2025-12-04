@@ -142,7 +142,7 @@ function Tag({ property, checkIn = null, checkOut = null, guests = null, selecte
                     closeOnClick={true}
                     closeButton={false}
                     anchor="top"
-                    offset={[-30, 25]}
+                    offset={[-35, 25]}
                     className="property-popup"
                     style={{ zIndex: 100 }}
                 >

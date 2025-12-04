@@ -25,13 +25,16 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
             navigate(`/rooms/${property._id}${queryString ? `?${queryString}` : ''}`);
         }}>
             <Carousel slides={property.imgUrls} className={styles.carousel} auto="hover" />
-            <div className={`flex justify-between items-center pt-2 pb-1 text-gray-900 ${styles.header}`}>
+            <div className={`items-center pt-2 pb-1 text-gray-900 ${styles.header}`}>
                 <div className="font-semibold">{property.type} | {property.loc.city}</div>
-                <div className="ml-2">{raitingString}</div>
             </div>
             <div className={`text-gray-600 ${styles.text}`}>{property.summary}</div>
             <div className={`text-gray-600 ${styles.text}`}>{property.bedrooms} Bedrooms - {property.beds} Beds</div>
-            <div className={`text-gray-600 ${styles.text}`}>{priceString}</div>
+            <div className={`flex text-gray-600 ${styles.text}`}>
+                <div>{priceString}</div>
+                <div className="mx-1 font-semibold">&middot;</div>
+                <div>{raitingString}</div>
+            </div>
         </div>
     </>
 }

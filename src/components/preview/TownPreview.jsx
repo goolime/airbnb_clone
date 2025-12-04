@@ -31,7 +31,7 @@ export function TownPreview({city,properties,idx}){
     }
 
     const styles={
-        carousel:"size-[40dvw] sm:size-[21.8dvw] md:size-[17.05dvw] lg:size-[14.5dvw] xl:size-[178px]",
+        carousel:"size-[40dvw] sm:size-[21.8dvw] md:size-[17.05dvw] lg:size-[14.5dvw] xl:size-[185px]",
         header:"sm:text-[1.7dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13.5px]",
         text:"sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]"
     }
@@ -43,7 +43,7 @@ export function TownPreview({city,properties,idx}){
                     const filter={...propertiesService.getDefaultFilter(),loc:city}
                     navigate({pathname: '/search', search: `?${propertiesService.getSearchParamsFromFilter(filter).toString()}`});
                 }}>
-                    <h1 className="text-lg font-semibold  ">{`${getRandomHeader(idx)} ${city.city}`}</h1>
+                    <h1 className="xl:ml-4 text-lg font-semibold  ">{`${getRandomHeader(idx)} ${city.city}`}</h1>
                     <ChevronRight className="text-lg" />
                 </div>
                 <div className="flex-row hidden sm:flex text-3xl mr-2">
