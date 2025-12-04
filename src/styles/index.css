@@ -52,6 +52,15 @@
     color: #666;
 }
 
+.marker {
+    z-index: 1;
+    transition: z-index 0s;
+}
+
+.marker:hover {
+    z-index: 10;
+}
+
 /* Basics */
 @import url('./basics/base.css');
 @import url('./basics/helpers.css');
