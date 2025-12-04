@@ -79,6 +79,8 @@ function getPricingString(checkIn, checkOut, price) {
 function Tag({ property, checkIn = null, checkOut = null, guests = null, selectedLocation, setSelectedLocation }) {
 
     const isSelected = selectedLocation?._id === property._id
+    const [hoveredMarkerId, setHoveredMarkerId] = useState(null);
+    
     const styles = {
         carousel: "aspect-[3/2] w-full rounded-b-none",
         header: "text-lg font-semibold px-2 bg-white",
@@ -94,11 +96,15 @@ function Tag({ property, checkIn = null, checkOut = null, guests = null, selecte
     return (
         <>
             <Marker
-                longitude={property.loc.lng}
                 latitude={property.loc.lat}
-                offsetLeft={-33}
-                offsetTop={-14}
-                onClick={handleClick}
+                longitude={property.loc.lng}
+                onMouseEnter={() => setHoveredMarkerId(property._id)}
+                onMouseLeave={() => setHoveredMarkerId(null)}
+                onClick={() => setSelectedLocation(property)}
+                style={{
+                    zIndex: selectedLocation?._id === property._id ? 100 :
+                        hoveredMarkerId === property._id ? 10 : 1
+                }}
             >
                 <div
                     onClick={handleClick}
@@ -136,11 +142,12 @@ function Tag({ property, checkIn = null, checkOut = null, guests = null, selecte
                     closeOnClick={true}
                     closeButton={false}
                     anchor="top"
-                    offset={35}
+                    offset={[-30, 25]}
                     className="property-popup"
+                    style={{ zIndex: 100 }}
                 >
                     <div className='rounded-xl overflow-hidden shadow-2xl' style={{ width: '320px' }}>
-                        <PropertyPreview property={property} key={property._id} styles={styles} checkIn={checkIn} checkOut={checkOut} guests={guests}/>
+                        <PropertyPreview property={property} key={property._id} styles={styles} checkIn={checkIn} checkOut={checkOut} guests={guests} />
                         <div className='pt-2 bg-white'></div>
                     </div>
                 </Popup>
