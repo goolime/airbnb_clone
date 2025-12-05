@@ -4,7 +4,7 @@ import { PropertyPlaceholder } from "./PropertyPlaceholder";
 /**
  * @param {Array} properties - exactly 8 properties 
  */
-export function ListPlaceholder() {
+export function ListPlaceholder({className=''}) {
 
     const styles = {
         
@@ -15,7 +15,7 @@ export function ListPlaceholder() {
 
     return <>
         <div className="py-4">
-            <div className={`grid sm:grid-cols-2 xl:grid-cols-3 align-center w-100% snap-y overflow-y-scroll scrollbar-hide gap-5`}>
+            <div className={`grid sm:grid-cols-2 xl:grid-cols-3 align-center w-100% snap-y overflow-y-scroll scrollbar-hide gap-5 ${className}`}>
                 { Array.from({ length: 18 }, ( v, index) => index).map(i=><PropertyPlaceholder styles={styles} key={i} />)}
             </div>
         </div>

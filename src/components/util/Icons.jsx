@@ -33,6 +33,9 @@ import {
     TbPencil
 } from "react-icons/tb";
 
+import { FaSuitcase,FaMoneyCheckAlt } from "react-icons/fa";
+import { MdOutlineHolidayVillage } from "react-icons/md";
+
 import { FiChevronDown, FiChevronLeft, FiChevronRight, FiChevronUp } from "react-icons/fi";
 
 function SVGIcon({ svgContent, className = "" }) {
@@ -210,3 +213,6 @@ export const ApartmentIcon = ({className,hexColor="#000000"}) => <svg xmlns="htt
                                                </g>
                                                </svg>
 export const EditIcon = ({className}) => <TbPencil className={className} />
+export const Suitcase = ({className}) => <FaSuitcase className={className} />
+export const PropertyIcon = ({className}) => <MdOutlineHolidayVillage className={className} />
+export const BookingIcon = ({className}) => <FaMoneyCheckAlt className={className} />
