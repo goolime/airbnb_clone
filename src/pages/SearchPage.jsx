@@ -89,6 +89,7 @@ export function SearchPage() {
                             location={filterData?.loc}
                             checkIn={filterData.dates.from}
                             checkOut={filterData.dates.to}
+                            guests={filterData.guests}
                         />
                     </div>
                 </div>
@@ -111,6 +112,7 @@ export function SearchPage() {
                             location={filterData?.loc}
                             checkIn={filterData.dates.from}
                             checkOut={filterData.dates.to}
+                            guests={filterData.guests}
                         />
                     </div>
                 )}

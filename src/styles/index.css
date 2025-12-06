@@ -34,6 +34,33 @@
     @apply bg-gray-100 font-semibold scale-110 rounded-xl z-10;
 }
 
+.property-popup .mapboxgl-popup-content {
+    background: transparent !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.property-popup .mapboxgl-popup-tip {
+    display: none !important;
+}
+
+.property-popup .mapboxgl-popup-close-button {
+    right: 8px;
+    top: 8px;
+    font-size: 20px;
+    color: #666;
+}
+
+.marker {
+    z-index: 1;
+    transition: z-index 0s;
+}
+
+.marker:hover {
+    z-index: 10;
+}
+
 .add-property-hover:hover .add-property-icon{
     @apply scale-110 bg-gray-500;
 }

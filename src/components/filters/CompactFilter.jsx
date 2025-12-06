@@ -1,6 +1,7 @@
 import { BiSearch } from "react-icons/bi"
 import { FcHome } from "react-icons/fc"
 import { FilterIcon } from "../util/Icons"
+import { showExtendedFilter } from "../../services/event-bus.service";
 
 export function CompactFilter({ currentPath, handleLargeFilterVisibility, onOpenLocationModal, onOpenDateModal, onOpenGuestModal }) {
 
@@ -58,7 +59,8 @@ export function CompactFilter({ currentPath, handleLargeFilterVisibility, onOpen
             {currentPath === '/search' &&
                 <button className="flex flex-row justify-between items-center rounded-full ml-4 px-4 h-10 w-24 
                                    bg-white shadow-md shadow-gray-200 border border-gray-200 hover:shadow-gray-300 
-                                   hover:border-gray-500 hover:bg-gray-100 cursor-pointer">
+                                   hover:border-gray-500 hover:bg-gray-100 cursor-pointer"
+                     onClick={() => showExtendedFilter() }>
                     <FilterIcon className="h-6 w-6 text-gray-800" />
                     <span className="font-semibold text-sm text-gray-800">Filters</span>
                 </button>

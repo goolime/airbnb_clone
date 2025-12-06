@@ -18,8 +18,10 @@ export function ExplorePage() {
     if (isLoading) return <div className="animate-pulse h-[80vh] overflow-hidden mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black">
         {[1, 2, 3, 4, 5, 6, 7].map(i => <TownPlaceholder key={i} />)}
     </div>
-    
+
     return <>
-        {towns.map((town, i) => <TownPreview idx={i} city={town.city} properties={town.properties} key={i} />)}
+        <div className="py-4">
+            {towns.map((town, i) => <TownPreview idx={i} city={town.city} properties={town.properties} key={i} />)}
+        </div>
     </>
 }
