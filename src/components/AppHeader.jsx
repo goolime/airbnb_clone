@@ -81,7 +81,7 @@ export function AppHeader() {
                     md:col-start-3
                 '>
                     <div
-                        onClick={() => navigate('/host')}
+                        onClick={() => navigate('/profile/properties')}
                         className='
                         hidden 
                         lg:block 

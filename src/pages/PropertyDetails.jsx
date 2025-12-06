@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams, useSearchParams } from "react-router"
-import { propertiesService } from '../services/properties.service.js'
+import { propertiesService } from '../services/properties/index.js'
 import { avg } from "../services/util.service.js"
 
 import { FiChevronRight, FiShare } from "react-icons/fi"

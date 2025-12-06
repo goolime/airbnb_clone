@@ -1,4 +1,4 @@
-import { propertiesService } from "../services/properties.service.js";
+import { propertiesService } from "../services/properties/index.js";
 import { reduceList } from "../services/util.service.js"
 
 const PAGE_SIZE = 18

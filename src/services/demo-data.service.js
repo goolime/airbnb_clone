@@ -1,5 +1,5 @@
-import { usersService } from "./users.service.js";
-import { propertiesService } from "./properties.service.js";
+import { usersService } from "./users/index.js";
+import { propertiesService } from "./properties/index.js";
 import { storageService } from './async-storage.service.js'
 import { makeId } from "./util.service.js";
 

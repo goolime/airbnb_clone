@@ -1,4 +1,4 @@
-import { propertiesService } from "../services/properties.service";
+import { propertiesService } from "../services/properties/index.js";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserInteruction } from "./util/UserInteruaction.jsx";
@@ -10,7 +10,7 @@ import { PropertyBaiscsForm } from "./PropertyCreation/PropertyBaiscsForm.jsx";
 import { RoomsAndBedsSelector } from "./PropertyCreation/RoomsAndBedsSelector.jsx"
 import { GuestsCapacitySelector } from "./PropertyCreation/GuestsCapacitySelector.jsx";
 import { PriceSelector } from "./PropertyCreation/PriceSelector.jsx";
-import { usersService } from "../services/users.service.js";
+import { usersService } from "../services/users/index.js";
 import { store } from "../store/store.js";
 import { getPictures } from "../services/demo-data.service.js";
 import { getCordinates } from "../actions/property.actions.js";
@@ -103,7 +103,7 @@ export function PropertyCreation() {
   console.log('New Property State:', newProperty);
 
   return <>
-    <UserInteruction mobileHeight="95%" isOpen={isPropertyCreationOpen} onClose={() => setIsPropertyCreationOpen(false)} className="!p-0">
+    <UserInteruction mobileHeight="95%" isOpen={isPropertyCreationOpen} onClose={() => setIsPropertyCreationOpen(false)} className="!p-0 sm:h-[81%]">
         <div className="grid grid-cols-[1rem_1fr_1rem]">
             <div className="w-[100%] col-span-full font-semibold text-xl text-gray-800 text-center border-b border-gray-300 pb-2"> List New Property </div>
             <div className="col-start-2 col-end-4 overflow-y-scroll max-h-[80vh] sm:max-h-[64vh] pr-[1rem] flex flex-col">
