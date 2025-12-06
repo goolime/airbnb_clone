@@ -9,6 +9,7 @@ import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
 import { ProfilePage } from "./pages/ProfilePage.jsx"
 import { PropertyDetails } from "./pages/PropertyDetails.jsx"
+import { Reservation } from "./pages/Reservation.jsx"
 
 const Router = BrowserRouter
 
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/explore" element={<ExplorePage />} />
                 <Route path="/rooms/:propertyId" element={<PropertyDetails />} />
                 <Route path="/search" element={<SearchPage />} />
+                <Route path="/reservation" element={<Reservation />}/>
                 <Route path="/profile" element={<ProfilePage />} />
                 <Route path="/test" element={<Test />} />
               </Routes>
