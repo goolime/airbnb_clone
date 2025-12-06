@@ -9,6 +9,7 @@ import { Test } from "./pages/Test.jsx"
 import { ServiceAnimalInfo } from "./components/ServiceAnimalInfo.jsx"
 import { ProfilePage } from "./pages/ProfilePage.jsx"
 import { PropertyDetails } from "./pages/PropertyDetails.jsx"
+import { Reservation } from "./pages/Reservation.jsx"
 import { UserData } from "./components/profile/UserData.jsx"
 import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
 import { UserProperties } from "./components/profile/UserProperties.jsx"
@@ -36,12 +37,14 @@ function App() {
                 <Route path="/explore" element={<ExplorePage />} />
                 <Route path="/rooms/:propertyId" element={<PropertyDetails />} />
                 <Route path="/search" element={<SearchPage />} />
+                <Route path="/reservation" element={<Reservation />}/>
                 <Route path="/profile" element={<ProfilePage />}>
                   <Route path="/profile/user" element={<UserData />} />
                   <Route path="/profile/orders" element={<PropertyOrders />} />
                   <Route path="/profile/properties" element={<UserProperties />} />
                   <Route path="/profile/myorders" element={<UserOrders />} />
                 </Route>
+
                 <Route path="/test" element={<Test />} />
               </Routes>
             </div>

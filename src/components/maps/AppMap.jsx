@@ -3,9 +3,11 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 import { Map, Popup, Marker } from 'react-map-gl/mapbox'
 import { getCenter } from 'geolib'
 import { useRef, useState, useEffect } from 'react'
-import { Carousel } from '../util/Carousel.jsx'
+import { PropertyPreview } from '../preview/PropertyPreview'
+import { TbHeart } from 'react-icons/tb'
+import { IoClose, IoHeart, IoHeartOutline } from 'react-icons/io5'
 
-export function AppMap({ searchResults, location, checkIn = null, checkOut = null }) {
+export function AppMap({ searchResults, location, checkIn = null, checkOut = null, guests = null }) {
 
     const [selectedLocation, setSelectedLocation] = useState(null)
     const mapRef = useRef(null);
@@ -59,6 +61,7 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
                             checkOut={checkOut}
                             selectedLocation={selectedLocation}
                             setSelectedLocation={setSelectedLocation}
+                            guests={guests}
                         />
                     ))
                 }
@@ -75,52 +78,99 @@ function getPricingString(checkIn, checkOut, price) {
     return Math.ceil(price * time)
 }
 
-function Tag({ property, checkIn = null, checkOut = null, selectedLocation, setSelectedLocation }) {
-    const isSelected = selectedLocation?._id === property._id
-    const styles = {
+function Tag({ property, checkIn = null, checkOut = null, guests = null, selectedLocation, setSelectedLocation }) {
 
-        carousel: "size-[86dvw] sm:size-[45.5dvw] md:size-[21dvw] lg:size-[21.6dvw] xl:size-[200px]",
-        header: "sm:text-[2dvw] md:text-[1.4dvw] lg:text-[1.1dvw] xl:text-[14.2px]",
-        text: " sm:text-[1.93dvw] md:text-[1.4dvw] lg:text-[1.1dvw] xl:text-[14.2px]"
+    const isSelected = selectedLocation?._id === property._id
+    const [hoveredMarkerId, setHoveredMarkerId] = useState(null);
+
+    const styles = {
+        carousel: "aspect-[3/2] w-full rounded-b-none",
+        header: "text-lg font-semibold px-2 bg-white",
+        text: "text-sm text-gray-600 px-2 bg-white"
+    }
+
+    const handleClick = (e) => {
+        if (e?.stopPropagation) e.stopPropagation()
+        if (e?.preventDefault) e.preventDefault()
+        setSelectedLocation(property)
     }
 
     return (
-        <Marker
-            longitude={property.loc.lng}
-            latitude={property.loc.lat}
-            offsetLeft={-33}
-            offsetTop={-14}
-        >
-            <div
+        <>
+            <Marker
+                latitude={property.loc.lat}
+                longitude={property.loc.lng}
+                onMouseEnter={() => setHoveredMarkerId(property._id)}
+                onMouseLeave={() => setHoveredMarkerId(null)}
                 onClick={() => setSelectedLocation(property)}
-                className={`
-                    relative
-                    z-40
-                    cursor-pointer 
-                    flex
-                    justify-center 
-                    items-center 
-                    px-2.5
-                    py-1.5
-                    border
-                    rounded-lg
-                    transition-all
-                    whitespace-nowrap
-                    ${isSelected
-                        ? 'bg-gray-900 text-white border-gray-900 scale-110 shadow-lg z-10'
-                        : 'bg-white text-gray-900 border-gray-300 hover:scale-105 hover:shadow-md shadow-sm'
-                    }
-                `}
+                style={{
+                    zIndex: selectedLocation?._id === property._id ? 100 :
+                        hoveredMarkerId === property._id ? 10 : 1
+                }}
             >
-                <span className='text-sm font-semibold'>
-                    €{getPricingString(checkIn, checkOut, property.price)}
-                </span>
-            </div>
-            {isSelected &&
-                <div className='fixed z-50 right-0'>
-
+                <div
+                    onClick={handleClick}
+                    onMouseDown={handleClick}
+                    className={`
+                        relative
+                        cursor-pointer 
+                        flex
+                        justify-center 
+                        items-center 
+                        px-2.5
+                        py-1.5
+                        border
+                        rounded-lg
+                        transition-all
+                        whitespace-nowrap
+                        ${isSelected
+                            ? 'bg-gray-900 text-white border-gray-900 scale-110 shadow-lg z-50'
+                            : 'bg-white text-gray-900 border-gray-300 hover:scale-105 hover:shadow-md shadow-sm'
+                        }
+                    `}
+                >
+                    <span className='text-sm font-semibold'>
+                        €{getPricingString(checkIn, checkOut, property.price)}
+                    </span>
                 </div>
-            }
-        </Marker>
+            </Marker>
+            {isSelected && (
+                <Popup
+                    latitude={property.loc.lat}
+                    longitude={property.loc.lng}
+                    onClose={() => {
+                        setSelectedLocation(null)
+                    }}
+                    closeOnClick={true}
+                    closeButton={false}
+                    anchor="top"
+                    offset={[-35, 25]}
+                    className="property-popup"
+                    style={{ zIndex: 100 }}
+                >
+                    <div className='rounded-xl overflow-hidden shadow-2xl relative' style={{ width: '320px' }}>
+                        <div className='absolute top-3 right-3 flex gap-2 z-10'>
+                            <button
+                                className='w-8 h-8 bg-white opacity-70 hover:opacity-100 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform'
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    //TODO: Add wishlist toggle logic here
+                                }}
+                            >
+                                <IoHeartOutline size={16}/>
+                            </button>
+                            <button
+                                className='w-8 h-8 bg-white opacity-70 hover:opacity-100 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform'
+                                onClick={() => setSelectedLocation(null)}
+                            >
+                                <IoClose size={16}/>
+                            </button>
+                        </div>
+                        <PropertyPreview property={property} key={property._id} styles={styles} checkIn={checkIn} checkOut={checkOut} guests={guests} />
+                        <div className='pt-2 bg-white'></div>
+                    </div>
+                </Popup>
+            )}
+        </>
     )
 }

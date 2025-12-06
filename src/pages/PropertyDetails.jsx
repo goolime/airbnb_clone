@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams, useSearchParams } from "react-router"
+import { useNavigate, useParams, useSearchParams } from "react-router"
 import { propertiesService } from '../services/properties/index.js'
 import { avg } from "../services/util.service.js"
 
@@ -66,6 +66,7 @@ export function PropertyDetails() {
     const { propertyId } = useParams()
     const [checkInActive, setCheckInActive] = useState(true)
     const [checkOutActive, setCheckOutActive] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
 
@@ -416,7 +417,9 @@ export function PropertyDetails() {
                                             </div>
                                         </div>
                                     </div>
-                                    <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold cursor-pointer">Reserve</button>
+                                    <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold cursor-pointer"
+                                    onClick={() => navigate('/reservation')}>
+                                        Reserve</button>
                                 </div>
                                 <span className="text-center mt-2 text-sm">You won't be charged yet</span>
                             </div>
