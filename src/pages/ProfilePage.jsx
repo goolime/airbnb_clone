@@ -39,28 +39,38 @@ export function ProfilePage() {
             <div className='font-bold text-2xl mt-2 mb-1 max-md:hidden'>Profile</div>
             <Option to="/profile/user" >
                 <img src={user.imgUrl} alt={<img src={userImage} className='size-[2rem] rounded-full inline-block mr-2 object-cover'/>} className="size-[2rem] rounded-full inline-block mr-2 object-cover" />
-                About me
+                <div>
+                    About me
+                </div>
             </Option>
             <Option to="/profile/myorders" >
-                <Suitcase className="size-[1.5rem] inline-block mr-2 object-cover" />
-                My orders
+                <Suitcase className="size-[2rem] md:size-[1.5rem] inline-block mr-2 object-cover" />
+                <div>
+                    My orders
+                </div>
             </Option>
             { user.properties ?
             <>
                 <div className='font-bold text-2xl mt-2 mb-1 max-md:hidden'>Host</div>
                 <Option to="/profile/properties" >
-                    <PropertyIcon className="size-[1.5rem] inline-block mr-2 object-cover" />
-                    My properties
+                    <PropertyIcon className="size-[2rem] md:size-[1.5rem] inline-block mr-2 object-cover" />
+                    <div>
+                        My properties
+                    </div>
                 </Option>
                 <Option to="/profile/orders">
-                    <BookingIcon className="size-[1.5rem] inline-block mr-2 object-cover" />
-                    Bookings
+                    <BookingIcon className="size-[2rem] md:size-[1.5rem] inline-block mr-2 object-cover" />
+                    <div>
+                        Bookings
+                    </div>
                 </Option> 
             </>
             :
             <Option to="/profile/properties" >
-                <PropertyIcon className="size-[1.5rem] inline-block mr-2 object-cover" />
-                Become a host
+                <PropertyIcon className="size-[2rem] md:size-[1.5rem] inline-block mr-2 object-cover" />
+                <div>
+                    Become a host
+                </div>
             </Option>
     }
         </nav>
@@ -72,7 +82,7 @@ export function ProfilePage() {
 }
 
 function Option({children, to}){
-    return <NavLink to={to} className="rounded-md px-5 py-3 hover:bg-gray-100 option">
+    return <NavLink to={to} className="rounded-md px-5 py-3 hover:bg-gray-100 flex items-center flex-col md:flex-row option">
         {children}
     </NavLink>
 }

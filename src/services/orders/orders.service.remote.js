@@ -6,7 +6,9 @@ export const ordersService = {
     get,
     remove,
     save,
-    getById
+    getById,
+    getOrdersByUserId,
+    getOrdersByPropertyId
 }
 
 function get(orderId) {
@@ -27,4 +29,12 @@ function save(order) {
 
 async function getById(id) {
     return await httpService.get(ORDER_URL + id)
+}
+
+async function getOrdersByUserId(userId) {
+    return await httpService.get(`user/${userId}/orders`)
+}
+
+async function getOrdersByPropertyId(propertyId) {
+    return await httpService.get(`property/${propertyId}/orders`)
 }

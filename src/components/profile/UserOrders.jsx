@@ -1,3 +1,39 @@
+import { useState, useEffect } from "react"
+import { store } from "../../store/store.js"
+import { ordersService } from "../../services/orders/index.js"
+import SuitcaseImg  from "../../assets/images/suitcase.png"
+import { OrderPreview } from "./OrderPreview.jsx"
+
 export function UserOrders() {
-    return <div>User Orders Component - to be implemented</div>
+    const [orders, setOrders] = useState([])
+
+    useEffect(() => {
+        async function fetchOrders() {
+            const storeState = store.getState()
+            const user = storeState.userModule.loggedInUser
+            if (user) {
+                const userOrders = await ordersService.getOrdersByUserId(user._id)
+                setOrders(userOrders)
+            }
+        }
+
+        fetchOrders();
+    }, [])
+
+    if (!orders.length) {
+        return <>
+            <div className="flex flex-col items-center justify-center border border-gray-300 rounded-2xl gap-2 p-6 m-4 shadow-md">
+                <img src={SuitcaseImg} alt="No Orders" className="w-[24rem] mb-4" />
+                <h2 className="text-2xl font-semibold text-gray-600">You have no bookings yet</h2>
+                <p className="text-gray-500 mt-2">Start exploring and book your first stay!</p>
+            </div>
+        </>
+    }
+
+    return <>
+        <div>My Orders</div>
+        <div className="flex flex-col gap-4">
+            {orders.map(order => <OrderPreview key={order._id} order={order} />)}
+        </div>
+    </>
 }

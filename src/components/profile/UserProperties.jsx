@@ -40,7 +40,7 @@ export function UserProperties() {
         <div className={`max-w-[1400px] h-[80vh] overflow-y-auto scrollbar-hide ${loading ? 'animate-pulse mask-b-from-white mask-b-from-50% mask-b-to-black' : ''}`}>
         {
             (!user || !user.properties || loading) ?
-            <div className="px-12 py-5 overflow-y-auto animate-pulse">
+            <div className="px-12 py-5 overflow-y-auto animate-pulse" onClick={() => showPropertyCreation()}>
                 <ListPlaceholder className="sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-5" />
             </div>
             :

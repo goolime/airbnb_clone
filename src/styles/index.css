@@ -42,6 +42,18 @@
     @apply animate-pulse opacity-100;
 }
 
+nav a.active.option{
+    @apply text-gray-900 font-bold bg-gray-100 ;
+}
+
+nav a.active.option svg{
+    @apply max-md:text-red-500; ;
+}
+
+nav a.active.option img{
+    @apply max-md:drop-shadow-md max-md:drop-shadow-red-500/50; ;
+}
+
 
 /* Basics */
 @import url('./basics/base.css');
