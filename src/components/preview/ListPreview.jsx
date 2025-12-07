@@ -1,7 +1,5 @@
-import { OnHoverFlipIcon } from "../util/onHoverFlipIcon";
 import { PropertyPreview } from "./PropertyPreview";
-import { TbSquareRoundedArrowRightFilled, TbSquareRoundedArrowLeftFilled, TbSquareRoundedArrowRight, TbSquareRoundedArrowLeft } from "react-icons/tb";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { AddProperty } from "./addProperty.jsx";
 
 /**
