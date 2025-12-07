@@ -2,10 +2,18 @@ import { useState, useEffect } from "react"
 import { store } from "../../store/store.js"
 import { ordersService } from "../../services/orders/index.js"
 import SuitcaseImg  from "../../assets/images/suitcase.png"
-import { OrderPreview } from "./OrderPreview.jsx"
+import { OrdersList } from "./OrdersList.jsx"
+import { OrdersListPlaceholder } from "./OrdersListPlaceholder.jsx"
 
 export function UserOrders() {
     const [orders, setOrders] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    function removerOrder(orderId) {
+        ordersService.remove(orderId).then(() => {
+            setOrders((prevOrders) => prevOrders.filter(order => order._id !== orderId));
+        });
+    }
 
     useEffect(() => {
         async function fetchOrders() {
@@ -15,12 +23,19 @@ export function UserOrders() {
                 const userOrders = await ordersService.getOrdersByUserId(user._id)
                 setOrders(userOrders)
             }
+            setIsLoading(false)
         }
 
         fetchOrders();
     }, [])
 
-    if (!orders.length) {
+    if (isLoading) {
+            return <div className="px-4 pt-4 overflow-y-auto animate-pulse">
+                <OrdersListPlaceholder />
+            </div>
+    }
+
+    if (!isLoading && !orders.length) {
         return <>
             <div className="flex flex-col items-center justify-center border border-gray-300 rounded-2xl gap-2 p-6 m-4 shadow-md">
                 <img src={SuitcaseImg} alt="No Orders" className="w-[24rem] mb-4" />
@@ -31,9 +46,8 @@ export function UserOrders() {
     }
 
     return <>
-        <div>My Orders</div>
-        <div className="flex flex-col gap-4">
-            {orders.map(order => <OrderPreview key={order._id} order={order} />)}
+        <div className="flex flex-col p-4">
+            <OrdersList orders={orders} onRemoveOrder={removerOrder} />
         </div>
     </>
 }

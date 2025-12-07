@@ -9,6 +9,7 @@ import { CompactFilter } from "./CompactFilter.jsx";
 import { ExtendedFilter } from "../ExtndedFilter/ExtendedFilter.jsx";
 
 
+
 export function AppFilter() {
 
     const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
@@ -83,7 +84,7 @@ export function AppFilter() {
     }
 
     function onCloseFilterModal() {
-        setIsFilterModalClose(false)
+        //setIsFilterModalClose(false)
     }
 
     function onOpenModal() {

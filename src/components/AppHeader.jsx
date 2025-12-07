@@ -1,27 +1,37 @@
 import { useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
-import { BiHeart, BiMessage, BiSearch, BiUser } from 'react-icons/bi'
+import { BiHeart, BiMessage, BiSearch, BiUser,BiUserX } from 'react-icons/bi'
 import logoImage from '../assets/images/airdnd-logo.png'
 import userImage from '../assets/images/user.png'
 import { AppFilter } from './filters/AppFilter.jsx'
 import { useNavigate } from 'react-router'
 import { UserLogin } from './UserLogin.jsx'
+import { useLocation } from 'react-router-dom'
+import { store } from '../store/store.js'
+import { showLoginModal } from '../services/event-bus.service.js'
+import { usersService } from '../services/users/index.js'
+
 
 
 export function AppHeader() {
     
     const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const location = useLocation();
+    const currentPath = location.pathname;
+
+    const hideFilter= currentPath.startsWith('/profile')
+    const user= store.getState().userModule.loggedInUser
 
     return (
         <>
-            <div className='
+            <div className={`
                 sticky 
                 top-0
                 grid 
                 grid-cols-2
                 sm:grid-cols-2 
-                sm:grid-rows-2
+                ${!hideFilter ? 'sm:grid-rows-2' : ''}
                 md:grid-cols-[auto_1fr_auto]
                 md:grid-rows-1
                 lg:grid-cols-[auto_minmax(700px,850px)_auto] 
@@ -35,7 +45,7 @@ export function AppHeader() {
                 px-2
                 sm:px-4
                 lg:px-6
-            '>
+            `}>
                 {/* Logo Section */}
                 <div className='hidden sm:flex flex-row items-center py-3 sm:py-1 md:py-4 gap-2'>
                     <img
@@ -51,8 +61,8 @@ export function AppHeader() {
                         airdnd
                     </h1>
                 </div>
-
                 {/* Search/Filter Section */}
+                {!hideFilter && (
                 <div className='
                     col-span-2 
                     sm:col-span-2 
@@ -66,7 +76,7 @@ export function AppHeader() {
                 '>
                     <AppFilter />
                 </div>
-
+                )}
                 {/* User Menu Section */}
                 <div className='
                     hidden
@@ -80,6 +90,7 @@ export function AppHeader() {
                     row-start-1
                     md:col-start-3
                 '>
+                { (!user || !user.properties) &&
                     <div
                         onClick={() => navigate('/profile/properties')}
                         className='
@@ -96,6 +107,7 @@ export function AppHeader() {
                         whitespace-nowrap'>
                         Become a host
                     </div>
+                }
 
                     <div className='hidden md:block'>
                         <img
@@ -183,14 +195,42 @@ export function AppHeader() {
                                     <span className='font-semibold text-sm pl-3'>Messages</span>
                                 </a>
                                 <div className='border-t border-gray-200 my-2'></div>
-                                <a
-                                    href='#'
-                                    className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
-                                    onClick={(e) => { e.preventDefault(); navigate('/profile') }}
-                                >
+                                {user 
+                                ?
+                                <>
+                                    <a
+                                        href='#'
+                                        className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
+                                        onClick={(e) => { e.preventDefault(); navigate('/profile/user') }}
+                                        >
+                                        <BiUser size={20} />
+                                        <span className='font-semibold text-sm pl-3'>Profile</span>
+                                    </a>
+                                    <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
+                                        onClick={() => {
+                                            usersService.logout();
+                                            navigate('/');
+                                        }
+                                    }
+                                    >
+                                        <BiUserX size={20} />
+                                        <span 
+                                        className='font-semibold text-sm pl-3'
+                                        >Logout
+                                        </span>
+                                    </div>
+                                </>
+                                :
+                                 <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
+                                    onClick={() => showLoginModal()}
+                                 >
                                     <BiUser size={20} />
-                                    <span className='font-semibold text-sm pl-3'>Profile</span>
-                                </a>
+                                    <span
+                                        className='font-semibold text-sm pl-3'
+                                        >Login / Sign up
+                                    </span>
+                                </div>
+                                }
                             </div>
                         )}
                     </button>
