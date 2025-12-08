@@ -2,17 +2,20 @@ import { UserInteruction } from "./util/UserInteruaction";
 import { eventBusService } from "../services/event-bus.service";
 import { useEffect,useState } from "react";
 import { login } from "../actions/user.actions";
+import { useNavigate } from "react-router-dom";
 
 export function UserLogin() {
     const [isOpen, setIsOpen] = useState(false);
     const [loginUsername, setLoginUsername] = useState('');
     const [loginPassword, setLoginPassword] = useState('');
+    const navigate = useNavigate();
 
     function handleLogin() {
         // Handle login logic here
         console.log('Logging in with:', loginUsername, loginPassword);
         login(loginUsername, loginPassword).then(() => {
             closeLoginModal();
+            navigate('/');
         });
     }
 

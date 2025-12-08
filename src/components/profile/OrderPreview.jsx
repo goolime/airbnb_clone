@@ -3,13 +3,13 @@ import { Carousel } from "../util/Carousel";
 import { EditIcon } from "../util/Icons";
 
 export function OrderPreview({order,onRemoveOrder, host=false}) {
-    const overdue = new Date(order.checkOut) < new Date()
-    const inTheFuture = new Date(order.checkIn) > new Date()
+    const overdue = new Date(order.checkOut) < Date.now();
+    const inTheFuture = new Date(order.checkIn) > Date.now();
     const checkInDate = new Date(order.checkIn)
     const checkOutDate = new Date(order.checkOut)
     const person = host ? order.guest : order.host;
 
-    return <div className={`${overdue ? 'opacity-50' : ''} snap-center snap-always md:snap-start border border-gray-300 rounded-2xl p-4 shadow-md md:grid md:grid-cols-[15rem_1fr] md:grid-rows-[auto_auto_auto] md:gap-4 max-md:flex max-md:flex-col max-md:gap-2 items-center justify-center`}>
+    return <div className={`${overdue ? 'grayscale' : ''} snap-center snap-always md:snap-start border border-gray-300 rounded-2xl p-4 shadow-md md:grid md:grid-cols-[15rem_1fr] md:grid-rows-[auto_auto_auto] md:gap-4 max-md:flex max-md:flex-col max-md:gap-2 items-center justify-center`}>
             <Carousel slides={order.property.imgUrl} className="max-md:size-[50vw] md:w-full md:h-64 md:col-span-2 md:col-start-1 md:row-start-1" />
             <div className="font-semibold text-lg mb-2 md:col-span-2 md:col-start-1 md:row-start-2">{order.property.name}</div>
             <div className="flex flex-row md:col-start-1 md:row-start-3"> 

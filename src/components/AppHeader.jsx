@@ -9,7 +9,7 @@ import { UserLogin } from './UserLogin.jsx'
 import { useLocation } from 'react-router-dom'
 import { store } from '../store/store.js'
 import { showLoginModal } from '../services/event-bus.service.js'
-import { usersService } from '../services/users/index.js'
+import { logout } from '../actions/user.actions.js'
 
 
 
@@ -108,14 +108,16 @@ export function AppHeader() {
                         Become a host
                     </div>
                 }
-
-                    <div className='hidden md:block'>
-                        <img
-                            src={userImage}
-                            className='rounded-full w-8 h-8 lg:w-10 lg:h-10'
-                            alt='user-image'
-                        />
-                    </div>
+                    {user &&
+                        <div className='hidden md:block'>
+                            <img
+                                src={user.imgUrl || userImage}
+                                className='rounded-full w-8 h-8 lg:w-10 lg:h-10'
+                                alt='user-image'
+                                onClick={() => navigate('/profile/user')}
+                                />
+                        </div>
+                    }
 
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -208,8 +210,9 @@ export function AppHeader() {
                                     </a>
                                     <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
                                         onClick={() => {
-                                            usersService.logout();
-                                            navigate('/');
+                                            logout().then(() => {
+                                                navigate('/');
+                                            });
                                         }
                                     }
                                     >
