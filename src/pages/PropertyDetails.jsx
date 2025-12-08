@@ -298,8 +298,7 @@ export function PropertyDetails() {
                         </div>
                     </div>
                     <div className="relative col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
-
-                        <div className="sticky top-40 mb-12 self-start">
+                        <div className="sticky top-40 mb-13 self-start">
                             <div className="flex flex-col border border-gray-200 p-6 shadow-lg w-full rounded-lg">
                                 <div className="flex flex-row items-end mb-6">
                                     <span className="font-semibold text-2xl underline mr-1 cursor-pointer">₪{totalPrice}</span>
