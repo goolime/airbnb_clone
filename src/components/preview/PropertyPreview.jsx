@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 export function PropertyPreview({ property, checkIn = null, checkOut = null, guests = null, styles }) {
 
-    const raitingString = `★${calculateRating(property.reviews)}${property.reviews ? `(${property.reviews.length})` : ''}`;
+    const ratingString = `★${calculateRating(property.reviews)}${property.reviews ? `(${property.reviews.length})` : ''}`;
     const priceString = getPricingString(checkIn, checkOut, property.price);
     const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
             <div className={`flex text-gray-600 ${styles.text}`}>
                 <div>{priceString}</div>
                 <div className="mx-1 font-semibold">&middot;</div>
-                <div>{raitingString}</div>
+                <div>{ratingString}</div>
             </div>
         </div>
     </>

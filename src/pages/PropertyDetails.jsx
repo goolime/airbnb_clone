@@ -20,6 +20,7 @@ import { DetailsMap } from "../components/maps/DetailsMap.jsx"
 import { DynamicDropDown } from "../components/DynamicDropDown.jsx"
 import { Capacity } from "../components/search/Capacity.jsx"
 import { getGuestsString, guestStringLength } from "../actions/filter.actions.js"
+import { formatLongDate, formatShortDate } from "../services/properties/properties.util.js"
 
 
 export const amenityList = {
@@ -72,7 +73,7 @@ export function PropertyDetails() {
 
         loadProperty()
     }, [])
-    
+
     useEffect(() => {
         setSelectedDates(getDatesFromParams())
         setSelectedCapacity(getGuestsFromParams())
@@ -115,22 +116,7 @@ export function PropertyDetails() {
         return { adults, kids, infants, pets }
     }
 
-    function formatLongDate(date) {
-        if (!date) return '';
 
-        return new Date(date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    };
-
-    function formatShortDate(date) {
-        if (!date) return ''
-        const d = date instanceof Date ? date : new Date(date)
-        if (isNaN(d)) return ''
-        return d.toLocaleDateString('en-GB', { day: '2-digit', year: '2-digit', month: '2-digit' })
-    }
     function getPropertyRankAvg() {
         const rates = []
         property.reviews.map(review => rates.push(review.rate))
@@ -418,7 +404,21 @@ export function PropertyDetails() {
                                         </div>
                                     </div>
                                     <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold cursor-pointer"
-                                    onClick={() => navigate('/reservation')}>
+                                        onClick={() => {
+                                            const params = new URLSearchParams();
+                                            if (getDatesFromParams().from) {
+                                                params.append('checkIn', getDatesFromParams().from);
+                                                params.append('checkOut', getDatesFromParams().to);
+                                            }
+                                            if (getGuestsFromParams()) {
+                                                params.append('adults', getGuestsFromParams().adults);
+                                                params.append('kids', getGuestsFromParams().kids);
+                                                params.append('infants', getGuestsFromParams().infants);
+                                                params.append('pets', getGuestsFromParams().pets);
+                                            }
+                                            const queryString = params.toString();
+                                            navigate(`/reservation/${property._id}${queryString ? `?${queryString}` : ''}`);
+                                        }}>
                                         Reserve</button>
                                 </div>
                                 <span className="text-center mt-2 text-sm">You won't be charged yet</span>

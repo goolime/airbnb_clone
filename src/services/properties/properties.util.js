@@ -4,7 +4,13 @@ export const propertiesUtil = {
     getEmptyProperty,
     getDefaultFilter,
     getSearchParamsFromFilter,
-    getFilterFromSearchParams
+    getFilterFromSearchParams,
+    totalPricePerNight,
+    getNightsFromDateRange,
+    formatLongDate,
+    formatShortDate,
+    getFreeCancelationDate,
+    getOneWeekBeforeCheckInDate
 }
 
 function getEmptyProperty(name = '',
@@ -131,4 +137,72 @@ function getFilterFromSearchParams(searchParams) {
         else filterBy.caseSensitive = false
     }
     return filterBy
+}
+
+export function totalPricePerNight(price, nights) {
+    return (price * nights).toFixed(2)
+}
+
+export function getNightsFromDateRange(from, to) {
+
+    const startDay = new Date(from);
+    const endDay = new Date(to);
+    const oneDay = 1000 * 60 * 60 * 24;
+    const diffInTime = endDay.getTime() - startDay.getTime();
+    const diffInDays = Math.round(diffInTime / oneDay);
+
+    return diffInDays;
+}
+
+export function formatLongDate(date) {
+    if (!date) return '';
+
+    return new Date(date).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+};
+
+export function formatShortDate(date) {
+    if (!date) return ''
+    const d = date instanceof Date ? date : new Date(date)
+    if (isNaN(d)) return ''
+    return d.toLocaleDateString('en-GB', { day: '2-digit', year: '2-digit', month: '2-digit' })
+}
+
+export function getFreeCancelationDate(checkInDate) {
+
+    if (!checkInDate) {
+        throw new Error('Check-in date is required');
+    }
+
+    const cancelationDate = new Date(checkInDate);
+
+    if (isNaN(cancelationDate.getTime())) {
+        throw new Error('Invalid date provided');
+    }
+
+    cancelationDate.setDate(cancelationDate.getDate() - 1);
+
+    return cancelationDate;
+
+}
+
+export function getOneWeekBeforeCheckInDate(checkInDate) {
+
+    if (!checkInDate) {
+        throw new Error('Check-in date is required');
+    }
+
+    const latePaymentDate = new Date(checkInDate);
+
+    if (isNaN(latePaymentDate.getTime())) {
+        throw new Error('Invalid date provided');
+    }
+
+    latePaymentDate.setDate(latePaymentDate.getDate() - 7);
+
+    return latePaymentDate;
+
 }
