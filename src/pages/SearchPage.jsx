@@ -7,6 +7,7 @@ import { getProperties } from "../actions/explore.actions.js"
 import { BsMapFill } from "react-icons/bs"
 import { IoListOutline } from "react-icons/io5"
 import { ListPlaceholder } from "../components/preview/ListPlaceholder.jsx"
+import { Paging } from "../components/preview/Paging.jsx"
 
 export function SearchPage() {
     const [searchParams] = useSearchParams()
@@ -26,7 +27,7 @@ export function SearchPage() {
 
     useEffect(() => {
         if (!filterData) return
-        console.log('Filter Data:', filterData); // Add this line
+        //console.log('Filter Data:', filterData); // Add this line
         getProperties(filterData, 1).then(({ newProperties, newMaxPage, totalProperties }) => {
             setPage(1)
             setProperties(newProperties)
@@ -35,6 +36,16 @@ export function SearchPage() {
             setLoading(false)
         })
     }, [filterData])
+
+    useEffect(() => {
+        setLoading(true)
+        getProperties(filterData, page).then(({ newProperties, newMaxPage, totalProperties }) => {
+            setProperties(newProperties)
+            setMaxPage(newMaxPage)
+            setTotalProperties(totalProperties)
+            setLoading(false)
+        })
+    }, [page])
 
     const mapRef = useRef(null);
 
@@ -73,13 +84,14 @@ export function SearchPage() {
         <div className="relative">
             <div className="hidden md:grid md:grid-cols-2 gap-6">
                 <div className="p-5">
-                    <span className="font-semibold mb-5 block">{properties.length} homes</span>
+                    <span className="font-semibold mb-5 block">{totalProperties} homes</span>
                     <ListPreview
                         properties={properties}
                         checkIn={filterData.dates.from}
                         checkOut={filterData.dates.to}
                         guests={filterData.guests}
                     />
+                    <Paging page={page} maxPage={maxPage} onPageInc={() => {setPage(prev => prev + 1)}} onPageDec={() => {setPage(prev => prev - 1)}} onPageSelect={(newPage) => {setPage(newPage)} } />
                 </div>
 
                 <div className="relative">
