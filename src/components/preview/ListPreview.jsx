@@ -8,7 +8,7 @@ import { AddProperty } from "./addProperty.jsx";
 export function ListPreview({ properties, checkIn = null, checkOut = null, guests = null, addProperty = false, className = '' }) {
     const containerRef = useRef(null)
 
-    console.log('ListPreview properties:', properties);
+    //console.log('ListPreview properties:', properties);
 
     const styles = {
 
