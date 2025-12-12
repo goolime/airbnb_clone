@@ -41,13 +41,13 @@
 
         return (
             <>
-                <div className="flex flex-row items-center align-center mx-auto gap-4 mb-4">
+                <div className="flex flex-row items-center align-center mx-auto gap-4 mb-4 w-full">
                         Order by: 
                         <div className="w-[400px]">
                         <div className="relative w-[100%] border mx-auto border-gray-300 rounded-xl grid py-2 px-3 grid-cols-2 ">
-                            <div className={`absolute w-59/128 h-[3.5rem] duration-500 top-1/8 ${showByCheckInOrCheckOut ? 'left-1/32' : 'left-65/128'} rounded-xl scale-110 z-5 border-2 border-gray-700 `}></div>
-                            <button className={`p-[1rem] h-[3.5rem] text-gray-700 text-center text-[1em] ${showByCheckInOrCheckOut ? 'bg-gray-100 font-semibold scale-105 rounded-xl z-10;' : ''}`} onClick={() => { setShowByCheckInOrCheckOut(true) }}>Check-In</button>
-                            <button className={`p-[1rem] h-[3.5rem] text-gray-700 text-center text-[1em] ${!showByCheckInOrCheckOut ? 'bg-gray-100 font-semibold scale-105 rounded-xl z-10;' : ''}`} onClick={() => { setShowByCheckInOrCheckOut(false) }}>Check-Out</button>
+                            <div className={`absolute w-59/128 h-[2.5rem] duration-500 top-1/8 ${showByCheckInOrCheckOut ? 'left-1/32' : 'left-65/128'} rounded-xl scale-110 z-5 border-2 border-gray-700 `}></div>
+                            <button className={`h-[2.5rem] text-gray-700 text-[1rem] ${showByCheckInOrCheckOut ? 'bg-gray-100 font-semibold scale-105 rounded-xl z-10;' : ''} `} onClick={() => { setShowByCheckInOrCheckOut(true) }}><div>Check-In</div></button>
+                            <button className={`h-[2.5rem] text-gray-700 text-[1rem] ${!showByCheckInOrCheckOut ? 'bg-gray-100 font-semibold scale-105 rounded-xl z-10;' : ''}`} onClick={() => { setShowByCheckInOrCheckOut(false) }}><div>Check-Out</div></button>
                         </div>
                     </div>
                     <div className="flex items-center gap-2 cursor-pointer">
@@ -55,7 +55,7 @@
                         <div>Show Old Orders</div>
                     </div>
                 </div>
-                <div className="flex flex-row md:flex-col gap-4 h-[65vh] overflow-hidden max-md:overflow-x-scroll md:overflow-y-scroll max-md:snap-x md:snap-y snap-mandatory ">
+                <div className="flex flex-row md:flex-col gap-4 h-[70vh] overflow-hidden max-md:overflow-x-scroll md:overflow-y-scroll max-md:snap-x md:snap-y snap-mandatory ">
                     {showedOrders.map(order => <OrderPreview key={order._id} order={order} host={host} onRemoveOrder={onRemoveOrder} />)}
                 </div>
             </>

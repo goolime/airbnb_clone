@@ -9,7 +9,8 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
     const navigate = useNavigate()
 
     return <>
-        <div className="snap-start cursor-pointer" onClick={() => {
+        <div className="snap-start cursor-pointer flex flex-col items-start" 
+        onClick={() => {
             const params = new URLSearchParams();
             if (checkIn) {
                 params.append('checkIn', checkIn);
@@ -26,10 +27,10 @@ export function PropertyPreview({ property, checkIn = null, checkOut = null, gue
         }}>
             <Carousel slides={property.imgUrls} className={styles.carousel} auto="hover" />
             <div className={`items-center pt-2 pb-1 text-gray-900 ${styles.header}`}>
-                <div className="font-semibold">{property.type} | {property.loc.city}</div>
+                <div className="font-semibold">{property.type} in {property.loc.city}</div>
             </div>
             <div className={`text-gray-600 ${styles.text}`}>{property.summary}</div>
-            <div className={`text-gray-600 ${styles.text}`}>{property.bedrooms} Bedrooms - {property.beds} Beds</div>
+            <div className={`text-gray-600 ${styles.text}`}>{property.bedrooms} Bedroom{property.bedrooms !== 1 ? 's' : ''} &middot; {property.beds} Bed{property.beds !== 1 ? 's' : ''}</div>
             <div className={`flex text-gray-600 ${styles.text}`}>
                 <div>{priceString}</div>
                 <div className="mx-1 font-semibold">&middot;</div>

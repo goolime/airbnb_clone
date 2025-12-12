@@ -10,16 +10,18 @@ export function TownPlaceholder() {
         text:"sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]"
     }
 
+    const len=300 + Math.floor(Math.random()*200);
+
     return <>
-        <div className="w-100vw h-fit py-1">
+        <div className="w-100vw h-fit py-1 mt-4">
             <div className="flex justify-between">
-                <div className="w-1/4  h-[1.5rem] bg-gray-300 rounded-full mb-1 " />  
+                <div className={`h-[1.5rem] bg-gray-300 rounded-full max-xl:px-5 m-1`} style={{width: `${len}px`}}/>  
                 <div className="flex-row hidden gap-1 sm:flex text-3xl mr-2">
                     <div className="size-[1.5rem] bg-gray-300 rounded-full " />
                     <div className="size-[1.5rem] bg-gray-300 rounded-full " />
                 </div>
             </div>
-            <div className={`flex w-100% overflow-hidden gap-5 max-sm:x-5`}>
+            <div className={`flex w-100% overflow-hidden gap-5 mt-3 max-sm:x-5 -translate-x-4`}>
                 <div className="snap-start"  />
                 { [1,2,3,4,5,6,7,8].map(i=><PropertyPlaceholder styles={styles} key={i} />)
                 }

@@ -46,7 +46,7 @@ export function UserOrders() {
     }
 
     return <>
-        <div className="flex flex-col p-4">
+        <div className="flex flex-col pt-4 px-4 w-[100%]">
             <OrdersList orders={orders} onRemoveOrder={removerOrder} />
         </div>
     </>

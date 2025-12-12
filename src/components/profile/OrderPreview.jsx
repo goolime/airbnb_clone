@@ -1,6 +1,7 @@
 import { BiArrowFromLeft } from "react-icons/bi"
 import { Carousel } from "../util/Carousel";
-import { EditIcon } from "../util/Icons";
+import { EditIcon, Xicon } from "../util/Icons";
+import { BiMessage } from "react-icons/bi";
 
 export function OrderPreview({order,onRemoveOrder, host=false}) {
     const overdue = new Date(order.checkOut) < Date.now();
@@ -34,14 +35,14 @@ export function OrderPreview({order,onRemoveOrder, host=false}) {
                 {inTheFuture && <EditIcon className="w-6 h-6 text-gray-600 hover:text-gray-800 cursor-pointer"/>}
             </div>
             <div className="md:col-start-2 md:row-start-2">
-                <img src={person.imgUrl} alt={person.fullname} className="w-8 h-8 rounded-full inline-block mr-2" />
+                <img src={person.imgUrl} alt={person.fullname} className="w-8 h-8 rounded-full inline-block mr-2 object-cover " />
                 <span>{person.fullname}</span>
-                <span className="ml-4 text-sm text-gray-500">({host ? 'Guest' : 'Host'})</span>
+                <span className="ml-4 text-sm text-gray-500 ">({host ? 'Guest' : 'Host'})</span>
             </div>
             <div className="mt-2">Total Price: <span className="font-semibold">${order.totalPrice.toFixed(2)}</span></div>
             <div className="flex flex-row gap-4">
-                <button className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-2xl opacity-75 hover:opacity-100 ease-in-out duration-300">Contact {host ? 'Guest' : 'Host'}</button>
-                {inTheFuture && <button className="mt-2 px-4 py-2 bg-red-500 text-white rounded-2xl opacity-75 hover:opacity-100 ease-in-out duration-300" onClick={()=>onRemoveOrder(order._id)}>Cancel Booking</button>}
+                <button className="mt-2 px-4 py-2 bg-gray-400 text-white rounded-2xl opacity-75 hover:opacity-100 ease-in-out duration-300 flex items-center gap-2"><BiMessage size={20} />Contact {host ? 'Guest' : 'Host'}</button>
+                {inTheFuture && <button className="mt-2 px-4 py-2 bg-red-500 text-white rounded-2xl opacity-75 hover:opacity-100 ease-in-out duration-300 flex items-center gap-2" onClick={()=>onRemoveOrder(order._id)}><Xicon/>Cancel Booking</button>}
             </div>
            </div>
 }
