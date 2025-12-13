@@ -14,6 +14,7 @@ import { UserData } from "./components/profile/UserData.jsx"
 import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
 import { UserProperties } from "./components/profile/UserProperties.jsx"
 import { UserOrders } from "./components/profile/UserOrders.jsx"
+import { UserWishlist } from "./components/profile/UserWishlist.jsx"
 
 const Router = BrowserRouter
 
@@ -40,6 +41,7 @@ function App() {
                 <Route path="/reservation/:propertyId" element={<Reservation />}/>
                 <Route path="/profile" element={<ProfilePage />}>
                   <Route path="/profile/user" element={<UserData />} />
+                  <Route path="/profile/wishlist" element={<UserWishlist />} />
                   <Route path="/profile/orders" element={<UserOrders />} />
                 </Route>
                 <Route path="/host" element={<ProfilePage />} >

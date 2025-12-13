@@ -21,6 +21,7 @@ import { DynamicDropDown } from "../components/DynamicDropDown.jsx"
 import { Capacity } from "../components/search/Capacity.jsx"
 import { getGuestsString, guestStringLength } from "../actions/filter.actions.js"
 import { formatLongDate, formatShortDate } from "../services/properties/properties.util.js"
+import { Wishlisted } from "../components/util/wishlisted.jsx"
 
 
 export const amenityList = {
@@ -154,7 +155,7 @@ export function PropertyDetails() {
                             <span className="hidden text-sm sm:inline">Share</span>
                         </button>
                         <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-gray-100 rounded-md transition">
-                            <IoHeartOutline size={18} />
+                            <Wishlisted propertyId={property._id} />
                             <span className="hidden text-sm sm:inline">Save</span>
                         </button>
                     </div>
