@@ -239,7 +239,7 @@ function UserMenu() {
                                 <a
                                     href='#'
                                     className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
-                                    onClick={(e) => { e.preventDefault(); navigate('/wishlists') }}
+                                    onClick={(e) => { e.preventDefault(); navigate('/profile/wishlist') }}
                                 >
                                     <BiHeart size={20} />
                                     <span className='font-semibold text-sm pl-3'>Wishlists</span>

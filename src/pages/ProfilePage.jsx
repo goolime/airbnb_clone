@@ -6,6 +6,7 @@ import { UserPlaceholder } from '../components/profile/UserPlaceholder.jsx';
 import { Suitcase, PropertyIcon, BookingIcon } from '../components/util/Icons.jsx';
 import userImage from '../assets/images/user.png'
 import { useLocation } from 'react-router-dom';
+import { BiHeart } from 'react-icons/bi';
 
 
 export function ProfilePage() {
@@ -54,6 +55,14 @@ export function ProfilePage() {
                 </div>
                 <div>
                     About me
+                </div>
+            </Option>
+            <Option to="/profile/wishlist" >
+                <div className='w-[3rem] flex items-center justify-center'>
+                    <BiHeart className="size-[2rem] md:size-[1.5rem] inline-block object-cover" />
+                </div>
+                <div>
+                    My Wishlist
                 </div>
             </Option>
             <Option to="/profile/orders" >
@@ -105,6 +114,14 @@ export function ProfilePage() {
                 </div>
                 <div>
                     About me
+                </div>
+            </Option>
+            <Option to="/profile/wishlist" >
+                <div className='w-[3rem] flex items-center justify-center'>
+                    <BiHeart className="size-[2rem] md:size-[1.5rem] inline-block object-cover" />
+                </div>
+                <div>
+                    My Wishlist
                 </div>
             </Option>
             <Option to="/profile/orders" >

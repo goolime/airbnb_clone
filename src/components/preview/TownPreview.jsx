@@ -31,6 +31,7 @@ export function TownPreview({city,properties,idx}){
     }
 
     const styles={
+        container:"xl:w-[185px] xl:h-[250px]",
         carousel:"size-[40dvw] sm:size-[21.8dvw] md:size-[17.05dvw] lg:size-[14.5dvw] xl:size-[185px]",
         header:"sm:text-[1.7dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13.5px]",
         text:"sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]"
@@ -51,7 +52,7 @@ export function TownPreview({city,properties,idx}){
                     <OnHoverFlipIcon onHoverIcon={<IoChevronForwardCircle />} regIcon={<IoChevronForwardCircleOutline />} onClick={handleScrollRight} disabled={scrollX === 1.0} className={`text-gray-400 duration-300 ${scrollX === 1 ? 'opacity-20 cursor-not-allowed ' : 'opacity-60 hover:text-gray-500 hover:opacity-100 hover:scale-110'}`} />
                 </div>
             </div>
-            <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll mt-3 scrollbar-hide gap-5 max-sm:x-5`}>
+            <div ref={containerRef} onScroll={handleScroll} className={`flex w-100% snap-x overflow-x-scroll mt-3 scrollbar-hide gap-5 max-sm:x-5 `}>
                 <div className="snap-start"  />
                 {properties.map(property=><>
                     <PropertyPreview property={property} key={property._id} styles={styles} />
