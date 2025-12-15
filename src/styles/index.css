@@ -81,6 +81,38 @@ nav a.active.option img{
     @apply max-md:drop-shadow-md max-md:drop-shadow-red-500/50; ;
 }
 
+@layer utilities {
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(-15px);  /* Changed: slide FROM left when going right */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(15px);  /* Changed: slide FROM right when going left */
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.25s ease-out;
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.25s ease-out;
+  }
+}
+
 
 /* Basics */
 @import url('./basics/base.css');

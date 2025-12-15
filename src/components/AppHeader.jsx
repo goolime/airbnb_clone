@@ -38,6 +38,7 @@ export function AppHeader() {
                 col-start-2 
                 col-end-3 
                 w-full 
+                bg-[#fafafa]
                 items-center 
                 px-2
                 sm:px-4
