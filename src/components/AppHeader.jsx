@@ -36,7 +36,7 @@ export function AppHeader() {
                 md:grid-rows-1
                 lg:grid-cols-[auto_minmax(700px,850px)_auto] 
                 w-full 
-                bg-white
+                bg-[#fafafa]
                 items-center 
                 z-10 
                 border-b 

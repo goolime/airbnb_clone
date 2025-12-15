@@ -81,7 +81,9 @@ export function Reservation() {
         return getTotalPriceWithTax() * airDndFee
     }
 
-    let activeOptionStageOne = ``
+    let chosenOptionStageOne = ``
+    let chosenOptionStageTwo = ``
+    let chosenOptionStageThree = ``
     function handlePaymentSelection() {
 
 
@@ -91,16 +93,18 @@ export function Reservation() {
         <>
             {property &&
 
-                <div className="relative mx-50 pt-8 pb-12">
-                    <h2 className="text-3xl font-semibold">Request to book</h2>
-                    <button
-                        onClick={() => { navigate('/rooms') }}
-                        className="absolute top-8 -left-17 w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-300 cursor-pointer flex items-center justify-center"
-                    >
-                        <FaArrowLeft size={16} />
-                    </button>
-                    <div className="flex gap-20 mt-6">
-                        <div className="w-[59%] flex flex-col gap-6">
+                <div className="relative sm:mx-50 text-[#222222] md:mx-17 lg:mx-25 xl:40 2xl:50 pt-8 pb-12">
+                    <div className="relative mx-24 sm:mx-0">
+                        <h2 className="text-3xl font-semibold">Request to book</h2>
+                        <button
+                            onClick={() => { navigate('/rooms') }}
+                            className="absolute top-0 -left-17 w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-300 cursor-pointer flex items-center justify-center"
+                        >
+                            <FaArrowLeft size={16} />
+                        </button>
+                    </div>
+                    <div className="flex flex-col-reverse p-8 sm:p-0 md:flex md:flex-row gap-10 lg:gap-15 xl:gap-20 mt-6">
+                        <div className="w-full md:w-[59%] flex flex-col gap-6">
                             {activeStep === 1 ? (
                                 // EXPANDED VERSION - Full content with options
                                 <div className="border-1 border-gray-200 shadow-md rounded-3xl p-6">
@@ -118,8 +122,8 @@ export function Reservation() {
                                                 <p>Pay ₪0 now</p>
                                                 <div className="text-xs text-gray-600">
                                                     <p>Reserve now, pay later with no extra fees.</p>
-                                                    <p>You'll be charged €{(getTotalPriceWithTax() + getFeePrice()).toFixed(2)} on {formatLongDate(getOneWeekBeforeCheckInDate(dates.from))}.
-                                                        We'll send a reminder 3 days in advance.</p>
+                                                    <p>You'll be charged €{(getTotalPriceWithTax() + getFeePrice()).toFixed(2)} on {formatLongDate(getOneWeekBeforeCheckInDate(dates.from))}.</p>
+                                                    <p>We'll send a reminder 3 days in advance.</p>
                                                 </div>
                                             </div>
                                             <input type="radio" name="payment" value="now"
@@ -130,7 +134,7 @@ export function Reservation() {
                                     </div>
                                     <div className="flex justify-end mt-4">
                                         <button
-                                            className="px-6 bg-gray-900 hover:bg-black text-white rounded-xl font-semibold cursor-pointer w-1/4 h-12 flex items-center justify-center"
+                                            className="px-6 bg-[#222222] hover:bg-black text-white rounded-xl font-semibold cursor-pointer w-1/4 h-12 flex items-center justify-center"
                                             onClick={() => {
                                                 setCompletedSteps({ ...completedSteps, step1: true });
                                                 setActiveStep(2);
@@ -148,7 +152,7 @@ export function Reservation() {
                                             <h2 className="text-xl font-semibold">1. Choose when to pay</h2>
                                             <p className="text-sm text-gray-600">Pay €{(getTotalPriceWithTax() + getFeePrice()).toFixed(2)} now</p>
                                         </div>
-                                        <button className="self-center py-2 px-4 bg-gray-100 rounded-lg w-19 h-8 font-semibold text-xs text-gray-900 hover:bg-gray-200 cursor-pointer"
+                                        <button className="self-center py-2 px-4 bg-[#f2f2f2] rounded-lg w-19 h-8 font-semibold text-xs text-[#222222] hover:bg-[#ebebeb] cursor-pointer"
                                             onClick={() => setActiveStep(1)}>
                                             Change
                                         </button>
@@ -163,12 +167,12 @@ export function Reservation() {
                                         <label className="flex justify-between items-center py-5 cursor-pointer">
                                             <div className="flex items-center gap-4 cursor-pointer">
                                                 <FaCreditCard size={26} />
-                                                <p>Credit or debit card
+                                                <div>Credit or debit card
                                                     <div className="flex">
                                                         <img src={VisaLogo} alt="visa-logo" className="w-8 h-6" />
                                                         <img src={MastercardLogo} alt="mastercard-logo" className="w-8 h-6" />
                                                     </div>
-                                                </p>
+                                                </div>
                                             </div>
                                             <input type="radio" name="payment" value="now"
                                                 className="appearance-none w-5 h-5 border-1 border-gray-400 rounded-full
@@ -217,7 +221,7 @@ export function Reservation() {
                                     </div>
                                     <div className="flex justify-end mt-4">
                                         <button
-                                            className="px-6 bg-gray-900 hover:bg-black text-white rounded-xl font-semibold cursor-pointer w-1/4 h-12 flex items-center justify-center"
+                                            className="px-6 bg-[#222222] hover:bg-black text-white rounded-xl font-semibold cursor-pointer w-1/4 h-12 flex items-center justify-center"
                                             onClick={() => {
                                                 setCompletedSteps({ ...completedSteps, step2: true });
                                                 setActiveStep(3);
@@ -235,7 +239,7 @@ export function Reservation() {
                                             <h2 className="text-xl font-semibold">2. Add a payment method</h2>
                                             <p className="text-sm text-gray-600">Pay with credit</p>
                                         </div>
-                                        <button className="self-center py-2 px-4 bg-gray-100 rounded-lg w-19 h-8 font-semibold text-xs text-gray-900 hover:bg-gray-200 cursor-pointer"
+                                        <button className="self-center py-2 px-4 bg-[#f2f2f2] rounded-lg w-19 h-8 font-semibold text-xs text-[#222222] hover:bg-[#ebebeb] cursor-pointer"
                                             onClick={() => setActiveStep(1)}>
                                             Change
                                         </button>
@@ -251,8 +255,8 @@ export function Reservation() {
                                         <button
                                             className="px-6 bg-black text-white rounded-xl font-semibold cursor-pointer w-full h-12 flex items-center justify-center"
                                             onClick={() => {
-                                                setCompletedSteps({ ...completedSteps, step1: true });
-                                                setActiveStep(2);
+                                                setCompletedSteps({ ...completedSteps, step3: true });
+                                                setActiveStep(3);
                                             }}
                                         >
                                             Pay
@@ -271,11 +275,11 @@ export function Reservation() {
                             )}
                         </div>
 
-                        <div className="w-[41%] flex flex-col p-6 border-1 border-gray-200 rounded-3xl">
+                        <div className="w-full md:w-[41%] text-[#222222] flex flex-col p-6 border-1 border-gray-200 rounded-3xl">
                             <div className="flex flex-row">
                                 <img src={property?.imgUrls[0]} className="w-27 h-27 rounded-lg object-cover flex-shrink-0 mr-4" />
                                 <div className="flex-col">
-                                    <h2 className="font-semibold text-lg">Chic duplex in Montmartre: Jacuzzi & Home Cinema</h2>
+                                    <h2 className="font-semibold text-lg">{property.name} in {property.loc.city}: {property.summary}</h2>
                                     <label className="text-xs font-semibold">{ratingString}</label>
                                 </div>
                             </div>
@@ -288,7 +292,7 @@ export function Reservation() {
                                     <span className="text-sm font-semibold mb-2">Dates</span>
                                     <span className="text-sm">{formatLongDate(dates.from)}-{formatLongDate(dates.to)}</span>
                                 </div>
-                                <button className="py-2 px-4 bg-gray-100 rounded-lg w-19 h-8 font-semibold text-xs text-gray-900 hover:bg-gray-200 cursor-pointer">Change</button>
+                                <button className="py-2 px-4 bg-[#f2f2f2] rounded-lg w-19 h-8 text-[#222222] font-semibold text-xs hover:bg-[#ebebeb] cursor-pointer">Change</button>
                             </div>
                             <div className="flex flex-row justify-between border-b-1 border-gray-200 py-4">
                                 <div className="flex flex-col">
@@ -300,7 +304,7 @@ export function Reservation() {
                                     ${getGuestsFromParams().pets} ${getGuestsFromParams().pets > 1 ? 'pets' : 'pet'}`}
                                     </span>
                                 </div>
-                                <button className="py-2 px-4 bg-gray-100 rounded-lg w-19 h-8 font-semibold text-xs text-gray-900 hover:bg-gray-200 cursor-pointer">Change</button>
+                                <button className="py-2 px-4 bg-[#f2f2f2] rounded-lg w-19 h-8 font-semibold text-xs text-[#222222] hover:bg-[#ebebeb] cursor-pointer">Change</button>
                             </div>
                             <div className="border-b-1 border-gray-200 py-4">
                                 <span className="text-sm font-semibold mb-2 block">Price details</span>

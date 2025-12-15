@@ -16,10 +16,7 @@ export function AppFilter() {
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isLargeFilterVisible, setIsLargeFilterVisible] = useState(true);
-
-    // Track which modal should open
     const [pendingModalType, setPendingModalType] = useState(null);
-    
     const [scrollPosition, setScrollPosition] = useState(0);
     const navigate = useNavigate()
     const location = useLocation();
@@ -118,7 +115,10 @@ export function AppFilter() {
                 <div className="relative w-full flex items-center justify-center">
                     <div className={`
                         absolute
-                        w-fit
+                        translate-y-1
+                        w-full
+                        max-w-[850px]
+                        mx-auto
                         transition-all 
                         duration-400
                         ease-[cubic-bezier(0.4,0,0.2,1)]

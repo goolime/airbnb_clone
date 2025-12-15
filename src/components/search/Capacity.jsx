@@ -88,19 +88,19 @@ export function Capacity({ onFilterChange, initialCapacity }) {
     return <>
         <div className="flex flex-row justify-between py-6 pr-1 border-b-1 border-gray-200 z-1000">
             <div className="flex flex-col text-start">
-                <label className="font-semibold text-lg">Adults</label>
-                <label>Ages 13 or above</label>
+                <label className="font-semibold text-[#222222] text-md">Adults</label>
+                <label className="text-sm text-[#6a6a6a]">Ages 13 or above</label>
             </div>
             <div className="flex flex-row items-center justify-between">
                 <button disabled={adultsCount <= minAdults} onClick={onDecrementAdults} className="
                                 flex 
-                                justify-center 
-                                items-center 
-                                w-10 h-10
+                                justify-center
+                                items-center
+                                w-8 h-8
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
-                                text-lg 
+                                text-lg
                                 font-semibold 
                                 text-gray-400
                                 hover:border-black
@@ -116,7 +116,7 @@ export function Capacity({ onFilterChange, initialCapacity }) {
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10
+                                w-8 h-8
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
@@ -133,15 +133,15 @@ export function Capacity({ onFilterChange, initialCapacity }) {
         </div>
         <div className="flex flex-row justify-between py-6 pr-1 border-b-1 border-gray-200 ">
             <div className="flex flex-col text-start">
-                <label className="font-semibold text-lg">Children</label>
-                <label>Ages 2 - 12</label>
+                <label className="font-semibold text-[#222222] text-md">Children</label>
+                <label className="text-sm text-[#6a6a6a]">Ages 2 - 12</label>
             </div>
             <div className="flex flex-row items-center justify-between">
                 <button disabled={childrenCount <= 0} onClick={onDecrementChildren} className="
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10 
+                                w-8 h-8 
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
@@ -154,14 +154,14 @@ export function Capacity({ onFilterChange, initialCapacity }) {
                                 disabled:text-gray-200
                                 disabled:border-gray-200
                                 ">-</button>
-                <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
-                    <label>{childrenCount}</label>
+                <div className="flex font-semibold w-10 h-10 justify-center items-center text-black-100">
+                    <label className="text-md text-[#222222]">{childrenCount}</label>
                 </div>
                 <button disabled={totalGuests === 16} onClick={onIncrementChildren} className="
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10 
+                                w-8 h-8
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
@@ -178,15 +178,15 @@ export function Capacity({ onFilterChange, initialCapacity }) {
         </div>
         <div className="flex flex-row justify-between py-6 pr-1 border-b-1 border-gray-200 ">
             <div className="flex flex-col text-start">
-                <label className="font-semibold text-lg">Infants</label>
-                <label>Under 2</label>
+                <label className="font-semibold text-[#222222] text-md">Infants</label>
+                <label className="text-sm text-[#6a6a6a]">Under 2</label>
             </div>
             <div className="flex flex-row items-center justify-between">
                 <button disabled={infantsCount <= 0} onClick={onDecrementInfants} className="
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10 
+                                w-8 h-8 
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
@@ -199,14 +199,14 @@ export function Capacity({ onFilterChange, initialCapacity }) {
                                 disabled:text-gray-200
                                 disabled:border-gray-200
                                 ">-</button>
-                <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
-                    <label>{infantsCount}</label>
+                <div className="flex font-semibold w-10 h-10 justify-center items-center text-black-100">
+                    <label className="text-md text-[#222222]">{infantsCount}</label>
                 </div>
                 <button disabled={infantsCount === 5} onClick={onIncrementInfants} className="
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10 
+                                w-8 h-8 
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
@@ -223,8 +223,8 @@ export function Capacity({ onFilterChange, initialCapacity }) {
         </div>
         <div className="flex flex-row justify-between py-6 pr-1 ">
             <div className="flex flex-col text-start">
-                <label className="font-semibold text-lg">Pets</label>
-                <a href="#" className="text-gray-500 font-semibold underline underline-offset-2" onClick={() => showServiceAnimalInfo()}>Bringing a service animal?</a>
+                <label className="font-semibold text-[#222222] text-md">Pets</label>
+                <a href="#" className="text-[#6a6a6a] text-sm font-semibold underline underline-offset-2" onClick={() => showServiceAnimalInfo()}>Bringing a service animal?</a>
             </div>
 
             <div className="flex flex-row items-center justify-between">
@@ -232,7 +232,7 @@ export function Capacity({ onFilterChange, initialCapacity }) {
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10 
+                                w-8 h-8 
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
@@ -245,14 +245,14 @@ export function Capacity({ onFilterChange, initialCapacity }) {
                                 disabled:text-gray-200
                                 disabled:border-gray-200
                                 ">-</button>
-                <div className="flex font-semibold text-lg w-10 h-10 justify-center items-center text-black-100">
-                    <label>{petsCount}</label>
+                <div className="flex font-semibold w-10 h-10 justify-center items-center text-black-100">
+                    <label className="text-md text-[#222222]">{petsCount}</label>
                 </div>
                 <button disabled={petsCount === 5} onClick={onIncrementPets} className="
                                 flex 
                                 justify-center 
                                 items-center 
-                                w-10 h-10 
+                                w-8 h-8
                                 border-1 border-gray-400 
                                 rounded-full 
                                 cursor-pointer 
