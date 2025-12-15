@@ -37,7 +37,7 @@ export function UserOrders() {
 
     if (!isLoading && !orders.length) {
         return <>
-            <div className="flex flex-col items-center justify-center border border-gray-300 rounded-2xl gap-2 p-6 m-4 shadow-md">
+            <div className="flex flex-col items-center justify-center border border-gray-300 rounded-2xl gap-2 p-6 m-4 shadow-md max-w-[1400px] h-[80vh]">
                 <img src={SuitcaseImg} alt="No Orders" className="w-[24rem] mb-4" />
                 <h2 className="text-2xl font-semibold text-gray-600">You have no bookings yet</h2>
                 <p className="text-gray-500 mt-2">Start exploring and book your first stay!</p>
@@ -46,7 +46,7 @@ export function UserOrders() {
     }
 
     return <>
-        <div className="flex flex-col p-4">
+        <div className="flex flex-col pt-4 px-4 w-[100%]">
             <OrdersList orders={orders} onRemoveOrder={removerOrder} />
         </div>
     </>

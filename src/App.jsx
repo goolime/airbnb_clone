@@ -14,6 +14,7 @@ import { UserData } from "./components/profile/UserData.jsx"
 import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
 import { UserProperties } from "./components/profile/UserProperties.jsx"
 import { UserOrders } from "./components/profile/UserOrders.jsx"
+import { UserWishlist } from "./components/profile/UserWishlist.jsx"
 
 const Router = BrowserRouter
 
@@ -29,7 +30,7 @@ function App() {
       <ServiceAnimalInfo />
       <Router>
         <section className="flex flex-col min-h-screen">
-          <AppHeader />
+            <AppHeader />
           <div className="grid grid-cols-[5px_minmax(0,_1fr)_5px] sm:grid-cols-[1rem_minmax(0,_1fr)_1rem] xl:grid-cols-[1fr_1393px_1fr] w-100%">
             <div className="col-start-1 col-span-3 md:col-span-1 md:col-start-2">
               <Routes>
@@ -40,9 +41,12 @@ function App() {
                 <Route path="/reservation/:propertyId" element={<Reservation />}/>
                 <Route path="/profile" element={<ProfilePage />}>
                   <Route path="/profile/user" element={<UserData />} />
-                  <Route path="/profile/orders" element={<PropertyOrders />} />
-                  <Route path="/profile/properties" element={<UserProperties />} />
-                  <Route path="/profile/myorders" element={<UserOrders />} />
+                  <Route path="/profile/wishlist" element={<UserWishlist />} />
+                  <Route path="/profile/orders" element={<UserOrders />} />
+                </Route>
+                <Route path="/host" element={<ProfilePage />} >
+                  <Route path="/host/properties" element={<UserProperties />} />
+                  <Route path="/host/orders" element={<PropertyOrders />} />
                 </Route>
 
                 <Route path="/test" element={<Test />} />

@@ -10,7 +10,9 @@ export const usersService = {
     save,
     getById,
     getHost,
-    setNewPropertyToHost
+    setNewPropertyToHost,
+    addToWishlist,
+    removeFromWishlist,
 }
 
 function query(filterBy={}) {
@@ -44,4 +46,12 @@ async function getHost(hostId) {
 
 async function setNewPropertyToHost(hostId, propertyId) {
     return hostId+'_'+propertyId
+}
+
+async function addToWishlist(user,propertyId) {
+    return httpService.post(USER_URL + user._id + '/wishlist/' + propertyId)
+}
+
+async function removeFromWishlist(user,propertyId) {
+    return httpService.delete(USER_URL + user._id + '/wishlist/' + propertyId)
 }
