@@ -342,7 +342,7 @@ export function LargeFilter({
                                     </button>
                                 </div>
                                 <button
-                                    className={`p-2 bg-rose-500 rounded-full text-white flex flex-row justify-center items-center 
+                                    className={`p-2 z-30 bg-rose-500 rounded-full text-white flex flex-row justify-center items-center 
                                         flex-shrink-0 transition-all duration-300 ease-out hover:bg-rose-700 cursor-pointer
                                         ${activeModal && isModalOpen ? 'max-w-[100px] bg-gradient-to-r from-[#E61E4D] to-[#E31C5F]' : ''}`}
                                     onClick={(ev) => {
