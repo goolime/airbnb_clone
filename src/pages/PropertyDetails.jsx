@@ -142,6 +142,65 @@ export function PropertyDetails() {
     const nights = propertiesService.getNightsFromDateRange(selectedDates.from, selectedDates.to)
     const totalPrice = propertiesService.totalPricePerNight(property?.price, nights)
 
+
+    if (!property) return <>
+        <div className="px-4 md:px-10 lg:px-20 overflow-y-hidden h-[80vh] animate-pulse mask-luminance mask-b-from-white mask-b-from-50% mask-b-to-black">
+                <div className="flex flex-row justify-between items-start pt-6">
+                    <div className="bg-gray-300 h-[2.5rem] w-3/5 rounded-2xl" />
+                    <div className="flex gap-2">
+                        <div className="bg-gray-300 h-[2.5rem] w-12 rounded-2xl" />
+                        <div className="bg-gray-300 h-[2.5rem] w-12 rounded-2xl" />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-4 gap-2 pt-6">
+                    <div className="relative aspect-[4/3] sm:row-span-2 col-span-2">
+                        <div className="bg-gray-300 h-full w-full rounded-l-xl" />
+                    </div>
+                    <div className="bg-gray-300 h-full w-full" />
+                    <div className="bg-gray-300 h-full w-full rounded-tr-xl" />
+                    <div className="bg-gray-300 h-full w-full" />
+                    <div className="bg-gray-300 h-full w-full rounded-br-xl" />   
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid grid-cols-5 text-[#222222]">
+                    <div className="col-span-3 flex flex-col">
+                        <div className="justify-center py-8 border-b border-gray-200">
+                            <div className="bg-gray-300 h-[2rem] w-1/3 rounded-2xl mb-4" />
+                            <div className="bg-gray-300 h-[1.5rem] w-1/4 rounded-2xl" />
+                            <div className="flex flex-row gap-1 items-center mt-2">
+                                <div className="bg-gray-300 h-[1.5rem] w-12 rounded-2xl" />
+                                <div className="bg-gray-300 h-[1.5rem] w-12 rounded-2xl" />
+                                <div className="bg-gray-300 h-[1.5rem] w-12 rounded-2xl" />
+                            </div>
+                        </div>
+                        <div className="flex flex-row gap-6 py-6 border-b border-gray-200">
+                            <div className="bg-gray-300 size-10 rounded-full mr-4" />
+                            <div className="flex flex-col gap-1">
+                                <div className="bg-gray-300 h-[1.5rem] w-[7rem] rounded-2xl mb-2" />
+                                <div className="bg-gray-300 h-[1.2rem] w-[5rem] rounded-2xl" />
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-8 py-8 border-b border-gray-200">
+                            <div className="flex flex-row gap-6">
+                                <div className="bg-gray-300 size-10 rounded-2xl" />
+                                <div className="flex flex-col">
+                                    <div className="bg-gray-300 h-[1.2rem] w-1/3 rounded-2xl mb-2" />
+                                    <div className="bg-gray-300 h-[1rem] w-1/2 rounded-2xl" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                     <div className="relative col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
+                        <div className="sticky top-40 mb-13 self-start">
+                            <div className="bg-gray-300 h-[10rem] w-full rounded-2xl mb-4" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </> 
+
     return <>
         {property &&
             <div className="px-4 md:px-10 lg:px-20 text-[#222222]">
