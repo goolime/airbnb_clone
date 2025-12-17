@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { UserInteruction } from "../util/UserInteruaction";
 import { showServiceAnimalInfo } from "../../services/event-bus.service.js";
 
 export function Capacity({ onFilterChange, initialCapacity }) {
@@ -14,8 +13,6 @@ export function Capacity({ onFilterChange, initialCapacity }) {
 
     const minAdults = (childrenCount > 0 || infantsCount > 0) ? 1 : 0;
 
-    // Update state when initialCapacity changes (from URL params)
-    // Use individual properties as dependencies to avoid object reference issues
     useEffect(() => {
         if (initialCapacity) {
             setAdultsCount(initialCapacity.adults || 0);

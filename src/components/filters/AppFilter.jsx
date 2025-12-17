@@ -56,6 +56,10 @@ export function AppFilter() {
         }
     }
 
+    function clearFilters() {
+        setFilterData(propertiesService.getDefaultFilter());
+    }
+
     function handleLargeFilterVisibility(isVisible) {
 
         setIsLargeFilterVisible(isVisible);
@@ -81,7 +85,7 @@ export function AppFilter() {
     }
 
     function onCloseFilterModal() {
-        //setIsFilterModalClose(false)
+        setIsFilterModalOpen(false)
     }
 
     function onOpenModal() {
@@ -173,6 +177,7 @@ export function AppFilter() {
                     onOpenFilterModal={onOpenFilterModal}
                     currentPath={currentPath}
                     filterData={filterData}
+                    clearFilters={clearFilters}
                 />
             </div>
             <ExtendedFilter filter={filterData} />

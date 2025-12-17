@@ -2,9 +2,7 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams, useSearchParams } from "react-router"
 import { propertiesService } from '../services/properties/index.js'
 import { avg } from "../services/util.service.js"
-
 import { FiChevronRight, FiShare } from "react-icons/fi"
-import { IoHeartOutline } from "react-icons/io5"
 import { PiDoorOpen, PiDotsNineBold } from "react-icons/pi"
 import { RxStarFilled } from "react-icons/rx"
 import { LuCalendarFold } from "react-icons/lu"
@@ -22,6 +20,9 @@ import { Capacity } from "../components/search/Capacity.jsx"
 import { getGuestsString, guestStringLength } from "../actions/filter.actions.js"
 import { formatLongDate, formatShortDate } from "../services/properties/properties.util.js"
 import { Wishlisted } from "../components/util/wishlisted.jsx"
+import { store } from "../store/store.js"
+import { showLoginModal } from "../services/event-bus.service.js"
+import { Carousel } from "../components/util/Carousel.jsx"
 
 
 export const amenityList = {
@@ -143,25 +144,27 @@ export function PropertyDetails() {
 
     return <>
         {property &&
-            <div className="px-4 md:px-10 lg:px-20">
+            <div className="px-4 md:px-10 lg:px-20 text-[#222222]">
+                <div className="sm:hidden -mx-4">
+                    <Carousel slides={property.imgUrls} className="aspect-[4/3] rounded-t-none w-full" auto={false} />
+                </div>
                 <div className="flex flex-row justify-between items-start pt-6">
                     <h1 className="text-xl md:text-2xl font-semibold">
                         {property.summary} - {property.name}
                     </h1>
-
                     <div className="flex gap-2">
-                        <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-gray-100 rounded-md transition">
+                        <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-[#f7f7f7] rounded-md transition">
                             <FiShare size={18} />
                             <span className="hidden text-sm sm:inline">Share</span>
                         </button>
-                        <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-gray-100 rounded-md transition">
+                        <button className="flex items-center gap-2 p-2 underline cursor-pointer font-semibold hover:bg-[#f7f7f7] rounded-md transition">
                             <Wishlisted propertyId={property._id} />
                             <span className="hidden text-sm sm:inline">Save</span>
                         </button>
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-6">
+                <div className="hidden sm:grid grid-cols-1 sm:grid-cols-2 gap-2 pt-6">
                     {/* Main large image */}
                     <div className="relative aspect-[4/3] sm:row-span-2">
                         <img
@@ -172,7 +175,7 @@ export function PropertyDetails() {
                     </div>
 
                     {/* Grid of smaller images */}
-                    <div className="hidden sm:grid grid-cols-2 grid-rows-2 gap-2">
+                    <div className="grid grid-cols-2 grid-rows-2 gap-2">
                         {property.imgUrls.slice(1, 5).map((url, index) => (
                             <div key={index} className="relative aspect-[4/3]">
                                 <img
@@ -184,7 +187,7 @@ export function PropertyDetails() {
                                 />
                                 {index === 3 && (
                                     <button className="absolute w-41 h-8 bottom-4 right-4 flex items-center gap-2 px-4 py-2 
-                                    bg-white hover:bg-gray-100 border border-black rounded-md shadow-md transition">
+                                    bg-white hover:bg-[#f7f7f7] border border-black rounded-md shadow-md transition">
                                         <PiDotsNineBold size={20} />
                                         <span className="text-sm font-semibold cursor-pointer">Show all photos</span>
                                     </button>
@@ -226,7 +229,7 @@ export function PropertyDetails() {
                                 <CiLocationOn size={24} />
                                 <div className="flex flex-col">
                                     <span className="text-sm font-semibold">Calm and convenient location</span>
-                                    <span className="text-sm">Guests say this area is peaceful and it’s easy to get around.</span>
+                                    <span className="text-sm">Guests say this area is peaceful and its easy to get around.</span>
                                 </div>
                             </div>
                             <div className="flex flex-row gap-6">
@@ -289,16 +292,18 @@ export function PropertyDetails() {
                                 </button>
                             )}
                         </div>
-                        <div className="flex flex-col py-12 border-b border-gray-200">
+                        <div className="flex flex-col justify-start py-12 border-b border-gray-200">
                             <h2 className="text-2xl font-semibold">{nights} nights in {property.loc.city}</h2>
                             <label className="pt-2 text-gray-500">{selectedDates?.from && selectedDates?.to ? `${formatLongDate(selectedDates?.from)} - ${formatLongDate(selectedDates?.to)}` : 'Add your travel dates for exact pricing'}</label>
-                            <DetailsDatePicker onFilterChange={handleDateChange} selectedRange={selectedDates} />
-                            <div className="flex justify-end px-8">
-                                <span className="text-sm font-semibold rounded-lg cursor-pointer hover:bg-gray-100 p-2 underline" onClick={() => { clearDates() }}>Clear dates</span>
+                            <div className="hidden lg:block">
+                                <DetailsDatePicker onFilterChange={handleDateChange} selectedRange={selectedDates} monthNum={2} />
+                            </div>
+                            <div className="lg:hidden">
+                                <DetailsDatePicker onFilterChange={handleDateChange} selectedRange={selectedDates} monthNum={1} />
                             </div>
                         </div>
                     </div>
-                    <div className="relative col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
+                    <div className="relative hidden sm:block col-span-2 md:pl-8 lg:pl-14 mt-8 border-b border-gray-200">
                         <div className="sticky top-40 mb-13 self-start">
                             <div className="flex flex-col border border-gray-200 p-6 shadow-lg w-full rounded-lg">
                                 <div className="flex flex-row items-end mb-6">
@@ -405,21 +410,26 @@ export function PropertyDetails() {
                                     </div>
                                     <button className="bg-rose-500 text-white w-full rounded-full text-lg mt-4 h-12 font-semibold cursor-pointer"
                                         onClick={() => {
-                                            const params = new URLSearchParams();
-                                            if (getDatesFromParams().from) {
-                                                params.append('checkIn', getDatesFromParams().from);
-                                                params.append('checkOut', getDatesFromParams().to);
+                                            if (store.getState().userModule.loggedInUser) {
+                                                const params = new URLSearchParams()
+                                                if (selectedDates.from && selectedDates.to) {
+                                                    params.append('checkIn', selectedDates.from)
+                                                    params.append('checkOut', selectedDates.to)
+                                                }
+                                                if (selectedCapacity.adults || selectedCapacity.kids || selectedCapacity.infants || selectedCapacity.pets) {
+                                                    params.append('adults', selectedCapacity.adults)
+                                                    params.append('kids', selectedCapacity.kids)
+                                                    params.append('infants', selectedCapacity.infants)
+                                                    params.append('pets', selectedCapacity.pets)
+                                                }
+                                                const queryString = params.toString()
+                                                navigate(`/reservation/${property._id}${queryString ? `?${queryString}` : ''}`)
+                                            } else {
+                                                showLoginModal()
                                             }
-                                            if (getGuestsFromParams()) {
-                                                params.append('adults', getGuestsFromParams().adults);
-                                                params.append('kids', getGuestsFromParams().kids);
-                                                params.append('infants', getGuestsFromParams().infants);
-                                                params.append('pets', getGuestsFromParams().pets);
-                                            }
-                                            const queryString = params.toString();
-                                            navigate(`/reservation/${property._id}${queryString ? `?${queryString}` : ''}`);
                                         }}>
-                                        Reserve</button>
+                                        Reserve
+                                    </button>
                                 </div>
                                 <span className="text-center mt-2 text-sm">You won't be charged yet</span>
                             </div>

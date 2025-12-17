@@ -14,7 +14,8 @@ export function MobileFilter({
     onCloseModal,
     onOpenFilterModal,
     currentPath,
-    filterData }) {
+    filterData,
+    clearFilters }) {
 
     return (
         <div className="w-full flex flex-row justify-between items-center px-4 py-2">
@@ -59,6 +60,7 @@ export function MobileFilter({
                 locationString={getLocationString(filterData.loc)}
                 datesString={getDatesString(filterData.dates)}
                 guestsString={getGuestsString(filterData.guests, guestStringLength.LONG)}
+                clearFilters={clearFilters}
             />
         </div>
     )

@@ -20,11 +20,11 @@ export function AppHeader() {
     const location = useLocation();
     const currentPath = location.pathname;
 
-    const hideFilter= currentPath.startsWith('/profile') || currentPath.startsWith('/host')
+    const hideFilter= currentPath.startsWith('/profile') || currentPath.startsWith('/host') || currentPath.startsWith('/reservation')
     return (
         <div className="w-full grid grid-cols-[5px_minmax(0,_1fr)_5px] sm:grid-cols-[1rem_minmax(0,_1fr)_1rem] xl:grid-cols-[1fr_1393px_1fr] sticky top-0 z-10  border-b 
                 border-gray-200 
-                bg-[#fefefe]
+                bg-[#fafafa]
                 shadow-xs ">
             <div className={`
                 
@@ -38,11 +38,10 @@ export function AppHeader() {
                 col-start-2 
                 col-end-3 
                 w-full 
-                bg-[#fafafa]
                 items-center 
                 px-2
-                sm:px-4
-                lg:px-6
+                sm:pl-4
+                lg:pl-3
             `}>
                 {/* Logo Section */}
                 <div className='hidden sm:block'>

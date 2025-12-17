@@ -144,7 +144,7 @@ export function totalPricePerNight(price, nights) {
 }
 
 export function getNightsFromDateRange(from, to) {
-
+    if (!from || !to) return 0;
     const startDay = new Date(from);
     const endDay = new Date(to);
     const oneDay = 1000 * 60 * 60 * 24;
@@ -174,35 +174,33 @@ export function formatShortDate(date) {
 export function getFreeCancelationDate(checkInDate) {
 
     if (!checkInDate) {
-        throw new Error('Check-in date is required');
+        return null
     }
 
     const cancelationDate = new Date(checkInDate);
 
     if (isNaN(cancelationDate.getTime())) {
-        throw new Error('Invalid date provided');
+        return null
     }
 
     cancelationDate.setDate(cancelationDate.getDate() - 1);
 
     return cancelationDate;
-
 }
 
 export function getOneWeekBeforeCheckInDate(checkInDate) {
 
     if (!checkInDate) {
-        throw new Error('Check-in date is required');
+        return null
     }
 
     const latePaymentDate = new Date(checkInDate);
 
     if (isNaN(latePaymentDate.getTime())) {
-        throw new Error('Invalid date provided');
+        return null
     }
 
     latePaymentDate.setDate(latePaymentDate.getDate() - 7);
 
     return latePaymentDate;
-
 }

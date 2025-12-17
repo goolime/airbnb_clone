@@ -7,7 +7,6 @@ import { getDatesString, getGuestsString, getLocationString, guestStringLength }
 import { BiSearch } from "react-icons/bi"
 import { propertiesService } from "../../services/properties/index.js"
 
-// Constants
 const MODAL_TYPES = {
     LOCATION: 'location',
     DATE: 'date',
@@ -156,7 +155,7 @@ export function LargeFilter({
 
     // Clear button component
     const ClearButton = useCallback(({ show, onClear }) => (
-        <div className={`transition-all duration-200 ease-in-out ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'
+        <div className={`transition-all duration-300 ease-in-out ${show ? 'opacity-100 scale-100' : 'opacity-0 scale-0 pointer-events-none'
             }`}>
             <button
                 onClick={(e) => {
@@ -206,7 +205,7 @@ export function LargeFilter({
                     {/* White indicator */}
                     {activeModal && isModalOpen && (
                         <div
-                            className={`absolute bg-white border-y-1 border-[#DDDDDD] rounded-full shadow-md transition-all duration-300 ease-out ${showIndicator ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+                            className={`absolute bg-white border-y-1 border-[#DDDDDD] rounded-full shadow-md transition-all duration-300 ease-out ${showIndicator ? 'scale-100 opacity-100' : 'scale-70 opacity-0'
                                 }`}
                             style={{
                                 ...indicatorStyle,
@@ -316,19 +315,22 @@ export function LargeFilter({
                                         ? 'font-light text-[#6a6a6a]'
                                         : 'font-semibold text-[#222222]'} text-sm truncate block`}>
                                         <span className="sm:hidden md:hidden">
-                                            {getGuestsString(filterData.guests, guestStringLength.LONG).slice(0, 10)}...
+                                            {getGuestsString(filterData.guests, guestStringLength.LONG).slice(0, 10)}
+                                            {getGuestsString(filterData.guests, guestStringLength.LONG).length > 10 && '...'}
                                         </span>
                                         <span className="hidden sm:inline md:hidden">
-                                            {getGuestsString(filterData.guests, guestStringLength.LONG).slice(0, 10)}...
+                                            {getGuestsString(filterData.guests, guestStringLength.LONG).slice(0, 10)}
+                                            {getGuestsString(filterData.guests, guestStringLength.LONG).length > 10 && '...'}
                                         </span>
                                         <span className="hidden md:inline">
-                                            {getGuestsString(filterData.guests, guestStringLength.LONG).slice(0, 22)}...
+                                            {getGuestsString(filterData.guests, guestStringLength.LONG).slice(0, 20)}
+                                            {getGuestsString(filterData.guests, guestStringLength.LONG).length > 22 && '...'}
                                         </span>
                                     </span>
                                 </div>
-                                <div className={`relative flex justify-center items-center transition-all duration-200 ease-in-out ${activeModal === MODAL_TYPES.GUEST && isModalOpen && hasGuestValue
-                                        ? 'opacity-100 scale-100'
-                                        : 'opacity-0 scale-0 pointer-events-none'
+                                <div className={`relative flex justify-center items-center transition-all duration-300 ease-in-out ${activeModal === MODAL_TYPES.GUEST && isModalOpen && hasGuestValue
+                                    ? 'opacity-100 scale-100'
+                                    : 'opacity-0 scale-0 pointer-events-none'
                                     }`}>
                                     <button
                                         onClick={(e) => {

@@ -1,13 +1,12 @@
 import { getCities } from "../../actions/explore.actions"
 import { BiSearch } from "react-icons/bi"
-import { GoChevronDown } from "react-icons/go"
 
 export function MobileWherePicker({onFilterChange}) {
     const cities = getCities();
     return <>
     {/* Search Input */}
         <div className="flex items-center gap-3 border-1 border-gray-400 rounded-xl px-4 py-3 mb-6 focus-within:ring-2 focus-within:ring-black transition">
-            <BiSearch size={20} className="text-gray-500" />
+            <BiSearch size={20} className="text-[#6a6a6a]" />
             <input
                 type="text"
                 placeholder="Search destinations"
@@ -17,13 +16,13 @@ export function MobileWherePicker({onFilterChange}) {
 
         {/* Recent Searches */}
         <div className="mb-6">
-            <label className="text-sm font-semibold text-gray-500 mb-3 block">Recent searches</label>
+            <label className="text-sm font-semibold text-[#6a6a6a] mb-3 block">Recent searches</label>
             <LatestSearches />
         </div>
 
         {/* Suggested Destinations */}
         <div>
-            <label className="text-sm font-semibold text-gray-500 mb-3 block">Suggested destinations</label>
+            <label className="text-sm font-semibold text-[#6a6a6a] mb-3 block">Suggested destinations</label>
             <div className="space-y-2 max-h-80 overflow-y-auto">
                 <NearBy />
                 {cities && cities.map((city, idx) => (
@@ -51,7 +50,7 @@ function NearBy(){
             />
             <div className="flex flex-col text-left">
                 <span className="font-semibold">Nearby</span>
-                <span className="text-sm text-gray-500">Find what's around you</span>
+                <span className="text-sm text-[#6a6a6a]">Find what's around you</span>
             </div>
         </button>
     </>

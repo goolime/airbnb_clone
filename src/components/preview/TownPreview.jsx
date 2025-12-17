@@ -32,7 +32,7 @@ export function TownPreview({city,properties,idx}){
 
     const styles={
         container:"xl:w-[185px] xl:h-[250px]",
-        carousel:"size-[40dvw] sm:size-[21.8dvw] md:size-[17.05dvw] lg:size-[14.5dvw] xl:size-[185px]",
+        carousel:"size-[40dvw] rounded-xl sm:size-[21.8dvw] md:size-[17.05dvw] lg:size-[14.5dvw] xl:size-[185px]",
         header:"sm:text-[1.7dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13.5px]",
         text:"sm:text-[1.6dvw] md:text-[1.2dvw] lg:text-[1dvw] xl:text-[13px]"
     }

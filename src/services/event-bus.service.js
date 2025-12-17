@@ -38,19 +38,25 @@ export function showExtendedFilter() {
     eventBusService.emit('show-extended-filter')
 }
 
-export function showServiceAnimalInfo(){
+export function showServiceAnimalInfo() {
     eventBusService.emit('show-service-animal-info')
 }
 
-export function showPropertyCreation(){
+export function showPropertyCreation() {
     eventBusService.emit('show-property-creation')
 }
 
-export function showInteraction(msg){
+export function showInteraction(msg) {
     eventBusService.emit('show-user-interaction', msg)
 }
 
+export function showDateSelector() {
+    eventBusService.emit('show-date-selector')
+}
 
+export function showCapacitySelector() {
+    eventBusService.emit('show-capacity-selector')
+}
 
 export function showLoginModal() {
     eventBusService.emit('show-login-modal')
