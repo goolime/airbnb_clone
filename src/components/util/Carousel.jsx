@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { TbSquareRoundedArrowRightFilled, TbSquareRoundedArrowLeftFilled } from "react-icons/tb";
 
-export function Carousel({ slides, className, auto = false }) {
-    const [currentIndex, setCurrentIndex] = useState(0);
+export function Carousel({ slides, className, auto = false, currentIndex, setCurrentIndex }) {
     const [isTransitioning, setIsTransitioning] = useState(false);
     const intervalRef = useRef(null);
     const touchStartX = useRef(0);
@@ -100,7 +99,7 @@ export function Carousel({ slides, className, auto = false }) {
                 </button>
             </div>
 
-            <div className="absolute bottom-0 flex justify-center py-3 w-full">
+            <div className="absolute bottom-0 flex justify-center py-3 w-full width-full" >
                 <div className="flex gap-2">
                     {slides.map((_, index) => (
                         <div 

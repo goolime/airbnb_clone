@@ -4,6 +4,8 @@ import { EditIcon, Xicon } from "../util/Icons";
 import { BiMessage } from "react-icons/bi";
 
 export function OrderPreview({order,onRemoveOrder, host=false}) {
+
+    //get from store
     const overdue = new Date(order.checkOut) < Date.now();
     const inTheFuture = new Date(order.checkIn) > Date.now();
     const checkInDate = new Date(order.checkIn)

@@ -284,7 +284,7 @@ export function Reservation() {
                                                         />
                                                         <FaLock
                                                             size={13}
-                                                            className="absolute left-28 top-1/2 -translate-y-1/2 text-gray-400"
+                                                            className="absolute left-40 top-1/2 -translate-y-1/2 text-gray-400"
                                                         />
                                                     </div>
                                                     <div className="flex">
