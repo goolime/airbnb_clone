@@ -381,8 +381,10 @@ export function Reservation() {
                             {activeStep === 3 ? (
                                 <div className="border-1 border-gray-200 shadow-md rounded-3xl p-6 animate-[slideIn_0.3s_ease-out]">
                                     <h2 className="text-xl font-semibold">3. Review your reservation</h2>
-                                    <label className="flex text-sm text-gray-600">By selecting the button, I agree to the
-                                        <p className="ml-1 font-semibold underline">booking terms</p>.</label>
+                                    <p className="text-sm text-gray-600">
+                                        By selecting the button, I agree to the{' '}
+                                        <span className="font-semibold underline">booking terms</span>.
+                                    </p>
                                     <div className="flex justify-end mt-4">
                                         <button
                                             className="px-6 bg-black text-white rounded-xl font-semibold cursor-pointer w-full h-12 flex items-center justify-center"

@@ -2,32 +2,32 @@ import { useEffect, useRef, useState } from "react";
 import { TbSquareRoundedArrowRightFilled, TbSquareRoundedArrowLeftFilled } from "react-icons/tb";
 
 export function Carousel({ slides, className, auto = false, currentIndex, setCurrentIndex }) {
-    const [isTransitioning, setIsTransitioning] = useState(false);
-    const intervalRef = useRef(null);
-    const touchStartX = useRef(0);
-    const touchEndX = useRef(0);
+    const [isTransitioning, setIsTransitioning] = useState(false)
+    const intervalRef = useRef(null)
+    const touchStartX = useRef(0)
+    const touchEndX = useRef(0)
 
     const nextSlide = () => {
-        if (isTransitioning) return;
-        setIsTransitioning(true);
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length);
+        if (isTransitioning) return
+        setIsTransitioning(true)
+        if (setCurrentIndex) setCurrentIndex((prevIndex) => (prevIndex + 1) % slides.length)
         setTimeout(() => setIsTransitioning(false), 500);
     };
 
     const prevSlide = () => {
         if (isTransitioning) return;
         setIsTransitioning(true);
-        setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length);
+        if (setCurrentIndex) setCurrentIndex((prevIndex) => (prevIndex - 1 + slides.length) % slides.length)
         setTimeout(() => setIsTransitioning(false), 500);
     };
 
     // Touch swipe handlers
     const handleTouchStart = (e) => {
-        touchStartX.current = e.touches[0].clientX;
+        touchStartX.current = e.touches[0].clientX
     };
 
     const handleTouchMove = (e) => {
-        touchEndX.current = e.touches[0].clientX;
+        touchEndX.current = e.touches[0].clientX
     };
 
     const handleTouchEnd = () => {
@@ -42,16 +42,16 @@ export function Carousel({ slides, className, auto = false, currentIndex, setCur
     useEffect(() => {
         if (auto === false || auto === "hover") return;
         const interval = setInterval(() => {
-            nextSlide();
+            nextSlide()
         }, 3000);
 
-        return () => clearInterval(interval);
-    }, [currentIndex]);
+        return () => clearInterval(interval)
+    }, [currentIndex])
 
     function handleMouseLeave() {
         if (auto !== "hover") return;
         if (intervalRef.current) {
-            clearInterval(intervalRef.current);
+            clearInterval(intervalRef.current)
             intervalRef.current = null;
         }
     }
@@ -60,29 +60,29 @@ export function Carousel({ slides, className, auto = false, currentIndex, setCur
         if (auto !== "hover") return;
         if (!intervalRef.current) {
             intervalRef.current = setInterval(() => {
-                nextSlide();
-            }, 1500);
+                nextSlide()
+            }, 1500)
         }
     }
 
     return (
-        <div 
-            className={`overflow-hidden relative ${className} group`} 
-            onMouseLeave={handleMouseLeave} 
+        <div
+            className={`overflow-hidden relative ${className} group`}
+            onMouseLeave={handleMouseLeave}
             onMouseEnter={handleMouseEnter}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
         >
-            <div 
+            <div
                 className="flex h-full w-full transition-transform duration-500 ease-out"
                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}
             >
                 {slides.map((s, index) => {
                     return (
-                        <img 
-                            className="min-w-full h-full object-cover" 
-                            key={index} 
+                        <img
+                            className="min-w-full h-full object-cover"
+                            key={index}
                             src={s}
                             alt={`Slide ${index + 1}`}
                         />
@@ -102,16 +102,16 @@ export function Carousel({ slides, className, auto = false, currentIndex, setCur
             <div className="absolute bottom-0 flex justify-center py-3 w-full width-full" >
                 <div className="flex gap-2">
                     {slides.map((_, index) => (
-                        <div 
-                            key={index} 
-                            className={`rounded-full size-[1dvw] md:size-[0.5dvw] bg-white opacity-0 ${currentIndex === index ? 'group-hover:opacity-100' : 'group-hover:opacity-30'} hover:scale-110 hover:opacity-100 duration-200 cursor-pointer`} 
-                            onClick={() => { 
+                        <div
+                            key={index}
+                            className={`rounded-full size-[1dvw] md:size-[0.5dvw] bg-white opacity-0 ${currentIndex === index ? 'group-hover:opacity-100' : 'group-hover:opacity-30'} hover:scale-110 hover:opacity-100 duration-200 cursor-pointer`}
+                            onClick={() => {
                                 if (!isTransitioning) {
                                     setIsTransitioning(true);
                                     setCurrentIndex(index);
                                     setTimeout(() => setIsTransitioning(false), 500);
                                 }
-                            }} 
+                            }}
                         />
                     ))}
                 </div>
