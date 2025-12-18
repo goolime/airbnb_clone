@@ -4,8 +4,8 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
     const dropdownRef = useRef(null)
     const contentRef = useRef(null)
     const [slideDirection, setSlideDirection] = useState('')
-    const [shouldRender, setShouldRender] = useState(false)
-    const [shouldAnimate, setShouldAnimate] = useState(false)
+    const [isRender, setShouldRender] = useState(false)
+    const [isAnimate, setShouldAnimate] = useState(false)
 
     // Handle slide direction between modals
     useEffect(() => {
@@ -17,7 +17,6 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
         }
         const prevOrder = modalOrder[prevModalType] || 0
         const currentOrder = modalOrder[modalType] || 0
-
         let dir = ''
         if (currentOrder > prevOrder) {
             dir = 'animate-slide-in-left'
@@ -59,7 +58,6 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
                 }
             }
         }
-
         const timer = setTimeout(() => {
             document.addEventListener('mousedown', handleClickOutside)
         }, 0)
@@ -70,7 +68,7 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
         }
     }, [isModalOpen, onCloseModal])
 
-    if (!shouldRender) return null
+    if (!isRender) return null
 
     return (
         <div
@@ -78,7 +76,7 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
             className={`${position} top-full ${direction} bg-white ${width} rounded-3xl py-6  px-4 shadow-lg border-2 border-gray-200 z-50 overflow-hidden transition-all 
-            duration-300 ease-out  ${shouldAnimate ? 'opacity-100 scale-100 translate-y-2' : 'opacity-0 scale-90 translate-y-0'} ${className} `}
+            duration-300 ease-out  ${isAnimate ? 'opacity-100 scale-100 translate-y-2' : 'opacity-0 scale-90 translate-y-0'} ${className} `}
             style={{
                 transformOrigin: 'top center'
             }}

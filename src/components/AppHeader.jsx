@@ -75,7 +75,7 @@ export function AppHeader() {
             <UserLogin />
 
             {/* Mobile Bottom Navigation */}
-            <div className={`sm:hidden z-50 fixed ${!hideMobileMenu ? 'hidden' : 'grid'}  grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-t border-gray-200`}>
+            <div className={`sm:hidden z-50 fixed ${hideMobileMenu ? 'hidden' : 'grid'}  grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-t border-gray-200`}>
                 <a href='#'
                     className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.startsWith('/explore') ? 'text-rose-500' : ''} transition`}
                     onClick={(e) => { e.preventDefault(); navigate('/explore') }}
@@ -86,7 +86,7 @@ export function AppHeader() {
 
                 <a href='#'
                     className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.startsWith('/profile/wishlist') ? 'text-rose-500' : ''} transition`}
-                    onClick={(e) => { e.preventDefault(); navigate('/profile/wishlists') }}
+                    onClick={(e) => { e.preventDefault(); navigate('/profile/wishlist') }}
                 >
                     <BiHeart size={24} />
                     <span className='text-[10px] mt-1'>Wishlists</span>
