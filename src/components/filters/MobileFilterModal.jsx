@@ -15,6 +15,7 @@ export function MobileFilterModal({
     isFilterModalOpen,
     onFilterModalClose,
     handleFilterPropertyChange,
+    clearFilters,
     submitSearch,
     locationString = "I'm flexible",
     datesString = "Add dates",
@@ -33,14 +34,14 @@ export function MobileFilterModal({
             </button>
 
             {/* Main Content */}
-            <div className="max-w-md mx-auto px-4 pt-16 pb-24">
+            <div className="max-w-md mx-auto px-4 pt-16 pb-24 text-[#222222]">
                 {activeSection !== sections.WHERE &&
                     <button
                         onClick={() => setActiveSection(sections.WHERE)}
                         className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
                     >
-                        <span className="font-semibold text-gray-500">Where</span>
-                        <span className="font-semibold">{locationString}</span>
+                        <span className="font-semibold text-md text-[#6a6a6a]">Where</span>
+                        <span className="font-semibold text-md text-[#222222]">{locationString}</span>
                     </button>
                 }
                 {/* Where Section */}
@@ -61,8 +62,8 @@ export function MobileFilterModal({
                         onClick={() => setActiveSection(sections.WHEN)}
                         className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
                     >
-                        <span className="font-semibold text-gray-500">When</span>
-                        <span className="font-semibold">{datesString}</span>
+                        <span className="font-semibold text-md text-[#6a6a6a]">When</span>
+                        <span className="font-semibold text-md text-[#222222]">{datesString}</span>
                     </button>
                 }
 
@@ -80,7 +81,7 @@ export function MobileFilterModal({
                         onClick={() => setActiveSection(sections.WHO)}
                         className="bg-white rounded-2xl shadow-lg px-6 py-4 mb-4 w-full flex justify-between items-center hover:shadow-xl transition"
                     >
-                        <span className="font-semibold text-gray-500">Who</span>
+                        <span className="font-semibold text-[#6a6a6a]">Who</span>
                         <span className="font-semibold">{guestsString}</span>
                     </button>
                 }
@@ -95,7 +96,8 @@ export function MobileFilterModal({
 
             {/* Bottom Actions */}
             <div className="fixed bottom-0 left-0 right-0 bg-gray-100 px-4 py-4 flex items-center justify-between max-w-md mx-auto">
-                <button className="text-sm font-semibold underline">
+                <button className="text-md font-semibold underline text-[#222222]"
+                onClick={clearFilters}>
                     Clear all
                 </button>
                 <button onClick={() => {
@@ -104,7 +106,8 @@ export function MobileFilterModal({
                         onFilterModalClose()
                     }
                     setActiveSection(currentSection => currentSection + 1)
-                }} className={`px-6 py-3 ${activeSection === sections.WHO ? "bg-gradient-to-r from-rose-500 to-pink-600" : "bg-gray-700"} text-white font-semibold rounded-lg hover:shadow-xl transition`}>
+                }} className={`flex px-6 py-3 ${activeSection === sections.WHO ? "bg-gradient-to-r from-rose-500 to-pink-600" : "bg-[#222222]"} 
+                text-white text-lg font-semibold rounded-lg hover:shadow-xl transition h-11.5 w-35 justify-center items-center`}>
                     {activeSection === sections.WHO ? "Search" : "Next"}
                 </button>
             </div>

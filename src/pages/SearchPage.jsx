@@ -84,7 +84,7 @@ export function SearchPage() {
         <div className="relative">
             <div className="hidden md:grid md:grid-cols-2 gap-6">
                 <div className="p-5">
-                    <span className="font-semibold mb-5 block">{totalProperties} homes</span>
+                    <span className="font-semibold my-4 block">{totalProperties} homes</span>
                     <ListPreview
                         properties={properties}
                         checkIn={filterData.dates.from}
@@ -95,7 +95,7 @@ export function SearchPage() {
                 </div>
 
                 <div className="relative">
-                    <div className="sticky pl-5 pr-3 top-37 pb-6 h-[calc(95vh-7rem)]">
+                    <div className="sticky pl-5 pr-3 inset-y-40 pb-6 h-[calc(95vh-7rem)]">
                         <AppMap
                             searchResults={properties}
                             location={filterData?.loc}

@@ -4,8 +4,8 @@ import { Map, Popup, Marker } from 'react-map-gl/mapbox'
 import { getCenter } from 'geolib'
 import { useRef, useState, useEffect } from 'react'
 import { PropertyPreview } from '../preview/PropertyPreview'
-import { TbHeart } from 'react-icons/tb'
 import { IoClose, IoHeart, IoHeartOutline } from 'react-icons/io5'
+import { Wishlisted } from '../util/wishlisted'
 
 export function AppMap({ searchResults, location, checkIn = null, checkOut = null, guests = null }) {
 
@@ -84,9 +84,9 @@ function Tag({ property, checkIn = null, checkOut = null, guests = null, selecte
     const [hoveredMarkerId, setHoveredMarkerId] = useState(null);
 
     const styles = {
-        carousel: "aspect-[3/2] w-full rounded-b-none",
-        header: "text-lg font-semibold px-2 bg-white",
-        text: "text-sm text-gray-600 px-2 bg-white"
+        carousel: "aspect-[3/2] w-full rounded-t-2xl rounded-b-none",
+        header: "text-sm font-semibold text-[#222222] px-2 bg-white",
+        text: "text-sm text-[#6a6a6a] px-2 bg-white"
     }
 
     const handleClick = (e) => {
@@ -148,7 +148,7 @@ function Tag({ property, checkIn = null, checkOut = null, guests = null, selecte
                     className="property-popup"
                     style={{ zIndex: 100 }}
                 >
-                    <div className='rounded-xl overflow-hidden shadow-2xl relative' style={{ width: '320px' }}>
+                    <div className='rounded-2xl overflow-hidden shadow-2xl relative bg-white' style={{ width: '320px' }}>
                         <div className='absolute top-3 right-3 flex gap-2 z-10'>
                             <button
                                 className='w-8 h-8 bg-white opacity-70 hover:opacity-100 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform'
@@ -157,17 +157,24 @@ function Tag({ property, checkIn = null, checkOut = null, guests = null, selecte
                                     //TODO: Add wishlist toggle logic here
                                 }}
                             >
-                                <IoHeartOutline size={16}/>
+                                <Wishlisted propertyId={property._id} />
                             </button>
                             <button
                                 className='w-8 h-8 bg-white opacity-70 hover:opacity-100 rounded-full flex items-center justify-center shadow-md hover:scale-110 transition-transform'
                                 onClick={() => setSelectedLocation(null)}
                             >
-                                <IoClose size={16}/>
+                                <IoClose size={16} />
                             </button>
                         </div>
-                        <PropertyPreview property={property} key={property._id} styles={styles} checkIn={checkIn} checkOut={checkOut} guests={guests} />
-                        <div className='pt-2 bg-white'></div>
+                        <PropertyPreview
+                            property={property}
+                            key={property._id}
+                            styles={styles}
+                            checkIn={checkIn}
+                            checkOut={checkOut}
+                            guests={guests}
+                            showWishlistIcon={false}
+                        />
                     </div>
                 </Popup>
             )}

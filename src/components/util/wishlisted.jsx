@@ -12,13 +12,11 @@ export function Wishlisted({propertyId, className}) {
         const state = store.getState();
         const user = state.userModule.loggedInUser;
         if (user) {
-            setIsWishlisted(user.wishlist.includes(propertyId));
+            setIsWishlisted(user.wishlist && user.wishlist.includes(propertyId));
         } else {
             setIsWishlisted(false);
         }
     }, []);
-
-    
 
     return <>
             <div className={`${className}`} 
