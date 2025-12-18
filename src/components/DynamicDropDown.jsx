@@ -1,18 +1,6 @@
-// UPDATED DYNAMICDROPDOWN.JSX - Copy this entire component
-
 import { useEffect, useRef, useState } from 'react'
 
-export function DynamicDropDown({ 
-    isModalOpen, 
-    onCloseModal, 
-    children, 
-    width, 
-    direction, 
-    position, 
-    className = '', 
-    prevModalType, 
-    modalType 
-}) {
+export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, direction, position, className = '', prevModalType, modalType }) {
     const dropdownRef = useRef(null)
     const contentRef = useRef(null)
     const [slideDirection, setSlideDirection] = useState('')
@@ -27,7 +15,6 @@ export function DynamicDropDown({
             setSlideDirection('')
             return
         }
-
         const prevOrder = modalOrder[prevModalType] || 0
         const currentOrder = modalOrder[modalType] || 0
 
@@ -90,50 +77,15 @@ export function DynamicDropDown({
             ref={dropdownRef}
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => e.stopPropagation()}
-            className={`
-                ${position}
-                top-full
-                ${direction}
-                bg-white
-                ${width}
-                rounded-3xl
-                py-6
-                px-4
-                shadow-lg
-                border-2
-                border-gray-200
-                z-50
-                overflow-hidden
-                transition-all
-                duration-300
-                ease-out
-                ${shouldAnimate 
-                    ? 'opacity-100 scale-100 translate-y-2' 
-                    : 'opacity-0 scale-90 translate-y-0'}
-                ${className}
-            `}
+            className={`${position} top-full ${direction} bg-white ${width} rounded-3xl py-6  px-4 shadow-lg border-2 border-gray-200 z-50 overflow-hidden transition-all 
+            duration-300 ease-out  ${shouldAnimate ? 'opacity-100 scale-100 translate-y-2' : 'opacity-0 scale-90 translate-y-0'} ${className} `}
             style={{
                 transformOrigin: 'top center'
             }}
         >
-            <div
-                ref={contentRef}
-                key={modalType}
-                className={slideDirection}
-            >
+            <div ref={contentRef} key={modalType} className={slideDirection} >
                 {children}
             </div>
         </div>
     )
 }
-
-// INSTRUCTIONS FOR PROPERTYDETAILS.JSX:
-// The dropdowns in PropertyDetails should work now with this updated component.
-// Make sure your DynamicDropDown imports are pointing to this updated version.
-
-// If dropdowns still don't show:
-// 1. Check that isModalOpen is actually set to true
-// 2. Add console.log in PropertyDetails to verify:
-//    console.log('Date modal open:', isDateModalOpen)
-//    console.log('Guest modal open:', isGuestModalOpen)
-//    console.log('Main modal open:', isModalOpen)
