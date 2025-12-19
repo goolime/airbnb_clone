@@ -7,10 +7,8 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
     const [isRender, setShouldRender] = useState(false)
     const [isAnimate, setShouldAnimate] = useState(false)
 
-    // Handle slide direction between modals
     useEffect(() => {
         const modalOrder = { location: 0, date: 1, guest: 2 }
-
         if (!prevModalType) {
             setSlideDirection('')
             return
@@ -23,22 +21,18 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
         } else if (currentOrder < prevOrder) {
             dir = 'animate-slide-in-right'
         }
-
         setSlideDirection(dir)
     }, [modalType, prevModalType])
 
-    // Handle mount/unmount with animation
     useEffect(() => {
         if (isModalOpen) {
             setShouldRender(true)
-            // Small delay to ensure DOM is ready before animating
             const timer = setTimeout(() => {
                 setShouldAnimate(true)
             }, 10)
             return () => clearTimeout(timer)
         } else {
             setShouldAnimate(false)
-            // Wait for animation to finish before unmounting
             const timer = setTimeout(() => {
                 setShouldRender(false)
             }, 300)
@@ -46,10 +40,8 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
         }
     }, [isModalOpen])
 
-    // Handle click outside
     useEffect(() => {
         if (!isModalOpen) return
-
         function handleClickOutside(event) {
             if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 const isFilterBarClick = event.target.closest('[data-filter-section]')
@@ -61,7 +53,6 @@ export function DynamicDropDown({ isModalOpen,  onCloseModal, children, width, d
         const timer = setTimeout(() => {
             document.addEventListener('mousedown', handleClickOutside)
         }, 0)
-
         return () => {
             clearTimeout(timer)
             document.removeEventListener('mousedown', handleClickOutside)
