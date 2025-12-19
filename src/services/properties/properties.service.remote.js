@@ -34,7 +34,7 @@ async function getById(id) {
 }   
 
 async function getPropertiesByCity(city) {
-    const queryParams = `?countryCode=${city.countryCode}&city=${city.name}&minLat=${city.minLat}&maxLat=${city.maxLat}&minLng=${city.minLng}&maxLng=${city.maxLng}`
+    const queryParams = `?countryCode=${city.countryCode}&city=${city.city}&minLat=${city.minLat}&maxLat=${city.maxLat}&minLng=${city.minLng}&maxLng=${city.maxLng}`
     return httpService.get(PROPERTIES_URL+"city/" + queryParams)
 }
 
