@@ -38,7 +38,7 @@ export async function getTownsPreviews() {
             .then(properties => ({ city, properties }))
             .catch(err => {
                 console.error(`Failed to load ${city.city}:`, err)
-                return { city, properties: [] } // Graceful fallback
+                return { city, properties: [] }
             })
     )
     

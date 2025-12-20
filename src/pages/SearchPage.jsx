@@ -22,10 +22,9 @@ export function SearchPage() {
     useEffect(() => {
         const filter = propertiesService.getFilterFromSearchParams(searchParams)
         setFilterData(filter)
-        setPage(1) // Reset page when filter changes
+        setPage(1)
     }, [searchParams])
 
-    // ✅ Single effect that handles both filter and page changes
     useEffect(() => {
         if (!filterData) return
         
@@ -36,7 +35,7 @@ export function SearchPage() {
             setTotalProperties(totalProperties)
             setLoading(false)
         })
-    }, [filterData, page]) // Combined dependencies
+    }, [filterData, page])
 
     const mapRef = useRef(null);
 
