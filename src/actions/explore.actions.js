@@ -31,13 +31,18 @@ export function getCities() {
 }
 
 export async function getTownsPreviews() {
-    const selectedCitys = reduceList(citys, 7)
-    const ans = []
-    for (let i = 0; i < selectedCitys.length; i++) {
-        const cityProperties = await propertiesService.getPropertiesByCity(selectedCitys[i])
-        ans.push({ city: selectedCitys[i], properties: cityProperties })
-    }
-    return ans
+    const selectedCities = reduceList(citys, 7)
+    
+    const cityPropertiesPromises = selectedCities.map(city => 
+        propertiesService.getPropertiesByCity(city)
+            .then(properties => ({ city, properties }))
+            .catch(err => {
+                console.error(`Failed to load ${city.city}:`, err)
+                return { city, properties: [] } // Graceful fallback
+            })
+    )
+    
+    return await Promise.all(cityPropertiesPromises)
 }
 
 export async function getProperties(filterData, page = 1) {

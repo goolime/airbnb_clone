@@ -21,23 +21,14 @@ export function SearchPage() {
 
     useEffect(() => {
         const filter = propertiesService.getFilterFromSearchParams(searchParams)
-        console.log('Location data from URL:', filter.loc)
         setFilterData(filter)
+        setPage(1) // Reset page when filter changes
     }, [searchParams])
 
+    // ✅ Single effect that handles both filter and page changes
     useEffect(() => {
         if (!filterData) return
-        //console.log('Filter Data:', filterData); // Add this line
-        getProperties(filterData, 1).then(({ newProperties, newMaxPage, totalProperties }) => {
-            setPage(1)
-            setProperties(newProperties)
-            setMaxPage(newMaxPage)
-            setTotalProperties(totalProperties)
-            setLoading(false)
-        })
-    }, [filterData])
-
-    useEffect(() => {
+        
         setLoading(true)
         getProperties(filterData, page).then(({ newProperties, newMaxPage, totalProperties }) => {
             setProperties(newProperties)
@@ -45,7 +36,7 @@ export function SearchPage() {
             setTotalProperties(totalProperties)
             setLoading(false)
         })
-    }, [page])
+    }, [filterData, page]) // Combined dependencies
 
     const mapRef = useRef(null);
 
