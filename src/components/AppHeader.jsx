@@ -87,7 +87,6 @@ export function AppHeader() {
                 bg-white 
                 border-t 
                 border-gray-200
-                safe-area-inset-bottom
             `}>
                 <a href='#'
                     className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.startsWith('/explore') ? 'text-rose-500' : ''} transition`}

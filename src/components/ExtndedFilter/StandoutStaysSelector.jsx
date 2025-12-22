@@ -28,7 +28,7 @@ export function StandoutStaysSelector({ selectedStands, onChange }) {
                     <GuestFavorite className="!size-[2rem]" />
                     <div className="flex flex-col items-start">
                         <div className="font-semibold ">Guest favorite</div>
-                        <div className="text-balance text-left text-gray-500">The most loved homes on Airbnb</div>
+                        <div className="text-balance text-left text-gray-500">The most loved homes on Airdnd</div>
                     </div>
                 </div>
             </StandoutButton>

@@ -13,10 +13,10 @@ export function ChatPageConnected() {
     const hasCreatedChat = useRef(false)
 
     const loggedInUser = useSelector(state => state.userModule.loggedInUser)
-    console.log('🔄 ChatPageConnected RENDER');
-    console.log('location.state:', location.state);
-    console.log('location.pathname:', location.pathname);
-    console.log('================');
+    console.log('ChatPageConnected RENDER')
+    console.log('location.state:', location.state)
+    console.log('location.pathname:', location.pathname)
+    console.log('================')
 
     useEffect(() => {
 
@@ -67,7 +67,6 @@ async function handlePropertyNavigation() {
         setChatId(chat._id)
         setLoading(false)
 
-        // Now navigate with chatId
         navigate('/messages', {
             state: { chatId: chat._id },
             replace: true

@@ -126,13 +126,7 @@ export function Reservation() {
     }
 
     function handlePayment() {
-        console.log('Payment Details:', {
-            paymentTiming,
-            paymentMethod,
-            cardDetails: paymentMethod === 'credit' ? cardDetails : null,
-            totalAmount: (getTotalPriceWithTax() + getFeePrice()).toFixed(2)
-        })
-        // TODO: Implement actual payment processing with ordersService
+
         ordersService.save({
             propertyId: propertyId,
             guest: store.getState().userModule.loggedInUser._id,

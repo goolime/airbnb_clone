@@ -45,7 +45,7 @@ function NearBy(){
                 height={48}
                 width={48}
                 className="rounded-lg object-cover flex-shrink-0"
-                src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-2/original/ea5e5ee3-e9d8-48a1-b7e9-1003bf6fe850.png"
+                src="https://a0.muscache.com/im/pictures/airdnd-platform-assets/airdndPlatformAssets-hawaii-autosuggest-destination-icons-2/original/ea5e5ee3-e9d8-48a1-b7e9-1003bf6fe850.png"
                 alt="Nearby"
             />
             <div className="flex flex-col text-left">
@@ -63,7 +63,7 @@ function CreateCityButton({city, idx, onClick}){
                 height={48}
                 width={48}
                 className="rounded-lg object-cover flex-shrink-0"
-                src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png"
+                src="https://a0.muscache.com/im/pictures/airdnd-platform-assets/airdndPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png"
                 alt={city}
             />
             <div className="flex flex-col text-left">
@@ -81,7 +81,7 @@ function LatestSearches(){
                 height={48}
                 width={48}
                 className="rounded-lg object-cover flex-shrink-0"
-                src="https://a0.muscache.com/im/pictures/airbnb-platform-assets/AirbnbPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png"
+                src="https://a0.muscache.com/im/pictures/airdnd-platform-assets/airdndPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png"
                 alt="Bucharest"
             />
             <div className="flex flex-col text-left">
