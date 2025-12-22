@@ -11,17 +11,14 @@ import { store } from '../store/store.js'
 import { showLoginModal } from '../services/event-bus.service.js'
 import { logout } from '../actions/user.actions.js'
 
-
-
 export function AppHeader() {
-
-
-
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
     const location = useLocation();
     const navigate = useNavigate();
     const currentPath = location.pathname;
 
-    const hideFilter = currentPath.startsWith('/profile') || currentPath.startsWith('/host') || currentPath.startsWith('/reservation')
+    const hideFilter = currentPath.startsWith('/profile') || currentPath.startsWith('/host') ||
+        currentPath.startsWith('/reservation') || currentPath.startsWith('/messages') || currentPath.startsWith('/room')
     const hideMobileMenu = currentPath.startsWith('/rooms')
 
     return (
@@ -36,8 +33,9 @@ export function AppHeader() {
                 sm:grid-cols-2 
                 ${!hideFilter ? 'sm:grid-rows-2' : ''}
                 md:grid-cols-[auto_1fr_auto]
+                ${hideFilter ? 'md:flex flex-row justify-between' : ''}
                 md:grid-rows-1
-                lg:grid-cols-[auto_minmax(700px,850px)_auto] 
+                lg:grid-cols-[auto_minmax(700px,850px)_auto]
                 col-start-2 
                 col-end-3 
                 w-full 
@@ -64,7 +62,7 @@ export function AppHeader() {
                     md:py-4
 
                 '>
-                        <AppFilter />
+                        <AppFilter setIsMobileMenuOpen={setIsMobileMenuOpen} />
                     </div>
                 )}
                 {/* User Menu Section */}
@@ -75,7 +73,22 @@ export function AppHeader() {
             <UserLogin />
 
             {/* Mobile Bottom Navigation */}
-            <div className={`sm:hidden z-50 fixed ${hideMobileMenu ? 'hidden' : 'grid'}  grid-cols-5 w-full place-items-center bottom-0 left-0 right-0 bg-white border-t border-gray-200`}>
+            <div className={`
+                sm:hidden 
+                z-50 
+                fixed 
+                ${hideMobileMenu || isMobileMenuOpen ? 'hidden' : 'grid'}  
+                grid-cols-5 
+                w-full 
+                place-items-center 
+                bottom-0 
+                left-0 
+                right-0 
+                bg-white 
+                border-t 
+                border-gray-200
+                safe-area-inset-bottom
+            `}>
                 <a href='#'
                     className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.startsWith('/explore') ? 'text-rose-500' : ''} transition`}
                     onClick={(e) => { e.preventDefault(); navigate('/explore') }}
@@ -105,16 +118,16 @@ export function AppHeader() {
                 </a>
 
                 <a href='#'
-                    className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.endsWith('/profile/messages') ? 'text-rose-500' : ''} transition`}
-                    onClick={(e) => { e.preventDefault(); navigate('/profile/messages') }}
+                    className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.startsWith('/messages') ? 'text-rose-500' : ''} transition`}
+                    onClick={(e) => { e.preventDefault(); navigate('/messages') }}
                 >
                     <BiMessage size={24} />
                     <span className='text-[10px] mt-1'>Messages</span>
                 </a>
 
                 <a href='#'
-                    className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.endsWith('/profile') ? 'text-rose-500' : ''} transition`}
-                    onClick={(e) => { e.preventDefault(); navigate('/profile') }}
+                    className={`grid place-items-center py-3 px-2 text-gray-500 hover:text-gray-700 ${currentPath.startsWith('/profile/user') ? 'text-rose-500' : ''} transition`}
+                    onClick={(e) => { e.preventDefault(); navigate('/profile/user') }}
                 >
                     <BiUser size={24} />
                     <span className='text-[10px] mt-1'>Profile</span>
@@ -146,7 +159,6 @@ function UserMenu() {
     const navigate = useNavigate()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const user = store.getState().userModule.loggedInUser
-
 
     return <div className='
                     sm:flex 
@@ -278,7 +290,7 @@ function UserMenu() {
                                 <BiUser size={20} />
                                 <span className='font-semibold text-sm pl-3'>Profile</span>
                             </a>
-                            <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
+                            <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition cursor-pointer'
                                 onClick={() => {
                                     logout().then(() => {
                                         navigate('/');
@@ -294,7 +306,7 @@ function UserMenu() {
                             </div>
                         </>
                         :
-                        <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition'
+                        <div className='flex flex-row items-center p-2 lg:p-3 text-gray-700 hover:bg-gray-50 rounded-lg transition cursor-pointer'
                             onClick={() => showLoginModal()}
                         >
                             <BiUser size={20} />

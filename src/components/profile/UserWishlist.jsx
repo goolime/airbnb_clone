@@ -60,7 +60,7 @@ export function UserWishlist() {
             <PropertyCreation />
             <div className={`max-w-[1400px] h-[80vh] overflow-y-auto scrollbar-hide ${loading ? 'animate-pulse mask-b-from-white mask-b-from-50% mask-b-to-black' : ''}`}>
                 <div className="p-4">
-                    <h2 className="text-2xl font-bold mb-4">My Properties</h2>
+                    <h2 className="text-2xl font-semibold mb-4">My Wishlist</h2>
                     <ListPreview properties={properties} className="sm:grid-cols-1 md:grid-cols-3 xl:grid-cols-5"/>
                 </div>
             </div>

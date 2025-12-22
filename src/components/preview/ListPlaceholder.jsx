@@ -8,7 +8,7 @@ export function ListPlaceholder({className=''}) {
 
     const styles = {
         
-        carousel: "size-[83dvw] sm:size-[42.5dvw] md:size-[18dvw] lg:size-[19dvw] xl:size-[181.25px]",
+        carousel: "size-[70dvw] sm:size-[42.5dvw] md:size-[18dvw] lg:size-[19dvw] xl:size-[181.25px]",
         header: "sm:text-[1.7dvw] md:text-[1.2dvw] lg:text-[1.1dvw] xl:text-[13.5px]",
         text: "sm:h-[1rem] md:h-[1rem] lg:h-[1rem] xl:h-[13px]"
     }

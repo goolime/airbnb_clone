@@ -11,8 +11,7 @@ export function UserLogin() {
     const navigate = useNavigate();
 
     function handleLogin() {
-        // Handle login logic here
-        console.log('Logging in with:', loginUsername, loginPassword);
+        
         login(loginUsername, loginPassword).then(() => {
             closeLoginModal();
             navigate('/');

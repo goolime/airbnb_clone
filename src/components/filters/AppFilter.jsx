@@ -10,7 +10,7 @@ import { ExtendedFilter } from "../ExtndedFilter/ExtendedFilter.jsx";
 
 
 
-export function AppFilter() {
+export function AppFilter({ setIsMobileMenuOpen }) {
 
     const [filterData, setFilterData] = useState(propertiesService.getDefaultFilter());
     const [isFilterModalOpen, setIsFilterModalOpen] = useState(false)
@@ -178,6 +178,7 @@ export function AppFilter() {
                     currentPath={currentPath}
                     filterData={filterData}
                     clearFilters={clearFilters}
+                    setIsMobileMenuOpen={setIsMobileMenuOpen}
                 />
             </div>
             <ExtendedFilter filter={filterData} />
