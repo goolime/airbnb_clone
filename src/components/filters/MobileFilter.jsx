@@ -15,7 +15,8 @@ export function MobileFilter({
     onOpenFilterModal,
     currentPath,
     filterData,
-    clearFilters }) {
+    clearFilters,
+    setIsMobileMenuOpen }) {
 
     return (
         <div className="w-full flex flex-row justify-between items-center px-4 py-2">
@@ -39,7 +40,7 @@ export function MobileFilter({
             shadow-md 
             shadow-gray-200 
             bg-white"
-                onClick={onOpenFilterModal}>
+                onClick={() => { onOpenFilterModal(); setIsMobileMenuOpen(true) }}>
                 <BiSearch size={18} />
                 <span className="font-semibold text-gray-800 ml-2">Start your search</span>
             </div>
@@ -61,6 +62,7 @@ export function MobileFilter({
                 datesString={getDatesString(filterData.dates)}
                 guestsString={getGuestsString(filterData.guests, guestStringLength.LONG)}
                 clearFilters={clearFilters}
+                setIsMobileMenuOpen={setIsMobileMenuOpen}
             />
         </div>
     )

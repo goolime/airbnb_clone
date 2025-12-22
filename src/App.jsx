@@ -15,6 +15,8 @@ import { PropertyOrders } from "./components/profile/PropertyOrders.jsx"
 import { UserProperties } from "./components/profile/UserProperties.jsx"
 import { UserOrders } from "./components/profile/UserOrders.jsx"
 import { UserWishlist } from "./components/profile/UserWishlist.jsx"
+import { ChatPageConnected } from "./pages/ChatPageConnected.jsx"
+import { ScrollToTop } from "./components/util/ScrollToTop.jsx"
 
 const Router = BrowserRouter
 
@@ -29,16 +31,17 @@ function App() {
     <>
       <ServiceAnimalInfo />
       <Router>
-        <section className="flex flex-col min-h-screen">
-            <AppHeader />
-          <div className="grid grid-cols-[5px_minmax(0,_1fr)_5px] sm:grid-cols-[1rem_minmax(0,_1fr)_1rem] xl:grid-cols-[1fr_1393px_1fr] w-100%">
+        <ScrollToTop />
+        <section className="flex flex-col min-h-screen pb-16 sm:pb-0">
+          <AppHeader />
+          <div className="grid grid-cols-[5px_minmax(0,_1fr)_5px] sm:grid-cols-[1rem_minmax(0,_1fr)_1rem] xl:grid-cols-[1fr_1393px_1fr] w-full flex-1">
             <div className="col-start-1 col-span-3 md:col-span-1 md:col-start-2">
               <Routes>
                 <Route path="/" element={<ExplorePage />} />
                 <Route path="/explore" element={<ExplorePage />} />
                 <Route path="/rooms/:propertyId" element={<PropertyDetails />} />
                 <Route path="/search" element={<SearchPage />} />
-                <Route path="/reservation/:propertyId" element={<Reservation />}/>
+                <Route path="/reservation/:propertyId" element={<Reservation />} />
                 <Route path="/profile" element={<ProfilePage />}>
                   <Route path="/profile/user" element={<UserData />} />
                   <Route path="/profile/wishlist" element={<UserWishlist />} />
@@ -48,7 +51,7 @@ function App() {
                   <Route path="/host/properties" element={<UserProperties />} />
                   <Route path="/host/orders" element={<PropertyOrders />} />
                 </Route>
-
+                <Route path="/messages" element={<ChatPageConnected />} />
                 <Route path="/test" element={<Test />} />
               </Routes>
             </div>
@@ -56,7 +59,7 @@ function App() {
           <AppFooter />
         </section>
       </Router>
-      
+
     </>
   )
 }

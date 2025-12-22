@@ -8,10 +8,10 @@ import { RxStarFilled } from "react-icons/rx"
 import { LuCalendarFold } from "react-icons/lu"
 import { CiLocationOn } from "react-icons/ci"
 import { MdOutlineKeyboardArrowDown, MdFlag } from "react-icons/md"
-import { AirConditioner, Tv, Kitchen, HotTub, Heating, WorkSpace, Wifi, Washer, Dryer, HairDryer, Iron, Pool, EvCharger, Parking, Crib, KingSizeBed, Gym, BBQGrill, Breakfast, FirePlace, Smoking, Beachfront, Waterfront, SmokeAlarm, CarbonMonoxideAlarm, ChevronDown, ChevronUp, ChevronRight } from "../components/util/Icons.jsx";
+import { AirConditioner, Tv, Kitchen, HotTub, Heating, WorkSpace, Wifi, Washer, Dryer, HairDryer, Iron, Pool, EvCharger, Parking, Crib, KingSizeBed, Gym, BBQGrill, Breakfast, FirePlace, Smoking, Beachfront, Waterfront, SmokeAlarm, CarbonMonoxideAlarm, ChevronDown, ChevronUp, ChevronRight } from "../components/util/Icons.jsx"
 import { TbKey, TbPaw } from "react-icons/tb"
-import { PiGlobeStand } from "react-icons/pi";
-import { GrLanguage } from "react-icons/gr";
+import { PiGlobeStand } from "react-icons/pi"
+import { GrLanguage } from "react-icons/gr"
 import { DetailsDatePicker } from "../components/search/DetailsDatePicker.jsx"
 import { StarRating } from "../components/util/StarRating.jsx"
 import { DetailsMap } from "../components/maps/DetailsMap.jsx"
@@ -24,6 +24,9 @@ import { store } from "../store/store.js"
 import { showLoginModal } from "../services/event-bus.service.js"
 import { Carousel } from "../components/util/Carousel.jsx"
 import { FaArrowLeft } from "react-icons/fa"
+import { ContactHost } from "../components/chat/ContactHost.jsx"
+import { useSelector } from "react-redux"
+import { chatService } from "../services/chat/chat.service.remote.js"
 
 
 export const amenityList = {
@@ -54,7 +57,7 @@ export const amenityList = {
     "Carbon monoxide alarm": { icon: <CarbonMonoxideAlarm className="size-[1.5rem]" />, label: "Carbon monoxide alarm" },
     "Self check-in": { icon: <TbKey className="size-[1.5rem]" />, label: "Self check-in" },
     "Pets allowed": { icon: <TbPaw className="size-[1.5rem]" />, label: "Pets allowed" },
-};
+}
 
 
 export function PropertyDetails() {
@@ -69,8 +72,10 @@ export function PropertyDetails() {
     const { propertyId } = useParams()
     const [checkInActive, setCheckInActive] = useState(true)
     const [checkOutActive, setCheckOutActive] = useState(false)
-    const [carouselIndex, setCarouselIndex] = useState(0);
+    const [carouselIndex, setCarouselIndex] = useState(0)
     const navigate = useNavigate()
+    const loggedInUser = useSelector(state => state.userModule.loggedInUser)
+    const [creatingChat, setCreatingChat] = useState(false)
 
     useEffect(() => {
         loadProperty()
@@ -201,7 +206,8 @@ export function PropertyDetails() {
 
                     {/* Back and Action Buttons*/}
                     <div className="absolute top-4 left-4">
-                        <button className="flex justify-center items-center bg-white/60 hover:bg-white rounded-full w-10 h-10 sm:w-8 sm:h-8 shadow-md transition" onClick={() => navigate(-1)}>
+                        <button className="flex justify-center items-center bg-white/60 hover:bg-white rounded-full w-10 h-10 sm:w-8 sm:h-8 shadow-md transition" 
+                        onClick={() => navigate(`/search?${searchParams.toString()}`)}>
                             <FaArrowLeft size={18} />
                         </button>
                     </div>
@@ -514,11 +520,11 @@ export function PropertyDetails() {
                                             onClick={() => {
                                                 if (store.getState().userModule.loggedInUser) {
                                                     const formatDate = (date) => {
-                                                        const year = date.getFullYear();
-                                                        const month = String(date.getMonth() + 1).padStart(2, '0');
-                                                        const day = String(date.getDate()).padStart(2, '0');
-                                                        return `${year}-${month}-${day}`;
-                                                    };
+                                                        const year = date.getFullYear()
+                                                        const month = String(date.getMonth() + 1).padStart(2, '0')
+                                                        const day = String(date.getDate()).padStart(2, '0')
+                                                        return `${year}-${month}-${day}`
+                                                    }
                                                     const params = new URLSearchParams()
                                                     if (selectedDates.from && selectedDates.to) {
                                                         params.append('checkIn', formatDate(selectedDates.from))
@@ -626,8 +632,30 @@ export function PropertyDetails() {
                                     <span className="text-sm sm:text-base font-semibold underline">Show more</span>
                                     <FiChevronRight size={18} />
                                 </div>
-                                <button className="bg-gray-100 w-fit py-3 rounded-xl px-6 font-semibold cursor-pointer hover:bg-gray-200 mb-6 transition">
-                                    Contact host
+                                <button
+                                    className="bg-gray-100 w-fit py-3 rounded-xl px-6 font-semibold cursor-pointer hover:bg-gray-200 mb-6 transition"
+                                    disabled={creatingChat}
+                                    onClick={async () => {
+                                        try {
+                                            setCreatingChat(true)
+
+                                            const chat = await chatService.findOrCreate(
+                                                property._id,
+                                                property.host._id
+                                            )
+
+                                            navigate('/messages', {
+                                                state: { chatId: chat._id }
+                                            })
+                                        } catch (error) {
+
+                                            alert('Failed to start conversation')
+                                        } finally {
+                                            setCreatingChat(false)
+                                        }
+                                    }}
+                                >
+                                    {creatingChat ? 'Starting chat...' : 'Contact host'}
                                 </button>
                                 <div className="text-sm sm:text-base space-y-1">
                                     <p>Response rate: 100%</p>
@@ -648,11 +676,11 @@ export function PropertyDetails() {
                         onClick={() => {
                             if (store.getState().userModule.loggedInUser) {
                                 const formatDate = (date) => {
-                                    const year = date.getFullYear();
-                                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                                    const day = String(date.getDate()).padStart(2, '0');
-                                    return `${year}-${month}-${day}`;
-                                };
+                                    const year = date.getFullYear()
+                                    const month = String(date.getMonth() + 1).padStart(2, '0')
+                                    const day = String(date.getDate()).padStart(2, '0')
+                                    return `${year}-${month}-${day}`
+                                }
                                 const params = new URLSearchParams()
                                 if (selectedDates.from && selectedDates.to) {
                                     params.append('checkIn', formatDate(selectedDates.from))
