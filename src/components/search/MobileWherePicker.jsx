@@ -1,10 +1,12 @@
+import { BsBank } from "react-icons/bs";
 import { getCities } from "../../actions/explore.actions"
 import { BiSearch } from "react-icons/bi"
+import { TbLocation } from "react-icons/tb";
 
-export function MobileWherePicker({onFilterChange}) {
+export function MobileWherePicker({ onFilterChange }) {
     const cities = getCities();
     return <>
-    {/* Search Input */}
+        {/* Search Input */}
         <div className="flex items-center gap-3 border-1 border-gray-400 rounded-xl px-4 py-3 mb-6 focus-within:ring-2 focus-within:ring-black transition">
             <BiSearch size={20} className="text-[#6a6a6a]" />
             <input
@@ -38,16 +40,12 @@ export function MobileWherePicker({onFilterChange}) {
     </>
 }
 
-function NearBy(){
+function NearBy() {
     return <>
         <button className="flex items-center gap-3 w-full p-2 hover:bg-gray-50 rounded-xl transition">
-            <img
-                height={48}
-                width={48}
-                className="rounded-lg object-cover flex-shrink-0"
-                src="https://a0.muscache.com/im/pictures/airdnd-platform-assets/airdndPlatformAssets-hawaii-autosuggest-destination-icons-2/original/ea5e5ee3-e9d8-48a1-b7e9-1003bf6fe850.png"
-                alt="Nearby"
-            />
+            <div className="flex w-14 h-14 justify-center items-center bg-blue-50 rounded-lg mr-3">
+                <TbLocation className="text-blue-400 w-6 h-6" />
+            </div>
             <div className="flex flex-col text-left">
                 <span className="font-semibold">Nearby</span>
                 <span className="text-sm text-[#6a6a6a]">Find what's around you</span>
@@ -56,16 +54,12 @@ function NearBy(){
     </>
 }
 
-function CreateCityButton({city, idx, onClick}){
+function CreateCityButton({ city, idx, onClick }) {
     return <>
         <button key={idx} className="flex items-center gap-3 w-full p-2 hover:bg-gray-50 rounded-xl transition" onClick={onClick}>
-            <img
-                height={48}
-                width={48}
-                className="rounded-lg object-cover flex-shrink-0"
-                src="https://a0.muscache.com/im/pictures/airdnd-platform-assets/airdndPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png"
-                alt={city}
-            />
+            <div className="flex w-14 h-14 justify-center items-center bg-rose-50 rounded-lg mr-3">
+                <BsBank className="text-rose-400 w-6 h-6" />
+            </div>
             <div className="flex flex-col text-left">
                 <span className="font-semibold">{city}</span>
                 <span className="text-sm text-gray-500">Popular destination</span>
@@ -74,16 +68,12 @@ function CreateCityButton({city, idx, onClick}){
     </>
 }
 
-function LatestSearches(){
+function LatestSearches() {
     return <>
         <button className="flex items-center gap-3 w-full p-2 hover:bg-gray-50 rounded-xl transition">
-            <img
-                height={48}
-                width={48}
-                className="rounded-lg object-cover flex-shrink-0"
-                src="https://a0.muscache.com/im/pictures/airdnd-platform-assets/airdndPlatformAssets-hawaii-autosuggest-destination-icons-1/original/c9333e22-1d8d-4d6c-80db-615f4c2d4cc4.png"
-                alt="Bucharest"
-            />
+            <div className="flex w-14 h-14 justify-center items-center bg-rose-50 rounded-lg mr-3">
+                <BsBank className="text-rose-400 w-6 h-6" />
+            </div>
             <div className="flex flex-col text-left">
                 <span className="font-semibold">Bucharest</span>
                 <span className="text-sm text-gray-500">Nov 9-22 • 8 guests</span>
