@@ -24,7 +24,6 @@ function App() {
 
   useEffect(() => {
     document.title = "Airdnd"
-    setDemoData()
   }, [])
 
   return (
