@@ -21,6 +21,7 @@ export function UserOrders() {
             const user = storeState.userModule.loggedInUser
             if (user) {
                 const userOrders = await ordersService.getOrdersByUserId(user._id)
+                console.log('Fetched user orders:', userOrders)
                 setOrders(userOrders)
             }
             setIsLoading(false)

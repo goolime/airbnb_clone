@@ -90,7 +90,6 @@ export function PropertyDetails() {
     async function loadProperty() {
         try {
             const property = await propertiesService.getById(propertyId)
-            console.log(property)
             setProperty(property)
         } catch (err) {
             console.log('Cannot load property')
@@ -562,7 +561,7 @@ export function PropertyDetails() {
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                             {property.reviews.slice(0, 6).map((review) => (
-                                <div key={review.id} className="flex flex-col">
+                                <div key={review._id} className="flex flex-col">
                                     <div className="flex items-start gap-3 mb-3">
                                         <img src={review.by.imgUrl} alt={review.by.fullname} className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover flex-shrink-0" />
                                         <div className="flex-1">

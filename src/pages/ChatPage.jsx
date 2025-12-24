@@ -81,7 +81,7 @@ export function ChatPage({ currentUser }) {
 
     if (!currentUser) {
         return (
-            <div className="h-screen flex items-center justify-center bg-gray-50">
+            <div className="h-[100dvh] flex items-center justify-center bg-gray-50">
                 <div className="text-center">
                     <h2 className="text-2xl font-semibold text-gray-900 mb-2">
                         Please log in to view messages
@@ -95,7 +95,7 @@ export function ChatPage({ currentUser }) {
     }
 
     return (
-        <div className="h-screen bg-white">
+        <div className="h-[100dvh] bg-white">
             <div className="h-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[380px_1fr]">
                 {/* Chat List - Hidden on mobile when chat is selected */}
                 <div className={`

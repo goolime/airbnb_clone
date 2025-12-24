@@ -26,8 +26,10 @@ export function ChatWindow({
     }, [chat?._id, messages.length])
 
     function scrollToBottom() {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (messagesContainerRef.current) {
+        messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight
     }
+}
 
     async function handleSendMessage(e){
         e.preventDefault()

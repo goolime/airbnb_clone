@@ -108,7 +108,7 @@ export function SearchPage() {
                         />
                     </div>
                 ) : (
-                    <div ref={mapRef} className="h-screen fixed inset-0">
+                    <div ref={mapRef} className="h-[100dvh] fixed inset-0">
                         <AppMap
                             searchResults={properties}
                             location={filterData?.loc}
