@@ -10,7 +10,9 @@ export const propertiesUtil = {
     formatLongDate,
     formatShortDate,
     getFreeCancelationDate,
-    getOneWeekBeforeCheckInDate
+    getOneWeekBeforeCheckInDate,
+    clearCache,
+    prefetchCity
 }
 
 function getEmptyProperty(name = '',
@@ -203,4 +205,32 @@ export function getOneWeekBeforeCheckInDate(checkInDate) {
     latePaymentDate.setDate(latePaymentDate.getDate() - 7);
 
     return latePaymentDate;
+}
+
+export async function prefetchCity(city) {
+    const cacheKey = `city_${city.countryCode}_${city.city}`
+
+    if (!getFromCache(cache.cities, cacheKey)) {
+        console.log('Prefetching city:', city.city)
+
+        try {
+            return await getPropertiesByCity(city)
+        } catch (err) {
+            console.log('Prefetch failed for:', city.city)
+        }
+    }
+
+    return Promise.resolve()
+}
+
+
+export function clearCache() {
+    console.log('Clearing all caches')
+
+    cache.queries.clear()
+    cache.cities.clear()
+    cache.byId.clear()
+
+    activeRequests.forEach(controller => controller.abort())
+    activeRequests.clear()
 }

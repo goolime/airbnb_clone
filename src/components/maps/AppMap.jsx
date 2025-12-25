@@ -4,8 +4,11 @@ import { Map, Popup, Marker } from 'react-map-gl/mapbox'
 import { getCenter } from 'geolib'
 import { useRef, useState, useEffect } from 'react'
 import { PropertyPreview } from '../preview/PropertyPreview'
-import { IoClose, IoHeart, IoHeartOutline } from 'react-icons/io5'
+import { IoClose } from 'react-icons/io5'
 import { Wishlisted } from '../util/wishlisted'
+
+const MAPBOX_TOKEN = 'pk.eyJ1IjoidGFwdWNoaXBzIiwiYSI6ImNtZ3l2bWljazE4dGMyanMycjRwcWtvdWUifQ.tadvkssqi_e58IHltgqa8A'
+const MAP_STYLE = 'mapbox://styles/tapuchips/cmgyvwabb007c01quf1ng3u4d'
 
 export function AppMap({ searchResults, location, checkIn = null, checkOut = null, guests = null }) {
 
@@ -41,7 +44,7 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
     return (
         <>
             <Map
-                mapboxAccessToken="pk.eyJ1IjoidGFwdWNoaXBzIiwiYSI6ImNtZ3l2bWljazE4dGMyanMycjRwcWtvdWUifQ.tadvkssqi_e58IHltgqa8A"
+                mapboxAccessToken={MAPBOX_TOKEN}
                 {...viewPort}
                 ref={mapRef}
                 onMove={event => setViewPort(event.viewState)}
@@ -50,7 +53,7 @@ export function AppMap({ searchResults, location, checkIn = null, checkOut = nul
                     height: '100%',
                     borderRadius: '15px'
                 }}
-                mapStyle="mapbox://styles/tapuchips/cmgyvwabb007c01quf1ng3u4d"
+                mapStyle={MAP_STYLE}
             >
                 {searchResults &&
                     searchResults.map(result => (

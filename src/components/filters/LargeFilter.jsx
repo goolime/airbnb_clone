@@ -350,6 +350,7 @@ export function LargeFilter({
                                     onClick={(ev) => {
                                         ev.stopPropagation()
                                         navigateToSearch()
+                                        onCloseModal()
                                     }}
                                 >
                                     <BiSearch size={24} className="flex-shrink-0" />
